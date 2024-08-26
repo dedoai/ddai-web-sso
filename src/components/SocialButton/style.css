@@ -1,7 +1,11 @@
 .social.button.primary {
   @apply bg-white;
-  @apply text-text-gloomiest;
+  @apply text-text-light;
   @apply font-normal;
+}
+
+:root:has(.dark) .social.button.primary {
+  @apply text-text-gloomiest;
 }
 
 .social.button.primary:hover {

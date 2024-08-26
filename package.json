@@ -11,7 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@dedo_ai/gui-com-lib": "2.0.3",
+    "@dedo_ai/gui-com-lib": "2.0.4",
     "@en1-gma/use-form": "1.0.5",
     "@tanstack/react-query": "5.44.0",
     "@tanstack/react-query-devtools": "5.44.0",

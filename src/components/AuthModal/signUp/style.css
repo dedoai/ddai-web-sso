@@ -1,3 +1,15 @@
+.left-col {
+  width: 40vw;
+  padding: 60px;
+  overflow-y: scroll;
+  border-radius: 18px;
+  @apply bg-neutral-brighter;
+}
+
+:root:has(.dark) .left-col {
+  @apply bg-neutral-gloomier;
+}
+
 .sign-up-image {
   width: 100%;
   height: 100%;
@@ -17,11 +29,16 @@
   border-bottom-right-radius: 0;
   padding: 2rem;
   z-index: 1;
-  @apply bg-neutral-brighter/50;
+  @apply text-text-gloomiest;
+  @apply bg-neutral-base/50;
+}
+
+:root:has(.dark) .content {
+  @apply text-text-light;
 }
 
 .content h2 {
-  @apply font-bold text-2xl mb-4;
+  @apply font-bold text-2xl mb-4
 }
 
 .content p {

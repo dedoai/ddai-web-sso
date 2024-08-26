@@ -83,7 +83,7 @@ export const SignUp = ({
 
   return (
     <div className="flex gap-4 h-[70vh]">
-      <div className="w-[40vw] bg-neutral-light p-[60px] overflow-y-scroll" style={{ borderRadius: '18px' }}>
+      <div className="left-col">
         <Button
           ariaLabel="back-to-signin"
           iconName="PiCaretLeftBold"

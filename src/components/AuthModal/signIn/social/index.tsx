@@ -43,10 +43,7 @@ export const SocialSignIn = ({
                 {t(`${baseT}.signup`)}
                 &nbsp;
                 <span
-                  className="cursor-pointer"
-                  style={{
-                    color: 'rgba(var(--color-primary-bright), 1)',
-                  }}
+                  className="cursor-pointer text-accent"
                   onClick={() => handlePhase(PHASE_SIGNUP)}
                 >
                   {t('authModal.signin.email')}
@@ -56,10 +53,7 @@ export const SocialSignIn = ({
                 {t(`${baseT}.signin`)}
                 &nbsp;
                 <span
-                  className="cursor-pointer"
-                  style={{
-                    color: 'rgba(var(--color-primary-bright), 1)',
-                  }}
+                  className="cursor-pointer text-accent"
                   onClick={() => handlePhase(PHASE_SIGNIN_EMAIL)}
                 >
                   {t('authModal.signin.login')}

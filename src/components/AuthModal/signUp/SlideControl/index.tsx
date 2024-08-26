@@ -26,7 +26,7 @@ export const SlideControl = ({
             <Icon
               key={`slide-${index}`}
               iconName="PiStarFourFill"
-              iconColor={`rgba(var(--color-${activeSlide === index + 1 ? 'primary-brighter' : 'neutral-gloomy'}), 1)`}
+              iconColor={`rgba(var(--color-${activeSlide === index + 1 ? 'accent' : 'neutral-brighter'}), 1)`}
               iconSize={activeSlide === index + 1 ? '2rem' : '1rem'}
             />
           ))
