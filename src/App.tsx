@@ -12,11 +12,10 @@ const App = () => {
 
   useEffect(() => {
     const theme = urlParams.get('t');
-
-    document.body.classList.add(THEME_MAPPER[theme] || 'light');
+    document.body.classList.add(THEME_MAPPER[theme] || 'dark');
   }, []);
 
-  return <AuthModal isOpen />;
+  return <AuthModal isOpen onCloseCb={() => null} />;
 };
 
 export default App;
