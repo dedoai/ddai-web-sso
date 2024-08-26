@@ -30,7 +30,7 @@
   padding: 2rem;
   z-index: 1;
   @apply text-text-gloomiest;
-  @apply bg-neutral-base/50;
+  @apply bg-neutral-gloomy/50;
 }
 
 :root:has(.dark) .content {
