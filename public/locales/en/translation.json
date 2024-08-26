@@ -1,0 +1,62 @@
+{
+  "authModal": {
+    "title": "Hi, Welcome to DedoAI 👋",
+    "social": {
+      "facebook": "Continue with Facebook",
+      "google": "Continue with Google",
+      "apple": "Continue with Apple",
+      "signup": "Or register with",
+      "signin": "Already have an account?"
+    },
+    "signin": {
+      "email": "E-mail",
+      "password": "Password",
+      "login": "Log in",
+      "forgotPassword": "Forgot your password?",
+      "havingTrouble": "Having trouble?"
+    },
+    "signup": {
+      "emailLabel": "Insert your email",
+      "emailPlaceholder": "Email",
+      "enterValidEmail": "Please enter a valid email",
+      "orSignWith": "Or Sign up with",
+      "nextStep": "Continue",
+      "createAccount": "Create an account",
+      "needHelp": "Need help?",
+      "contactUs": "Contact us",
+      "confirmEmailLabel": "Confirm your email",
+      "confirmEmailDescription": "We sent a 6 digit code to <span>{{email}}</span>. Please enter it below to confirm your email.",
+      "enterValidCode": "Please enter a valid code",
+      "resendEmailCode": "I didn't receive the code",
+      "insertPhoneNumber": "Insert your phone number",
+      "phoneNumberPrefix": "Prefix",
+      "phoneNumber": "Phone number",
+      "confirmPhoneNumberLabel": "Confirm your phone number",
+      "confirmPhoneNumberDescription": "We sent a 6 digit code to <span>{{phoneNumberPrefix}}{{phoneNumber}}</span>. Please enter it below to confirm your phone number.",
+      "sendSms": "Send SMS",
+      "sendSmsFirst": "You need to send the SMS first",
+      "resendSms": "Re-send SMS{{article}}{{time}}",
+      "resendIn": " in",
+      "createPassword": "Create your password",
+      "password": "Password",
+      "passwordPlaceholder": "Password must be 8 characters long",
+      "confirmPasswordPlaceholder": "Repeat password",
+      "passwordsDontMatch": "Passwords do not match",
+      "pleaseRepeatPassword": "Please repeat your password",
+      "slides": {
+        "1": {
+          "title": "Look for the best datasets for your Company",
+          "body": "Our platform provides a robust marketplace where data consumers and producers can interact seamlessly. Buy and sell high-quality datasets securely, enhancing AI capabilities with diverse and reliable data sources."
+        },
+        "2": {
+          "title": "Get unique datasets for your LLM",
+          "body": "Producers respond to market demands, set competitive prices, and earn DedoAI tokens. Our blockchain technology ensures secure transactions and fair compensation."
+        },
+        "3": {
+          "title": "Your data are Decentralized and Secured",
+          "body": "Leverage blockchain technology for a truly distributed data ecosystem. Our decentralized architecture ensures no single point of failure, enhancing data integrity and resilience against censorship."
+        }
+      }
+    }
+  }
+}

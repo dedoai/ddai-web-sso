@@ -1,0 +1,52 @@
+.sign-up-image {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: relative;
+}
+
+.content {
+  position: absolute;
+  right: 0;
+  bottom: 6rem;
+  backdrop-filter: blur(10px);
+  width: 85%;
+  min-height: 30%;
+  border-radius: 12px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  padding: 2rem;
+  z-index: 1;
+  @apply bg-neutral-brighter/50;
+}
+
+.content h2 {
+  @apply font-bold text-2xl mb-4;
+}
+
+.content p {
+  @apply font-light mb-8;
+}
+
+.content .controls {
+  display: flex;
+  gap: 1rem;
+  position: absolute;
+  right: 2rem;
+  bottom: 1rem;
+  left: 2rem;
+}
+
+.controls .next-slide {
+  position: absolute;
+  right: 1.5rem;
+  width: 6rem;
+  height: 6rem;
+  border-radius: 100%;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+  cursor: pointer;
+}

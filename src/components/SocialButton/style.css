@@ -1,0 +1,13 @@
+.social.button.primary {
+  @apply bg-white;
+  @apply text-text-gloomiest;
+  @apply font-normal;
+}
+
+.social.button.primary:hover {
+  @apply !bg-primary;
+}
+
+.social.button.primary:focus {
+  @apply !bg-primary;
+}
