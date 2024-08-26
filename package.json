@@ -6,9 +6,12 @@
   "scripts": {
     "start:dev": "vite --mode development",
     "start:prod": "vite --mode production",
-    "build": "tsc -b && vite build",
+    "build:dev": "tsc -b && vite build --mode development",
+    "build:prod": "tsc -b && vite build --mode production",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy:dev": "git tag dev-$npm_package_version && git push origin dev-$npm_package_version",
+    "deploy:prod": "git tag prod-$npm_package_version && git push origin prod-$npm_package_version"
   },
   "dependencies": {
     "@dedo_ai/gui-com-lib": "2.0.8",

@@ -41,7 +41,6 @@ export const EmailSignIn = () => {
         placeholder={t(`${baseT}.email`)}
         type="email"
         value={email}
-        variant="default"
         disabled={isFetching}
       />
       <Input
@@ -52,7 +51,6 @@ export const EmailSignIn = () => {
         type="password"
         value={password}
         disabled={isFetching}
-        variant="default"
       />
       <Button
         size="lg"
