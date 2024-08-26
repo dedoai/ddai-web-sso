@@ -1,4 +1,9 @@
 {
+  "main": {
+    "forms": {
+      "isRequired": "{{field}} is required"
+    }
+  },
   "authModal": {
     "title": "Hi, Welcome to DedoAI 👋",
     "social": {
