@@ -13,12 +13,14 @@ import SocialSignIn from './signIn/social';
 import ForgotPassword from './forgotPsw';
 import SignUp from './signUp';
 
+import './style.css';
+
 export const PHASE_SIGNIN_SOCIAL = 'signin-social';
 export const PHASE_SIGNIN_EMAIL = 'signin-email';
 export const PHASE_SIGNUP = 'signup';
 export const PHASE_FORGOT_PASSWORD = 'forgot';
 
-interface IAuthModalProps extends Pick<IModalProps, 'isOpen' | 'onCloseCb'> {}
+interface IAuthModalProps extends Pick<IModalProps, 'isOpen' | 'onCloseCb'> { }
 export const AuthModal = ({
   isOpen,
   onCloseCb,
@@ -63,10 +65,6 @@ export const AuthModal = ({
       disableBodyScroll
       bodyFullWidth={phase === PHASE_SIGNUP}
       noBackdrop={phase !== PHASE_SIGNUP}
-      style={{
-        borderRadius: '24px',
-        maxWidth: '1600px',
-      }}
       title={
         phase === PHASE_SIGNIN_EMAIL
           ? (
@@ -75,7 +73,7 @@ export const AuthModal = ({
               iconName="PiCaretLeftBold"
               iconSide="center"
               onClick={() => handlePhase(PHASE_SIGNIN_SOCIAL)}
-              variant="tertiary"
+              variant="text"
             />
           )
           : null

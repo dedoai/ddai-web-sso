@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
+import { Button } from '@dedo_ai/gui-com-lib';
 
 import { PHASE_SIGNIN_EMAIL, PHASE_SIGNUP } from '@/components/AuthModal';
-import SocialButton from '@/components/SocialButton';
 
 const SOCIAL_BUTTONS: string[] = ['facebook', 'google', 'apple'];
 
@@ -23,7 +23,8 @@ export const SocialSignIn = ({
       <div className={`flex gap-4 ${isMinimalMode ? 'justify-center flex-wrap' : 'flex-col'}`}>
         {
           SOCIAL_BUTTONS.map((buttonId) => (
-            <SocialButton
+            <Button
+              variant="secondary"
               key={buttonId}
               customIcon={<img src={`/assets/${buttonId}.svg`} alt="" />}
               ariaLabel={buttonId}

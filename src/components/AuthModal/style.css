@@ -1,0 +1,4 @@
+.card {
+  @apply border-solid border-2 border-secondary;
+  max-width: '1600px';
+}
