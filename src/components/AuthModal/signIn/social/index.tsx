@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Button } from '@dedo_ai/gui-com-lib';
+import { Body2, Button } from '@dedo_ai/gui-com-lib';
 
 import { PHASE_SIGNIN_EMAIL, PHASE_SIGNUP } from '@/components/AuthModal';
 
@@ -40,26 +40,29 @@ export const SocialSignIn = ({
           ? null
           : (
             <>
-              <p className="text-center">
+
+              <Body2
+                className="inline-flex gap-1 justify-center text-text-bright dark:text-text-gloomy"
+              >
                 {t(`${baseT}.signup`)}
-                &nbsp;
-                <span
-                  className="cursor-pointer text-accent"
+                <Body2
+                  className="text-primary cursor-pointer"
+                  content={t('authModal.signin.email')}
                   onClick={() => handlePhase(PHASE_SIGNUP)}
-                >
-                  {t('authModal.signin.email')}
-                </span>
-              </p>
-              <p className="text-center">
+                  weight="medium"
+                />
+              </Body2>
+              <Body2
+                className="inline-flex gap-1 justify-center text-text-bright dark:text-text-gloomy"
+              >
                 {t(`${baseT}.signin`)}
-                &nbsp;
-                <span
-                  className="cursor-pointer text-accent"
+                <Body2
+                  className="text-primary cursor-pointer"
+                  content={t('authModal.signin.login')}
                   onClick={() => handlePhase(PHASE_SIGNIN_EMAIL)}
-                >
-                  {t('authModal.signin.login')}
-                </span>
-              </p>
+                  weight="medium"
+                />
+              </Body2>
             </>
           )
       }

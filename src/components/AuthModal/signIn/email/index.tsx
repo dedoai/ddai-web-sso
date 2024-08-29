@@ -1,7 +1,9 @@
 import { useTranslation } from 'react-i18next';
-import { Button, Input } from '@dedo_ai/gui-com-lib';
+import { Body2, Button, Input } from '@dedo_ai/gui-com-lib';
 import useForm from '@en1-gma/use-form';
 import { useQuery } from '@tanstack/react-query';
+
+import SocialSignIn from '@/components/AuthModal/signIn/social';
 
 import schema from './validationSchemas';
 
@@ -20,8 +22,6 @@ export const EmailSignIn = () => {
     email,
     password,
   } = formData ?? {};
-
-  const primaryBrightColor = 'rgba(var(--color-primary-bright), 1)';
 
   const { isFetching, refetch: doLogin } = useQuery({
     queryKey: ['login'],
@@ -62,22 +62,11 @@ export const EmailSignIn = () => {
           if (!isInvalid) doLogin();
         }}
       />
-      <p
-        className="text-center cursor-pointer"
-        style={{
-          color: primaryBrightColor,
-        }}
-      >
-        {t(`${baseT}.forgotPassword`)}
-      </p>
-      <p
-        className="text-center cursor-pointer"
-        style={{
-          color: primaryBrightColor,
-        }}
-      >
-        {t(`${baseT}.havingTrouble`)}
-      </p>
+      <Body2
+        className="text-center"
+        text={t(`${baseT}.orSignInWith`)}
+      />
+      <SocialSignIn mode="minimal" />
     </>
   );
 };

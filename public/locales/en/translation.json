@@ -16,7 +16,8 @@
     "signin": {
       "email": "E-mail",
       "password": "Password",
-      "login": "Log in",
+      "login": "Sign in",
+      "orSignInWith": "Or Sign in with",
       "forgotPassword": "Forgot your password?",
       "havingTrouble": "Having trouble?"
     },
