@@ -20,7 +20,7 @@ export const SocialSignIn = ({
 
   return (
     <>
-      <div className={`flex gap-4 ${isMinimalMode ? 'justify-center flex-wrap' : 'flex-col'}`}>
+      <div className={`flex gap-[10px] ${isMinimalMode ? 'justify-center flex-wrap' : 'flex-col'}`}>
         {
           SOCIAL_BUTTONS.map((buttonId) => (
             <Button
@@ -46,6 +46,7 @@ export const SocialSignIn = ({
               >
                 {t(`${baseT}.signup`)}
                 <Body2
+                  as="span"
                   className="text-primary cursor-pointer"
                   content={t('authModal.signin.email')}
                   onClick={() => handlePhase(PHASE_SIGNUP)}
@@ -57,6 +58,7 @@ export const SocialSignIn = ({
               >
                 {t(`${baseT}.signin`)}
                 <Body2
+                  as="span"
                   className="text-primary cursor-pointer"
                   content={t('authModal.signin.login')}
                   onClick={() => handlePhase(PHASE_SIGNIN_EMAIL)}

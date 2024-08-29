@@ -18,8 +18,9 @@
       "password": "Password",
       "login": "Sign in",
       "orSignInWith": "Or Sign in with",
-      "forgotPassword": "Forgot your password?",
-      "havingTrouble": "Having trouble?"
+      "forgotPassword": "Forgot password?",
+      "havingTrouble": "Having trouble?",
+      "rememberMe": "Remember me"
     },
     "signup": {
       "emailLabel": "Insert your email",

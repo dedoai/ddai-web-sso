@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import {
   type IModalProps,
   Button,
+  H2,
   Modal,
 } from '@dedo_ai/gui-com-lib';
 
@@ -72,8 +73,9 @@ export const AuthModal = ({
               ariaLabel="auth-modal-back"
               iconName="PiCaretLeftBold"
               iconSide="center"
+              size="xs"
               onClick={() => handlePhase(PHASE_SIGNIN_SOCIAL)}
-              variant="text"
+              variant="secondary"
             />
           )
           : null
@@ -83,11 +85,7 @@ export const AuthModal = ({
         {
           noHeaderCondition
             ? null
-            : (
-              <div className="text-3xl font-bold mb-2 text-center -mt-4">
-                {t(`${baseT}.title`)}
-              </div>
-            )
+            : <H2 className="text-center -mt-4" content={t(`${baseT}.title`)} />
         }
         {PHASE_MAPPER[phase]}
       </div>
