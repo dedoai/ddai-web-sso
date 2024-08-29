@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button } from '@dedo_ai/gui-com-lib';
+import { Body2, Button } from '@dedo_ai/gui-com-lib';
 import useForm from '@en1-gma/use-form';
+
+import SocialSignIn from '@/components/AuthModal/signIn/social';
+import NeedHelp from '@/components/NeedHelp';
 
 import { PHASE_SIGNIN_SOCIAL } from '..';
 
@@ -24,7 +27,6 @@ export const SignUp = ({
   const { t } = useTranslation();
 
   const [activeStep, setActiveStep] = useState(1);
-  const [activeSlide, setActiveSlide] = useState(1);
   const [hasSmsBeenSent, setHasSmsBeenSent] = useState(false);
   const toggleSmsSent = () => setHasSmsBeenSent(!hasSmsBeenSent);
 
@@ -76,6 +78,8 @@ export const SignUp = ({
     console.log('>> formData', formData);
   };
 
+  const continueButtonCondition = [1, 3, 5].indexOf(activeStep) !== -1;
+
   return (
     <>
       <Button
@@ -85,29 +89,30 @@ export const SignUp = ({
         variant="secondary"
         onClick={() => (activeStep === 1 ? handlePhase(PHASE_SIGNIN_SOCIAL) : setActiveStep(activeStep - 1))}
         size="xs"
-        className="mb-8"
       />
       {STEP_MAPPER[activeStep].step}
-      <Button
-        ariaLabel="next-step"
-        text={t(`${baseT}.${activeStep === 5 ? 'createAccount' : 'nextStep'}`)}
-        size="lg"
-        className="mt-8 w-full"
-        onClick={async () => {
-          const isInvalid = await validate(STEP_MAPPER[activeStep].schema, { hasSmsBeenSent });
-          if (!isInvalid) {
-            if (activeStep === 5) handleSubmit();
-            else setActiveStep(activeStep + 1);
-          }
-        }}
-      />
-      <p className="text-center font-light mt-12 text-sm">
-        {t(`${baseT}.needHelp`)}
-          &nbsp;
-        <span className="text-primary-bright cursor-pointer font-normal">
-          {t(`${baseT}.contactUs`)}
-        </span>
-      </p>
+      {
+        continueButtonCondition
+          ? (
+            <Button
+              ariaLabel="next-step"
+              text={t(`${baseT}.${activeStep === 5 ? 'createAccount' : 'nextStep'}`)}
+              size="lg"
+              className="mt-2"
+              onClick={async () => {
+                const isInvalid = await validate(STEP_MAPPER[activeStep].schema, { hasSmsBeenSent });
+                if (!isInvalid) {
+                  if (activeStep === 5) handleSubmit();
+                  else setActiveStep(activeStep + 1);
+                }
+              }}
+            />
+          ) : null
+      }
+
+      <Body2 content={t(`${baseT}.orSignWith`)} className="text-center text-neutral-base dark:text-text-gloomy" />
+      <SocialSignIn mode="minimal" />
+      <NeedHelp />
     </>
   );
 };

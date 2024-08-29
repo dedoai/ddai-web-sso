@@ -50,6 +50,7 @@
       "confirmPasswordPlaceholder": "Repeat password",
       "passwordsDontMatch": "Passwords do not match",
       "pleaseRepeatPassword": "Please repeat your password",
+      "acceptNewsletter": "Stay updated with the latest news and personalized offers from DedoAI via email.",
       "slides": {
         "1": {
           "title": "Look for the best datasets for your Company",

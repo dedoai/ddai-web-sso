@@ -1,7 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Input } from '@dedo_ai/gui-com-lib';
-
-import SocialSignIn from '@/components/AuthModal/signIn/social';
+import { Checkbox, H2, Input } from '@dedo_ai/gui-com-lib';
 
 interface IFirstStepProps {
   formData: any;
@@ -18,19 +16,21 @@ export const FirstStep = ({
 
   return (
     <>
-      <h1 className="text-2xl font-bold mb-6">{t(`${baseT}.emailLabel`)}</h1>
+      <H2 content={t(`${baseT}.emailLabel`)} />
       <Input
         ariaLabel="email"
+        error={errors?.email?.message}
+        label={t(`${baseT}.emailPlaceholder`)}
+        mandatory
         onChange={(e) => handleChange('email', e.target.value)}
         placeholder={t(`${baseT}.emailPlaceholder`)}
         type="email"
         value={formData.email}
-        error={errors?.email?.message}
       />
-      <p className="text-center font-light mb-4">
-        {t(`${baseT}.orSignWith`)}
-      </p>
-      <SocialSignIn mode="minimal" />
+      <Checkbox
+        label={t(`${baseT}.acceptNewsletter`)}
+        labelClassName="text-text-bright dark:text-text-gloomy max-w-[330px]"
+      />
     </>
   );
 };

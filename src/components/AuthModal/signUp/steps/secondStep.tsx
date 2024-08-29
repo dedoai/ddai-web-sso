@@ -1,5 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next';
-import { Button, Input } from '@dedo_ai/gui-com-lib';
+import {
+  Body2, Button, H2, Input,
+} from '@dedo_ai/gui-com-lib';
 
 interface ISecondStepProps {
   formData: any;
@@ -18,20 +20,21 @@ export const SecondStep = ({
 
   return (
     <>
-      <h1 className="text-2xl font-bold mb-6">{t(`${baseT}.confirmEmailLabel`)}</h1>
-      <p className="mb-6 text-contrast/70">
+      <H2 content={t(`${baseT}.confirmEmailLabel`)} />
+      <Body2 className="text-text-bright dark:text-text-gloomy">
         <Trans
           i18nKey={`${baseT}.confirmEmailDescription`}
           values={{ email }}
-          components={{ span: <span className="font-bold" /> }}
+          components={{ span: <Body2 weight="medium" className="text-primary" /> }}
         />
-      </p>
+      </Body2>
       <Input
-        ariaLabel="email"
-        onChange={(e) => handleChange('emailCode', e.target.value)}
-        type="number"
+        ariaLabel="email-code"
+        onChange={(value) => handleChange('emailCode', value)}
+        type="confirmation-code"
         value={emailCode}
         error={errors?.emailCode?.message}
+        className="max-w-[60%]"
       />
       <Button
         text={t(`${baseT}.resendEmailCode`)}

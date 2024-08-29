@@ -7,6 +7,7 @@ import useForm from '@en1-gma/use-form';
 import { useQuery } from '@tanstack/react-query';
 
 import SocialSignIn from '@/components/AuthModal/signIn/social';
+import NeedHelp from '@/components/NeedHelp';
 
 import schema from './validationSchemas';
 
@@ -65,14 +66,11 @@ export const EmailSignIn = () => {
           />
         )}
       />
-      <div className="inline-flex gap-2 items-center">
-        <Checkbox size="sm" />
-        <Body2
-          className="text-neutral-bright dark:text-text-gloomy"
-          content={t(`${baseT}.rememberMe`)}
-          weight="medium"
-        />
-      </div>
+      <Checkbox
+        size="sm"
+        label={t(`${baseT}.rememberMe`)}
+        labelClassName="text-neutral-bright dark:text-text-gloomy"
+      />
       <Button
         size="lg"
         ariaLabel="log-in"
@@ -88,12 +86,7 @@ export const EmailSignIn = () => {
         content={t(`${baseT}.orSignInWith`)}
       />
       <SocialSignIn mode="minimal" />
-      <Body2
-        className="inline-flex gap-1 justify-center text-neutral-base"
-      >
-        {t('authModal.signup.needHelp')}
-        <Body2 as="span" className="text-primary cursor-pointer" content={t('authModal.signup.contactUs')} weight="medium" />
-      </Body2>
+      <NeedHelp />
     </>
   );
 };

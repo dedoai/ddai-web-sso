@@ -64,7 +64,6 @@ export const AuthModal = ({
       onCloseCb={handleClose}
       bodyFullHeight
       disableBodyScroll
-      bodyFullWidth={phase === PHASE_SIGNUP}
       noBackdrop={phase !== PHASE_SIGNUP}
       title={
         phase === PHASE_SIGNIN_EMAIL
