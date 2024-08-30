@@ -19,9 +19,9 @@ import './style.css';
 interface ISignUpProps {
   handlePhase: (_phase: string) => void;
   formData: any;
-  handleChange: (_key: string, _value: string) => void;
+  handleChange: (_key: string, _value: any) => void;
   errors: any;
-  validate: (schema: any, context: any) => boolean;
+  validate: (schema: any, context?: any) => boolean;
 }
 export const SignUp = ({
   handlePhase,
@@ -34,8 +34,6 @@ export const SignUp = ({
   const { t } = useTranslation();
 
   const [activeStep, setActiveStep] = useState(1);
-  const [hasCodeBeenSent, setHasCodeBeenSent] = useState(false);
-  const toggleCodeSent = () => setHasCodeBeenSent(!hasCodeBeenSent);
 
   const {
     firstStep: firstStepSchema,
@@ -47,7 +45,9 @@ export const SignUp = ({
 
   const {
     email,
-    confirmationCode,
+    confirmationEmailCode,
+    phoneNumber,
+    confirmationPhoneNumberCode,
   } = formData;
 
   const commonProps = {
@@ -76,16 +76,18 @@ export const SignUp = ({
       step: <ConfirmationCode
         descriptionTKey="authModal.signup.confirmEmailDescription"
         handleChange={handleChange}
-        title="authModal.signup.confirmEmailLabel"
-        toggleCodeSent={toggleCodeSent}
-        tValues={{ email }}
-        value={confirmationCode}
+        hasCodeBeenChecked={formData.hasEmailCodeBeenChecked}
         nextStepCb={() => goToNextStep(false)}
+        setCodeChecked={() => handleChange('signup.hasEmailCodeBeenChecked', true)}
+        title="authModal.signup.confirmEmailLabel"
+        tValues={{ email }}
+        value={confirmationEmailCode}
+        valuePath="signup.confirmationEmailCode"
       />,
       schema: secondStepSchema,
     },
     3: {
-      step: <ThirdStep {...commonProps} hasSmsBeenSent={hasCodeBeenSent} toggleSmsSent={toggleCodeSent} />,
+      step: <ThirdStep {...commonProps} />,
       schema: thirdStepSchema,
     },
     4: {
@@ -120,7 +122,7 @@ export const SignUp = ({
               size="lg"
               className="mt-2"
               onClick={async () => {
-                const isInvalid = await validate(STEP_MAPPER[activeStep].schema, { hasSmsBeenSent: hasCodeBeenSent });
+                const isInvalid = await validate(STEP_MAPPER[activeStep].schema);
                 goToNextStep(isInvalid);
               }}
             />

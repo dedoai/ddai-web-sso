@@ -18,7 +18,10 @@ const schema = () => {
     }),
     secondStep: object()
       .shape({
-        emailCode: string(),
+        signup: object()
+          .shape({
+            confirmationCode: string(),
+          }),
       }),
     thirdStep: object()
       .shape({

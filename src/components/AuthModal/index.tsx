@@ -22,9 +22,12 @@ const INITIAL_DATA = {
   },
   signup: {
     email: '',
+    confirmationEmailCode: '',
+    hasEmailCodeBeenChecked: false,
     phoneNumberPrefix: '',
     phoneNumber: '',
-    confirmationCode: '',
+    confirmationPhoneNumberCode: '',
+    hasPhoneNumberCodeBeenChecked: false,
   },
 };
 

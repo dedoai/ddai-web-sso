@@ -17,17 +17,21 @@ interface IConfirmationCodeProps {
   };
   handleChange: (_key: string, _value: string) => void;
   value: string;
-  toggleCodeSent: () => void;
+  hasCodeBeenChecked: boolean;
+  setCodeChecked: () => void;
   nextStepCb: () => void;
+  valuePath: string;
 }
 const ConfirmationCode = ({
-  title,
   descriptionTKey,
-  tValues,
   handleChange,
-  value,
-  toggleCodeSent,
+  hasCodeBeenChecked,
   nextStepCb,
+  setCodeChecked,
+  title,
+  tValues,
+  value,
+  valuePath,
 }: IConfirmationCodeProps) => {
   const { t } = useTranslation();
 
@@ -50,10 +54,12 @@ const ConfirmationCode = ({
   } = useQuery({
     queryKey: ['checkCode'],
     queryFn: () => {
-      const res = false;
+      const res = true;
 
-      if (res) nextStepCb();
-      // else handleChange('confirmationCode', '');
+      if (res) {
+        setCodeChecked();
+        nextStepCb();
+      }
 
       return res;
     },
@@ -67,19 +73,17 @@ const ConfirmationCode = ({
   } = useQuery({
     queryKey: ['sendCode'],
     queryFn: async () => {
-      const wait = (t: number) => new Promise((res) => { setTimeout(res, t); });
+      // TODO insert here the logic to send the code (api call towards lambda-twilio)
 
-      wait(5000);
-
-      toggleCodeSent();
       toggleTimer();
 
       return null;
     },
+    enabled: !hasCodeBeenChecked,
   });
 
   useEffect(() => {
-    if (isCodeLenghtValid) checkCode();
+    if (isCodeLenghtValid && !hasCodeBeenChecked) checkCode();
   }, [value]);
 
   useEffect(() => {
@@ -109,10 +113,7 @@ const ConfirmationCode = ({
         className="max-w-[60%]"
         disabled={isCodeChecking}
         error={isCodeValid ? '' : t('authModal.signup.invalidCode')}
-        onChange={(value) => {
-          console.log('>>', value);
-          handleChange('confirmationCode', value);
-        }}
+        onChange={(value) => handleChange(valuePath, value)}
         codeLenght={CODE_LENGHT}
         type="confirmation-code"
         value={value || ''}
@@ -126,7 +127,10 @@ const ConfirmationCode = ({
         })}
         ariaLabel="resend-code"
         disabled={isTimerRolling || !isCodeLenghtValid}
-        onClick={sendCode}
+        onClick={() => {
+          handleChange('signup.confirmationEmailCode', '');
+          sendCode();
+        }}
         isLoading={isCodeChecking}
       />
     </>

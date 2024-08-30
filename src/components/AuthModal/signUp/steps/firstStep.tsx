@@ -13,7 +13,7 @@ export const FirstStep = ({
 }: IFirstStepProps) => {
   const baseT = 'authModal.signup';
   const { t } = useTranslation();
-  console.log('>>', errors);
+
   return (
     <>
       <H2 content={t(`${baseT}.emailLabel`)} />
