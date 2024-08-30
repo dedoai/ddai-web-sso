@@ -1,6 +1,4 @@
-'use client';
-
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   type IModalProps,
@@ -8,6 +6,7 @@ import {
   H2,
   Modal,
 } from '@dedo_ai/gui-com-lib';
+import useForm from '@en1-gma/use-form';
 
 import EmailSignIn from './signIn/email';
 import SocialSignIn from './signIn/social';
@@ -15,6 +14,19 @@ import ForgotPassword from './forgotPsw';
 import SignUp from './signUp';
 
 import './style.css';
+
+const INITIAL_DATA = {
+  signin: {
+    email: '',
+    password: '',
+  },
+  signup: {
+    email: '',
+    phoneNumberPrefix: '',
+    phoneNumber: '',
+    confirmationCode: '',
+  },
+};
 
 export const PHASE_SIGNIN_SOCIAL = 'signin-social';
 export const PHASE_SIGNIN_EMAIL = 'signin-email';
@@ -32,15 +44,38 @@ export const AuthModal = ({
   const [phase, setPhase] = useState(PHASE_SIGNIN_SOCIAL);
   const handlePhase = (_phase: string) => setPhase(_phase);
 
+  const {
+    data: formData,
+    errors,
+    handleChange,
+    setErrors,
+    validate,
+  } = useForm(INITIAL_DATA);
+
+  const resetErrors = () => {
+    setErrors({});
+  };
+
   const PHASE_MAPPER = {
     [PHASE_SIGNIN_SOCIAL]: (
       <SocialSignIn handlePhase={handlePhase} />
     ),
     [PHASE_SIGNIN_EMAIL]: (
-      <EmailSignIn />
+      <EmailSignIn
+        errors={errors}
+        formData={formData.signin}
+        handleChange={handleChange}
+        validate={validate}
+      />
     ),
     [PHASE_SIGNUP]: (
-      <SignUp handlePhase={handlePhase} />
+      <SignUp
+        errors={errors}
+        formData={formData.signup}
+        handleChange={handleChange}
+        handlePhase={handlePhase}
+        validate={validate}
+      />
     ),
     [PHASE_FORGOT_PASSWORD]: (
       <ForgotPassword />
@@ -53,6 +88,8 @@ export const AuthModal = ({
   };
 
   const noHeaderCondition = [PHASE_SIGNUP, PHASE_FORGOT_PASSWORD].indexOf(phase) !== -1;
+
+  useEffect(resetErrors, [phase]);
 
   return (
     <Modal

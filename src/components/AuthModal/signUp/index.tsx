@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Body2, Button } from '@dedo_ai/gui-com-lib';
-import useForm from '@en1-gma/use-form';
 
 import SocialSignIn from '@/components/AuthModal/signIn/social';
+import ConfirmationCode from '@/components/ConfirmationCode';
 import NeedHelp from '@/components/NeedHelp';
 
 import { PHASE_SIGNIN_SOCIAL } from '..';
@@ -11,7 +11,6 @@ import { PHASE_SIGNIN_SOCIAL } from '..';
 import FifthStep from './steps/fifthStep';
 import FirstStep from './steps/firstStep';
 import FourthStep from './steps/fourthStep';
-import SecondStep from './steps/secondStep';
 import ThirdStep from './steps/thirdStep';
 import schema from './validationSchemas';
 
@@ -19,16 +18,24 @@ import './style.css';
 
 interface ISignUpProps {
   handlePhase: (_phase: string) => void;
+  formData: any;
+  handleChange: (_key: string, _value: string) => void;
+  errors: any;
+  validate: (schema: any, context: any) => boolean;
 }
 export const SignUp = ({
   handlePhase,
+  formData,
+  errors,
+  handleChange,
+  validate,
 }: ISignUpProps) => {
   const baseT = 'authModal.signup';
   const { t } = useTranslation();
 
   const [activeStep, setActiveStep] = useState(1);
-  const [hasSmsBeenSent, setHasSmsBeenSent] = useState(false);
-  const toggleSmsSent = () => setHasSmsBeenSent(!hasSmsBeenSent);
+  const [hasCodeBeenSent, setHasCodeBeenSent] = useState(false);
+  const toggleCodeSent = () => setHasCodeBeenSent(!hasCodeBeenSent);
 
   const {
     firstStep: firstStepSchema,
@@ -39,16 +46,25 @@ export const SignUp = ({
   } = schema();
 
   const {
-    data: formData,
-    handleChange,
-    errors,
-    validate,
-  } = useForm({});
+    email,
+    confirmationCode,
+  } = formData;
 
   const commonProps = {
     formData,
     handleChange,
     errors,
+  };
+
+  const handleSubmit = () => {
+    console.log('>> formData', formData);
+  };
+
+  const goToNextStep = (isInvalid?: boolean) => {
+    if (!isInvalid) {
+      if (activeStep === 5) handleSubmit();
+      else setActiveStep(activeStep + 1);
+    }
   };
 
   const STEP_MAPPER = {
@@ -57,11 +73,19 @@ export const SignUp = ({
       schema: firstStepSchema,
     },
     2: {
-      step: <SecondStep {...commonProps} />,
+      step: <ConfirmationCode
+        descriptionTKey="authModal.signup.confirmEmailDescription"
+        handleChange={handleChange}
+        title="authModal.signup.confirmEmailLabel"
+        toggleCodeSent={toggleCodeSent}
+        tValues={{ email }}
+        value={confirmationCode}
+        nextStepCb={() => goToNextStep(false)}
+      />,
       schema: secondStepSchema,
     },
     3: {
-      step: <ThirdStep {...commonProps} hasSmsBeenSent={hasSmsBeenSent} toggleSmsSent={toggleSmsSent} />,
+      step: <ThirdStep {...commonProps} hasSmsBeenSent={hasCodeBeenSent} toggleSmsSent={toggleCodeSent} />,
       schema: thirdStepSchema,
     },
     4: {
@@ -72,10 +96,6 @@ export const SignUp = ({
       step: <FifthStep {...commonProps} />,
       schema: fifthStepSchema,
     },
-  };
-
-  const handleSubmit = () => {
-    console.log('>> formData', formData);
   };
 
   const continueButtonCondition = [1, 3, 5].indexOf(activeStep) !== -1;
@@ -100,11 +120,8 @@ export const SignUp = ({
               size="lg"
               className="mt-2"
               onClick={async () => {
-                const isInvalid = await validate(STEP_MAPPER[activeStep].schema, { hasSmsBeenSent });
-                if (!isInvalid) {
-                  if (activeStep === 5) handleSubmit();
-                  else setActiveStep(activeStep + 1);
-                }
+                const isInvalid = await validate(STEP_MAPPER[activeStep].schema, { hasSmsBeenSent: hasCodeBeenSent });
+                goToNextStep(isInvalid);
               }}
             />
           ) : null

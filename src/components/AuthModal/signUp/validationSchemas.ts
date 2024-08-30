@@ -10,16 +10,15 @@ const schema = () => {
 
   return {
     firstStep: object().shape({
-      email: string()
-        .email(t(`${baseT}.enterValidEmail`))
-        .required(isRequired(t(`${baseT}.emailPlaceholder`))),
+      signup: object().shape({
+        email: string()
+          .email(t(`${baseT}.enterValidEmail`))
+          .required(isRequired(t(`${baseT}.emailPlaceholder`))),
+      }),
     }),
     secondStep: object()
       .shape({
-        emailCode: string()
-          .min(6, enterValidCode)
-          .max(6, enterValidCode)
-          .required(enterValidCode),
+        emailCode: string(),
       }),
     thirdStep: object()
       .shape({

@@ -3,7 +3,6 @@ import {
   Body2,
   Button, Checkbox, Icon, Input,
 } from '@dedo_ai/gui-com-lib';
-import useForm from '@en1-gma/use-form';
 import { useQuery } from '@tanstack/react-query';
 
 import SocialSignIn from '@/components/AuthModal/signIn/social';
@@ -11,16 +10,20 @@ import NeedHelp from '@/components/NeedHelp';
 
 import schema from './validationSchemas';
 
-export const EmailSignIn = () => {
+interface IEmailSignInProps {
+  errors: any;
+  formData: any;
+  handleChange: (_key: string, _value: string) => void;
+  validate: (schema: any, context?: any) => boolean;
+}
+export const EmailSignIn = ({
+  errors,
+  formData,
+  handleChange,
+  validate,
+}: IEmailSignInProps) => {
   const baseT = 'authModal.signin';
   const { t } = useTranslation();
-
-  const {
-    data: formData,
-    handleChange,
-    errors,
-    validate,
-  } = useForm({});
 
   const {
     email,
@@ -41,9 +44,10 @@ export const EmailSignIn = () => {
       <Input
         ariaLabel="email"
         disabled={isFetching}
-        error={errors?.email?.message}
+        error={errors?.['signin.email']?.message}
         label={t(`${baseT}.email`)}
-        onChange={(e) => handleChange('email', e.target.value)}
+        mandatory
+        onChange={(e) => handleChange('signin.email', e.target.value)}
         placeholder={t(`${baseT}.email`)}
         prefix={<Icon iconName="PiUserCircle" />}
         type="email"
@@ -52,9 +56,10 @@ export const EmailSignIn = () => {
       <Input
         ariaLabel="password"
         disabled={isFetching}
-        error={errors?.password?.message}
+        error={errors?.['signin.password']?.message}
         label={t(`${baseT}.password`)}
-        onChange={(e) => handleChange('password', e.target.value)}
+        mandatory
+        onChange={(e) => handleChange('signin.password', e.target.value)}
         placeholder={t(`${baseT}.password`)}
         prefix={<Icon iconName="PiLock" />}
         type="password"

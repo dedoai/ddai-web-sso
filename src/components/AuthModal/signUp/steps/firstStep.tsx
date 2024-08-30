@@ -13,16 +13,16 @@ export const FirstStep = ({
 }: IFirstStepProps) => {
   const baseT = 'authModal.signup';
   const { t } = useTranslation();
-
+  console.log('>>', errors);
   return (
     <>
       <H2 content={t(`${baseT}.emailLabel`)} />
       <Input
         ariaLabel="email"
-        error={errors?.email?.message}
+        error={errors?.['signup.email']?.message}
         label={t(`${baseT}.emailPlaceholder`)}
         mandatory
-        onChange={(e) => handleChange('email', e.target.value)}
+        onChange={(e) => handleChange('signup.email', e.target.value)}
         placeholder={t(`${baseT}.emailPlaceholder`)}
         type="email"
         value={formData.email}

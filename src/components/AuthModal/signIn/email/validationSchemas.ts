@@ -8,11 +8,13 @@ const schema = () => {
 
   return object()
     .shape({
-      email: string()
-        .email(t(`${baseT}.enterValidEmail`))
-        .required(isRequired(t(`${baseT}.emailPlaceholder`))),
-      password: string().required(isRequired(t(`${baseT}.password`))),
-
+      signin: object()
+        .shape({
+          email: string()
+            .email(t(`${baseT}.enterValidEmail`))
+            .required(isRequired(t(`${baseT}.emailPlaceholder`))),
+          password: string().required(isRequired(t(`${baseT}.password`))),
+        }),
     });
 };
 

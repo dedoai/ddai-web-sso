@@ -34,7 +34,6 @@
       "confirmEmailLabel": "Confirm your email",
       "confirmEmailDescription": "We sent a 6 digit code to <span>{{email}}</span>. Please enter it below to confirm your email.",
       "enterValidCode": "Please enter a valid code",
-      "resendEmailCode": "I didn't receive the code",
       "insertPhoneNumber": "Insert your phone number",
       "phoneNumberPrefix": "Prefix",
       "phoneNumber": "Phone number",
@@ -42,7 +41,7 @@
       "confirmPhoneNumberDescription": "We sent a 6 digit code to <span>{{phoneNumberPrefix}}{{phoneNumber}}</span>. Please enter it below to confirm your phone number.",
       "sendSms": "Send SMS",
       "sendSmsFirst": "You need to send the SMS first",
-      "resendSms": "Re-send SMS{{article}}{{time}}",
+      "resend": "Resend code{{article}}{{time}}",
       "resendIn": " in",
       "createPassword": "Create your password",
       "password": "Password",
@@ -51,20 +50,8 @@
       "passwordsDontMatch": "Passwords do not match",
       "pleaseRepeatPassword": "Please repeat your password",
       "acceptNewsletter": "Stay updated with the latest news and personalized offers from DedoAI via email.",
-      "slides": {
-        "1": {
-          "title": "Look for the best datasets for your Company",
-          "body": "Our platform provides a robust marketplace where data consumers and producers can interact seamlessly. Buy and sell high-quality datasets securely, enhancing AI capabilities with diverse and reliable data sources."
-        },
-        "2": {
-          "title": "Get unique datasets for your LLM",
-          "body": "Producers respond to market demands, set competitive prices, and earn DedoAI tokens. Our blockchain technology ensures secure transactions and fair compensation."
-        },
-        "3": {
-          "title": "Your data are Decentralized and Secured",
-          "body": "Leverage blockchain technology for a truly distributed data ecosystem. Our decentralized architecture ensures no single point of failure, enhancing data integrity and resilience against censorship."
-        }
-      }
-    }
+      "invalidCode": "Invalid code"
+    },
+    "resendCode": "Resend code"
   }
 }
