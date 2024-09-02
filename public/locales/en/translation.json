@@ -1,7 +1,8 @@
 {
   "main": {
     "forms": {
-      "isRequired": "{{field}} is required"
+      "isRequired": "{{field}} is required",
+      "valid": "Plase enter a valid {{field}}"
     }
   },
   "authModal": {
@@ -55,6 +56,13 @@
       "acceptNewsletter": "Stay updated with the latest news and personalized offers from DedoAI via email.",
       "invalidCode": "Invalid code"
     },
-    "resendCode": "Resend code"
+    "resendCode": "Resend code",
+    "forgotPassword": {
+      "title": "Reset your password",
+      "description": "Please enter your email address to receive a link for resetting your password.",
+      "email": "Email",
+      "emailPlaceholder": "Enter your email address",
+      "cta": "Send request"
+    }
   }
 }

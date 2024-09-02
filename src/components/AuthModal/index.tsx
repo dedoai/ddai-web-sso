@@ -29,6 +29,9 @@ export interface IFormData {
     confirmationPhoneNumberCode: string;
     hasPhoneNumberCodeBeenChecked: boolean;
   };
+  forgotPassword: {
+    email: string;
+  }
 }
 const INITIAL_DATA = {
   signin: {
@@ -43,6 +46,9 @@ const INITIAL_DATA = {
     phoneNumber: '',
     confirmationPhoneNumberCode: '',
     hasPhoneNumberCodeBeenChecked: false,
+  },
+  forgotPassword: {
+    email: '',
   },
 };
 
@@ -84,6 +90,7 @@ export const AuthModal = ({
         formData={formData.signin}
         handleChange={handleChange}
         validate={validate}
+        handlePhase={handlePhase}
       />
     ),
     [PHASE_SIGNUP]: (
@@ -96,7 +103,13 @@ export const AuthModal = ({
       />
     ),
     [PHASE_FORGOT_PASSWORD]: (
-      <ForgotPassword />
+      <ForgotPassword
+        formData={formData.forgotPassword}
+        handleChange={handleChange}
+        errors={errors}
+        validate={validate}
+        handlePhase={handlePhase}
+      />
     ),
   };
 

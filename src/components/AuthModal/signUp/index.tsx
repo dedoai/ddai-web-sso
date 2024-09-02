@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Body2, Button } from '@dedo_ai/gui-com-lib';
+import { Body2, Button, Label } from '@dedo_ai/gui-com-lib';
+import { useQuery } from '@tanstack/react-query';
 
+import { apiPost } from '@/api';
+import { EP_SIGNUP } from '@/api/const';
 import SocialSignIn from '@/components/AuthModal/signIn/social';
 import ConfirmationCode from '@/components/ConfirmationCode';
 import NeedHelp from '@/components/NeedHelp';
@@ -65,13 +68,23 @@ export const SignUp = ({
     errors,
   };
 
-  const handleSubmit = () => {
-    console.log('>> formData', formData);
-  };
+  const {
+    data,
+    isFetching: isSigninUp,
+    refetch: signUp,
+  } = useQuery({
+    queryKey: ['signup'],
+    queryFn: async () => {
+      const data = await apiPost(EP_SIGNUP, formData);
+
+      return data;
+    },
+    enabled: false,
+  });
 
   const goToNextStep = (isInvalid?: boolean) => {
     if (!isInvalid) {
-      if (activeStep === 5) handleSubmit();
+      if (activeStep === 5) signUp();
       else setActiveStep(activeStep + 1);
     }
   };
@@ -132,6 +145,7 @@ export const SignUp = ({
               iconName="PiCaretLeftBold"
               iconSide="center"
               variant="secondary"
+              disabled={isSigninUp}
               onClick={() => (activeStep === 1 ? handlePhase(PHASE_SIGNIN_SOCIAL) : setActiveStep(activeStep - 1))}
               size="xs"
             />
@@ -146,6 +160,7 @@ export const SignUp = ({
               text={t(`${baseT}.${activeStep === 5 ? 'createAccount' : 'nextStep'}`)}
               size="lg"
               className="mt-2"
+              isLoading={isSigninUp}
               onClick={async () => {
                 const isInvalid = await validate(STEP_MAPPER[activeStep].schema);
                 goToNextStep(isInvalid);
@@ -157,6 +172,7 @@ export const SignUp = ({
       <Body2 content={t(`${baseT}.orSignWith`)} className="text-center text-text-bright dark:text-text-gloomy" />
       <SocialSignIn mode="minimal" />
       <NeedHelp />
+      <Label content={data?.errMsg} className="text-error-base text-center" />
     </>
   );
 };

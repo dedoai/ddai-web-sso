@@ -2,10 +2,13 @@ import { useTranslation } from 'react-i18next';
 import {
   Body2,
   Button, Checkbox, Icon, Input,
+  Label,
 } from '@dedo_ai/gui-com-lib';
 import { useQuery } from '@tanstack/react-query';
 
-import { type IFormData } from '@/components/AuthModal';
+import { apiPost } from '@/api';
+import { EP_LOGIN } from '@/api/const';
+import { type IFormData, PHASE_FORGOT_PASSWORD } from '@/components/AuthModal';
 import SocialSignIn from '@/components/AuthModal/signIn/social';
 import NeedHelp from '@/components/NeedHelp';
 
@@ -15,6 +18,7 @@ interface IEmailSignInProps {
   errors: any;
   formData: IFormData['signin'];
   handleChange: (_key: string, _value: string) => void;
+  handlePhase: (_phase: string) => void;
   validate: (schema: any, context?: any) => boolean;
 }
 export const EmailSignIn = ({
@@ -22,6 +26,7 @@ export const EmailSignIn = ({
   formData,
   handleChange,
   validate,
+  handlePhase,
 }: IEmailSignInProps) => {
   const baseT = 'authModal.signin';
   const { t } = useTranslation();
@@ -31,20 +36,26 @@ export const EmailSignIn = ({
     password,
   } = formData ?? {};
 
-  const { isFetching, refetch: doLogin } = useQuery({
+  const {
+    data,
+    isFetching: isLoggingIn,
+    refetch: doLogin,
+  } = useQuery({
     queryKey: ['login'],
     queryFn: async () => {
-      const wait = (t) => new Promise((res) => { setTimeout(res, t); });
-      return wait(5000);
+      const data = await apiPost(EP_LOGIN, { email, password });
+
+      return data;
     },
     enabled: false,
+    initialData: {},
   });
 
   return (
     <>
       <Input
         ariaLabel="email"
-        disabled={isFetching}
+        disabled={isLoggingIn}
         error={errors?.['signin.email']?.message}
         label={t(`${baseT}.email`)}
         mandatory
@@ -56,7 +67,7 @@ export const EmailSignIn = ({
       />
       <Input
         ariaLabel="password"
-        disabled={isFetching}
+        disabled={isLoggingIn}
         error={errors?.['signin.password']?.message}
         label={t(`${baseT}.password`)}
         mandatory
@@ -69,6 +80,7 @@ export const EmailSignIn = ({
           <Body2
             className="text-primary cursor-pointer"
             content={t(`${baseT}.forgotPassword`)}
+            onClick={() => handlePhase(PHASE_FORGOT_PASSWORD)}
           />
         )}
       />
@@ -76,12 +88,13 @@ export const EmailSignIn = ({
         size="sm"
         label={t(`${baseT}.rememberMe`)}
         labelClassName="text-neutral-bright dark:text-text-gloomy"
+        disabled={isLoggingIn}
       />
       <Button
         size="lg"
         ariaLabel="log-in"
         text={t(`${baseT}.login`)}
-        isLoading={isFetching}
+        isLoading={isLoggingIn}
         onClick={async () => {
           const isInvalid = await validate(schema());
           if (!isInvalid) doLogin();
@@ -93,6 +106,7 @@ export const EmailSignIn = ({
       />
       <SocialSignIn mode="minimal" />
       <NeedHelp />
+      <Label content={data?.errMsg} className="text-error-base text-center" />
     </>
   );
 };

@@ -29,7 +29,7 @@ export const FifthStep = ({
           ariaLabel="password"
           label={t(`${baseT}.password`)}
           mandatory
-          onChange={(e) => handleChange('password', e.target.value)}
+          onChange={(e) => handleChange('signup.password', e.target.value)}
           placeholder={t(`${baseT}.enterYourPassword`)}
           type="password"
           value={password}
@@ -40,7 +40,7 @@ export const FifthStep = ({
           ariaLabel="password-confirm"
           label={t(`${baseT}.confirmPasswordPlaceholder`)}
           mandatory
-          onChange={(e) => handleChange('confirmPassword', e.target.value)}
+          onChange={(e) => handleChange('signup.confirmPassword', e.target.value)}
           placeholder={t(`${baseT}.enterYourPassword`)}
           type="password"
           value={confirmPassword}

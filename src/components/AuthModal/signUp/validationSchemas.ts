@@ -33,19 +33,24 @@ const schema = () => {
       }),
     fourthStep: object()
       .shape({
-        phoneNumberCode: string()
-          .min(6, enterValidCode)
-          .max(6, enterValidCode)
-          .required(enterValidCode),
+        signup: object()
+          .shape({
+            phoneNumberCode: string()
+              .min(6, enterValidCode)
+              .max(6, enterValidCode),
+          }),
       }),
     fifthStep: object()
       .shape({
-        password: string()
-          .min(8, t(`${baseT}.passwordPlaceholder`))
-          .required(isRequired(t(`${baseT}.password`))),
-        confirmPassword: string()
-          .test('passwords-match', t(`${baseT}.passwordsDontMatch`), (value, context) => value === context.parent.password)
-          .required(t(`${baseT}.pleaseRepeatPassword`)),
+        signup: object()
+          .shape({
+            password: string()
+              .min(8, t(`${baseT}.passwordPlaceholder`))
+              .required(isRequired(t(`${baseT}.password`))),
+            confirmPassword: string()
+              .test('passwords-match', t(`${baseT}.passwordsDontMatch`), (value, context) => value === context.parent.password)
+              .required(t(`${baseT}.pleaseRepeatPassword`)),
+          }),
       }),
   };
 };
