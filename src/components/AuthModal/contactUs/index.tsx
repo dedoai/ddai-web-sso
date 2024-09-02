@@ -7,7 +7,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { apiPost } from '@/api';
 import { EP_CONTACT_US } from '@/api/const';
-import { IFormData, PHASE_SIGNIN_SOCIAL } from '@/components/AuthModal';
+import { IFormData, PHASE_RESET_PASSWORD, PHASE_SIGNIN_SOCIAL } from '@/components/AuthModal';
 
 import schema from './validationSchema';
 
@@ -17,6 +17,7 @@ interface IContactUsProps {
   errors: any;
   validate: (schema: any, context?: any) => boolean;
   handlePhase: (_phase: string) => void;
+  isResetPassword?: boolean;
 }
 const ContactUs = ({
   formData,
@@ -24,6 +25,7 @@ const ContactUs = ({
   errors,
   validate,
   handlePhase,
+  isResetPassword,
 }: IContactUsProps) => {
   const baseT = 'authModal.contactUs';
   const { t } = useTranslation();
@@ -50,12 +52,13 @@ const ContactUs = ({
 
   return (
     <>
+
       <Button
         ariaLabel="auth-modal-back"
         disabled={isSubmitting}
         iconName="PiCaretLeftBold"
         iconSide="center"
-        onClick={() => handlePhase(PHASE_SIGNIN_SOCIAL)}
+        onClick={() => handlePhase(isResetPassword ? PHASE_RESET_PASSWORD : PHASE_SIGNIN_SOCIAL)}
         size="xs"
         variant="secondary"
       />

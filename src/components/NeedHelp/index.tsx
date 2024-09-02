@@ -4,9 +4,11 @@ import { Body2 } from '@dedo_ai/gui-com-lib';
 import { PHASE_CONTACT_US } from '@/components/AuthModal';
 
 interface INeedHelpProps {
+  disabled?: boolean;
   handlePhase: (_phase: string) => void;
 }
 const NeedHelp = ({
+  disabled,
   handlePhase,
 }: INeedHelpProps) => {
   const { t } = useTranslation();
@@ -17,10 +19,10 @@ const NeedHelp = ({
       {t('authModal.signup.needHelp')}
       <Body2
         as="span"
-        className="text-primary cursor-pointer"
+        className={`text-primary ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}`}
         content={t('authModal.signup.contactUs')}
         weight="medium"
-        onClick={() => handlePhase(PHASE_CONTACT_US)}
+        onClick={() => (disabled ? null : handlePhase(PHASE_CONTACT_US))}
       />
     </Body2>
   );

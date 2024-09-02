@@ -12,6 +12,7 @@ import EmailSignIn from './signIn/email';
 import SocialSignIn from './signIn/social';
 import ContactUs from './contactUs';
 import ForgotPassword from './forgotPsw';
+import ResetPsw from './resetPsw';
 import SignUp from './signUp';
 
 import './style.css';
@@ -20,7 +21,7 @@ export interface IFormData {
   signin: {
     email: string;
     password: string;
-  };
+  },
   signup: {
     email: string;
     confirmationEmailCode: string;
@@ -29,7 +30,7 @@ export interface IFormData {
     phoneNumber: string;
     confirmationPhoneNumberCode: string;
     hasPhoneNumberCodeBeenChecked: boolean;
-  };
+  },
   forgotPassword: {
     email: string;
   },
@@ -38,7 +39,11 @@ export interface IFormData {
     message: string;
     name: string;
     surname: string;
-  };
+  },
+  resetPassword: {
+    password: string;
+    confirmPassword: string;
+  }
 }
 const INITIAL_DATA = {
   signin: {
@@ -63,6 +68,10 @@ const INITIAL_DATA = {
     name: '',
     surname: '',
   },
+  resetPassword: {
+    password: '',
+    confirmPassword: '',
+  },
 };
 
 export const PHASE_SIGNIN_SOCIAL = 'signin-social';
@@ -70,16 +79,21 @@ export const PHASE_SIGNIN_EMAIL = 'signin-email';
 export const PHASE_SIGNUP = 'signup';
 export const PHASE_FORGOT_PASSWORD = 'forgot';
 export const PHASE_CONTACT_US = 'contact-us';
-
-interface IAuthModalProps extends Pick<IModalProps, 'isOpen' | 'onCloseCb'> { }
+export const PHASE_RESET_PASSWORD = 'reset-password';
+interface IAuthModalProps extends Pick<IModalProps, 'isOpen' | 'onCloseCb'> {
+  resetPassword?: boolean;
+}
 export const AuthModal = ({
   isOpen,
   onCloseCb,
+  resetPassword,
 }: IAuthModalProps) => {
   const baseT = 'authModal';
   const { t } = useTranslation();
 
-  const [phase, setPhase] = useState(PHASE_SIGNIN_SOCIAL);
+  const DEFAULT_PHASE = resetPassword ? PHASE_RESET_PASSWORD : PHASE_SIGNIN_SOCIAL;
+
+  const [phase, setPhase] = useState(DEFAULT_PHASE);
   const handlePhase = (_phase: string) => setPhase(_phase);
 
   const {
@@ -132,18 +146,30 @@ export const AuthModal = ({
         errors={errors}
         validate={validate}
         handlePhase={handlePhase}
+        isResetPassword={resetPassword}
+      />
+    ),
+    [PHASE_RESET_PASSWORD]: (
+      <ResetPsw
+        formData={formData.resetPassword}
+        handleChange={handleChange}
+        errors={errors}
+        validate={validate}
+        handlePhase={handlePhase}
       />
     ),
   };
 
   const handleClose = () => {
-    setPhase(PHASE_SIGNIN_SOCIAL);
+    setPhase(DEFAULT_PHASE);
     onCloseCb();
   };
 
-  const noHeaderCondition = [PHASE_SIGNUP, PHASE_FORGOT_PASSWORD, PHASE_CONTACT_US].indexOf(phase) !== -1;
+  const noHeaderCondition = [PHASE_SIGNUP, PHASE_FORGOT_PASSWORD, PHASE_CONTACT_US, PHASE_RESET_PASSWORD].indexOf(phase) !== -1;
 
   useEffect(resetErrors, [phase]);
+
+  useEffect(() => setPhase(DEFAULT_PHASE), [resetPassword]);
 
   return (
     <Modal
