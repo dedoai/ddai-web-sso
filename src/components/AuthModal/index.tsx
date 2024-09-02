@@ -118,7 +118,6 @@ export const AuthModal = ({
       bodyFullHeight
       noHeader={noHeaderCondition}
       disableBodyScroll
-      noBackdrop={phase !== PHASE_SIGNUP}
       title={
         phase === PHASE_SIGNIN_EMAIL
           ? (

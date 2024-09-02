@@ -8,6 +8,8 @@ const THEME_MAPPER = {
   light: 'light',
 };
 
+export const SOCIAL_BUTTONS: string[] = ['facebook', 'google'];
+
 const App = () => {
   const urlParams = new URLSearchParams(window.location.search);
 
@@ -27,6 +29,7 @@ const App = () => {
     const theme = urlParams.get('t');
     document.body.classList.add(THEME_MAPPER[theme] || 'dark');
     i18next.changeLanguage(urlParams.get('l') || 'en');
+    SOCIAL_BUTTONS.push(`apple-${theme}`);
   }, []);
 
   return <AuthModal isOpen onCloseCb={onCloseCb} />;

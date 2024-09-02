@@ -130,6 +130,7 @@ const ConfirmationCode = ({
         })}
         ariaLabel="resend-code"
         disabled={isTimerRolling}
+        status={isCodeValid ? 'default' : 'error'}
         onClick={() => {
           handleChange('signup.confirmationEmailCode', '');
           sendCode();

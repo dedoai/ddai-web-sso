@@ -1,9 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { Body2, Button } from '@dedo_ai/gui-com-lib';
 
+import { SOCIAL_BUTTONS } from '@/App';
 import { PHASE_SIGNIN_EMAIL, PHASE_SIGNUP } from '@/components/AuthModal';
-
-const SOCIAL_BUTTONS: string[] = ['facebook', 'google', 'apple'];
 
 interface ISocialSignInProps {
   handlePhase?: (_phase: string) => void;
@@ -29,7 +28,7 @@ export const SocialSignIn = ({
               customIcon={<img src={`/assets/${buttonId}.svg`} alt="" />}
               ariaLabel={buttonId}
               size="lg"
-              text={isMinimalMode ? '' : t(`${baseT}.${buttonId}`)}
+              text={isMinimalMode ? '' : t(`${baseT}.${buttonId.split('-')[0]}`)}
             />
           ))
         }

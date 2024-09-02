@@ -88,7 +88,7 @@ export const EmailSignIn = ({
         }}
       />
       <Body2
-        className="text-center text-neutral-base"
+        className="text-center text-text-bright dark:text-text-gloomy"
         content={t(`${baseT}.orSignInWith`)}
       />
       <SocialSignIn mode="minimal" />

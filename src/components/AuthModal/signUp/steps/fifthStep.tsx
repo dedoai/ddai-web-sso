@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Input } from '@dedo_ai/gui-com-lib';
+import { Body2, H2, Input } from '@dedo_ai/gui-com-lib';
 
 interface IFifthStepProps {
   formData: any;
@@ -18,24 +18,36 @@ export const FifthStep = ({
 
   return (
     <>
-      <h1 className="text-2xl font-bold mb-6">{t(`${baseT}.createPassword`)}</h1>
-      <Input
-        ariaLabel="password"
-        onChange={(e) => handleChange('password', e.target.value)}
-        placeholder={t(`${baseT}.passwordPlaceholder`)}
-        type="password"
-        value={password}
-        error={errors?.password?.message}
+      <H2 content={t(`${baseT}.createPassword`)} />
+      <Body2
+        className="text-text-bright dark:text-text-gloomy"
+        content={t(`${baseT}.createPasswordDescription`)}
       />
-      <Input
-        ariaLabel="password-confirm"
-        onChange={(e) => handleChange('confirmPassword', e.target.value)}
-        placeholder={t(`${baseT}.confirmPasswordPlaceholder`)}
-        type="password"
-        value={confirmPassword}
-        className="mt-4"
-        error={errors?.confirmPassword?.message}
-      />
+      <div>
+
+        <Input
+          ariaLabel="password"
+          label={t(`${baseT}.password`)}
+          mandatory
+          onChange={(e) => handleChange('password', e.target.value)}
+          placeholder={t(`${baseT}.enterYourPassword`)}
+          type="password"
+          value={password}
+          error={errors?.password?.message}
+          auxiliary={t(`${baseT}.passwordPlaceholder`)}
+        />
+        <Input
+          ariaLabel="password-confirm"
+          label={t(`${baseT}.confirmPasswordPlaceholder`)}
+          mandatory
+          onChange={(e) => handleChange('confirmPassword', e.target.value)}
+          placeholder={t(`${baseT}.enterYourPassword`)}
+          type="password"
+          value={confirmPassword}
+          className="mt-4"
+          error={errors?.confirmPassword?.message}
+        />
+      </div>
     </>
   );
 };

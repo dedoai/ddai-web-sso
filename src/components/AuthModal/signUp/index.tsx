@@ -15,6 +15,11 @@ import schema from './validationSchemas';
 
 import './style.css';
 
+const ACTIVE_STEP_MAPPER = {
+  hasEmailCodeBeenChecked: 3,
+  hasPhoneNumberCodeBeenChecked: 5,
+};
+
 interface ISignUpProps {
   handlePhase: (_phase: string) => void;
   formData: IFormData['signup'];
@@ -32,8 +37,6 @@ export const SignUp = ({
   const baseT = 'authModal.signup';
   const { t } = useTranslation();
 
-  const [activeStep, setActiveStep] = useState(1);
-
   const {
     firstStep: firstStepSchema,
     secondStep: secondStepSchema,
@@ -48,7 +51,13 @@ export const SignUp = ({
     phoneNumber,
     phoneNumberPrefix,
     confirmationPhoneNumberCode,
+    hasEmailCodeBeenChecked,
+    hasPhoneNumberCodeBeenChecked,
   } = formData;
+
+  const emailCodeEval = hasEmailCodeBeenChecked ? 'hasEmailCodeBeenChecked' : '';
+  const phoneNumberNameEval = hasPhoneNumberCodeBeenChecked ? 'hasPhoneNumberCodeBeenChecked' : '';
+  const [activeStep, setActiveStep] = useState(ACTIVE_STEP_MAPPER[phoneNumberNameEval || emailCodeEval] || 1);
 
   const commonProps = {
     formData,
@@ -145,7 +154,7 @@ export const SignUp = ({
           ) : null
       }
 
-      <Body2 content={t(`${baseT}.orSignWith`)} className="text-center text-neutral-base dark:text-text-gloomy" />
+      <Body2 content={t(`${baseT}.orSignWith`)} className="text-center text-text-bright dark:text-text-gloomy" />
       <SocialSignIn mode="minimal" />
       <NeedHelp />
     </>

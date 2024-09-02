@@ -5,7 +5,7 @@ const NeedHelp = () => {
   const { t } = useTranslation();
   return (
     <Body2
-      className="inline-flex gap-1 justify-center text-neutral-base"
+      className="inline-flex gap-1 justify-center text-text-bright dark:text-text-gloomy"
     >
       {t('authModal.signup.needHelp')}
       <Body2 as="span" className="text-primary cursor-pointer" content={t('authModal.signup.contactUs')} weight="medium" />
