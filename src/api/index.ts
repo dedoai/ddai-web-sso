@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import { API_PATH, API_VERSION } from './const';
 
-const axiosInstance = axios.create({
+export const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
@@ -14,7 +14,7 @@ interface IApiWrap {
   data?: any;
   errMsg?: string;
 }
-const apiWrap = async (promise: Promise<any>): Promise<IApiWrap> => {
+export const apiWrap = async (promise: Promise<any>): Promise<IApiWrap> => {
   try {
     const { data } = await promise;
     return data;
@@ -23,13 +23,17 @@ const apiWrap = async (promise: Promise<any>): Promise<IApiWrap> => {
   }
 };
 
-const pathMiddleware = (path:string) => `${API_VERSION}${API_PATH}${path}`;
+const pathMiddleware = (path: string, overrideMiddleware?: boolean) => (
+  overrideMiddleware
+    ? path
+    : `${API_VERSION}${API_PATH}${path}`
+);
 
 export const apiGet = async (url: string, config?: any) => apiWrap(
   axiosInstance.get(pathMiddleware(url), config),
 );
-export const apiPost = async (url: string, data: any, config?: any) => apiWrap(
-  axiosInstance.post(pathMiddleware(url), data, config),
+export const apiPost = async (url: string, data: any, config?: any, overrideMiddleware = false) => apiWrap(
+  axiosInstance.post(pathMiddleware(url, overrideMiddleware), data, config),
 );
 export const apiPut = async (url: string, data: any, config?: any) => apiWrap(
   axiosInstance.put(pathMiddleware(url), data, config),

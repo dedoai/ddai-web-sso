@@ -171,7 +171,7 @@ export const SignUp = ({
 
       <Body2 content={t(`${baseT}.orSignWith`)} className="text-center text-text-bright dark:text-text-gloomy" />
       <SocialSignIn mode="minimal" />
-      <NeedHelp />
+      <NeedHelp handlePhase={handlePhase} />
       <Label content={data?.errMsg} className="text-error-base text-center" />
     </>
   );

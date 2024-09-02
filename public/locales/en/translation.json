@@ -63,6 +63,19 @@
       "email": "Email",
       "emailPlaceholder": "Enter your email address",
       "cta": "Send request"
+    },
+    "contactUs": {
+      "title": "Contact us",
+      "description": "Please fill out the form below and we will get back to you as soon as possible.",
+      "name": "Name",
+      "namePlaceholder": "Enter your name",
+      "surname": "Surname",
+      "surnamePlaceholder": "Enter your surname",
+      "email": "Email",
+      "emailPlaceholder": "Enter your email address",
+      "message": "Message",
+      "messagePlaceholder": "Enter your message",
+      "cta": "Submit"
     }
   }
 }

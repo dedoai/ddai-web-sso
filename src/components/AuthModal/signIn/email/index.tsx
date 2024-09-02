@@ -105,7 +105,7 @@ export const EmailSignIn = ({
         content={t(`${baseT}.orSignInWith`)}
       />
       <SocialSignIn mode="minimal" />
-      <NeedHelp />
+      <NeedHelp handlePhase={handlePhase} />
       <Label content={data?.errMsg} className="text-error-base text-center" />
     </>
   );

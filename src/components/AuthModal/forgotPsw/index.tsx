@@ -83,7 +83,7 @@ export const ForgotPassword = ({
           if (!isInvalid) sendRequest();
         }}
       />
-      <NeedHelp />
+      <NeedHelp handlePhase={handlePhase} />
       <Label content={data?.errMsg} className="text-error-base text-center" />
     </>
   );

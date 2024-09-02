@@ -10,6 +10,7 @@ import useForm from '@en1-gma/use-form';
 
 import EmailSignIn from './signIn/email';
 import SocialSignIn from './signIn/social';
+import ContactUs from './contactUs';
 import ForgotPassword from './forgotPsw';
 import SignUp from './signUp';
 
@@ -31,7 +32,13 @@ export interface IFormData {
   };
   forgotPassword: {
     email: string;
-  }
+  },
+  contactUs: {
+    email: string;
+    message: string;
+    name: string;
+    surname: string;
+  };
 }
 const INITIAL_DATA = {
   signin: {
@@ -50,12 +57,19 @@ const INITIAL_DATA = {
   forgotPassword: {
     email: '',
   },
+  contactUs: {
+    email: '',
+    message: '',
+    name: '',
+    surname: '',
+  },
 };
 
 export const PHASE_SIGNIN_SOCIAL = 'signin-social';
 export const PHASE_SIGNIN_EMAIL = 'signin-email';
 export const PHASE_SIGNUP = 'signup';
 export const PHASE_FORGOT_PASSWORD = 'forgot';
+export const PHASE_CONTACT_US = 'contact-us';
 
 interface IAuthModalProps extends Pick<IModalProps, 'isOpen' | 'onCloseCb'> { }
 export const AuthModal = ({
@@ -111,6 +125,15 @@ export const AuthModal = ({
         handlePhase={handlePhase}
       />
     ),
+    [PHASE_CONTACT_US]: (
+      <ContactUs
+        formData={formData.contactUs}
+        handleChange={handleChange}
+        errors={errors}
+        validate={validate}
+        handlePhase={handlePhase}
+      />
+    ),
   };
 
   const handleClose = () => {
@@ -118,7 +141,7 @@ export const AuthModal = ({
     onCloseCb();
   };
 
-  const noHeaderCondition = [PHASE_SIGNUP, PHASE_FORGOT_PASSWORD].indexOf(phase) !== -1;
+  const noHeaderCondition = [PHASE_SIGNUP, PHASE_FORGOT_PASSWORD, PHASE_CONTACT_US].indexOf(phase) !== -1;
 
   useEffect(resetErrors, [phase]);
 
@@ -132,7 +155,7 @@ export const AuthModal = ({
       noHeader={noHeaderCondition}
       disableBodyScroll
       title={
-        phase === PHASE_SIGNIN_EMAIL
+        [PHASE_SIGNIN_EMAIL].indexOf(phase) !== -1
           ? (
             <Button
               ariaLabel="auth-modal-back"
