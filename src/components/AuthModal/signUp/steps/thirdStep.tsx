@@ -1,12 +1,29 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  Flag, Input,
+  Body2,
+  Flag, H2, Input,
 } from '@dedo_ai/gui-com-lib';
 
-import useCountry from '@/hook/useCountry';
+import { IFormData } from '@/components/AuthModal';
+import useCountry, { Country } from '@/hook/useCountry';
+
+const Prefix = ({ countries, prefixToCheck, resetCb }: {countries: Country[], prefixToCheck: string, resetCb: () => void}) => (
+  <div className="flex items-center gap-1 cursor-pointer" onClick={resetCb}>
+    <Flag
+      code={
+        countries
+          .find(({ dial_code: dialCode }) => dialCode === prefixToCheck)
+          ?.code
+      }
+      size="md"
+    />
+    <Body2 content={prefixToCheck} />
+  </div>
+);
 
 interface IThirdStepProps {
-  formData: any;
+  formData: IFormData['signup'];
   handleChange: (_key: string, _value: string) => void;
   errors: any;
 }
@@ -18,40 +35,83 @@ export const ThirdStep = ({
   const baseT = 'authModal.signup';
   const { t } = useTranslation();
 
-  const { phoneNumber } = formData;
+  const {
+    phoneNumber,
+    phoneNumberPrefix,
+  } = formData;
+
+  const [prefix, setPrefix] = useState(phoneNumberPrefix);
 
   const {
     countries,
+    prefixes,
   } = useCountry();
+
+  prefixes?.unshift('+0prefix');
+
+  const error = errors?.['signup.phoneNumberPrefix'] || errors?.['signup.phoneNumber'];
 
   return (
     <>
-      <h1 className="text-2xl font-bold mb-6">{t(`${baseT}.insertPhoneNumber`)}</h1>
+      <H2 content={t(`${baseT}.enterPhoneNumber`)} />
+      <Body2
+        content={t(`${baseT}.enterPhoneNumberDescription`)}
+        className="text-text-bright dark:text-text-gloomy"
+      />
       <Input
         ariaLabel="phoneNumber"
+        label={t(`${baseT}.phoneNumber`)}
         onChange={(e) => {
           const { value } = e.target;
           const valueLen = value.length;
-          if (valueLen <= 10) handleChange('signup.phoneNumber', value);
-          if (valueLen === 2) handleChange('signup.phoneNumber', `${value} | `);
+          if (valueLen <= 21) handleChange('signup.phoneNumber', value);
         }}
         type="text"
         value={phoneNumber}
-        applyPatternCheck
-        error={errors?.['signup.phoneNumber']?.message}
-        prefix={(
-          <div className="flex gap-2 items-center -mr-2">
-            <Flag
-              code={
-                countries
-                  .find(({ dial_code: dialCode }) => dialCode === phoneNumber)
-                  ?.code
-              }
-              size="md"
+        error={error?.message}
+        prefixClassName={prefix ? '' : 'ml-0 w-[30%]'}
+        mandatory
+        prefix={prefix
+          ? (
+            <Prefix
+              countries={countries}
+              prefixToCheck={prefix}
+              resetCb={() => setPrefix('')}
             />
-            +
-          </div>
-        )}
+          )
+          : (
+            <Input
+              type="select"
+              ariaLabel="prefix-dropdown"
+              wrapped={false}
+              onSelect={(selectedPrefix) => {
+                setPrefix(selectedPrefix);
+                handleChange('signup.phoneNumberPrefix', selectedPrefix);
+              }}
+              style={{
+                outline: 'none',
+              }}
+              options={prefixes
+                ?.map((_prefix: string) => ({
+                  label: _prefix === '+0prefix'
+                    ? t(`${baseT}.phoneNumberPrefix`)
+                    : (
+                      <div className="inline-flex items-center gap-1">
+                        <Flag
+                          code={
+                            countries
+                              .find(({ dial_code: dialCode }) => dialCode === _prefix)
+                              ?.code
+                          }
+                          size="md"
+                        />
+                        <Body2 content={_prefix} />
+                      </div>
+                    ),
+                  value: _prefix,
+                }))}
+            />
+          )}
       />
     </>
   );

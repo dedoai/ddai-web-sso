@@ -1,5 +1,5 @@
 import { t } from 'i18next';
-import { boolean, object, string } from 'yup';
+import { object, string } from 'yup';
 
 const schema = () => {
   const baseT = 'authModal.signup';
@@ -25,12 +25,10 @@ const schema = () => {
       }),
     thirdStep: object()
       .shape({
-        phoneNumberPrefix: string().required(isRequired(t(`${baseT}.phoneNumberPrefix`))),
-        phoneNumber: string().required(isRequired(t(`${baseT}.phoneNumber`))),
-        smsNotSent: boolean()
-          .when('$hasSmsBeenSent', ([hasSmsBeenSent], schema) => {
-            if (!hasSmsBeenSent) return schema.required(t(`${baseT}.sendSmsFirst`));
-            return schema;
+        signup: object()
+          .shape({
+            phoneNumber: string().required(isRequired(t(`${baseT}.phoneNumber`))),
+            phoneNumberPrefix: string().required(isRequired(t(`${baseT}.phoneNumberPrefix`))),
           }),
       }),
     fourthStep: object()

@@ -6,11 +6,10 @@ import SocialSignIn from '@/components/AuthModal/signIn/social';
 import ConfirmationCode from '@/components/ConfirmationCode';
 import NeedHelp from '@/components/NeedHelp';
 
-import { PHASE_SIGNIN_SOCIAL } from '..';
+import { type IFormData, PHASE_SIGNIN_SOCIAL } from '..';
 
 import FifthStep from './steps/fifthStep';
 import FirstStep from './steps/firstStep';
-import FourthStep from './steps/fourthStep';
 import ThirdStep from './steps/thirdStep';
 import schema from './validationSchemas';
 
@@ -18,7 +17,7 @@ import './style.css';
 
 interface ISignUpProps {
   handlePhase: (_phase: string) => void;
-  formData: any;
+  formData: IFormData['signup'];
   handleChange: (_key: string, _value: any) => void;
   errors: any;
   validate: (schema: any, context?: any) => boolean;
@@ -47,6 +46,7 @@ export const SignUp = ({
     email,
     confirmationEmailCode,
     phoneNumber,
+    phoneNumberPrefix,
     confirmationPhoneNumberCode,
   } = formData;
 
@@ -91,7 +91,17 @@ export const SignUp = ({
       schema: thirdStepSchema,
     },
     4: {
-      step: <FourthStep {...commonProps} />,
+      step: <ConfirmationCode
+        descriptionTKey="authModal.signup.confirmPhoneNumberDescription"
+        handleChange={handleChange}
+        hasCodeBeenChecked={formData.hasPhoneNumberCodeBeenChecked}
+        nextStepCb={() => goToNextStep(false)}
+        setCodeChecked={() => handleChange('signup.hasPhoneNumberCodeBeenChecked', true)}
+        title="authModal.signup.confirmPhoneNumberLabel"
+        tValues={{ phoneNumber, phoneNumberPrefix }}
+        value={confirmationPhoneNumberCode}
+        valuePath="signup.confirmationPhoneNumberCode"
+      />,
       schema: fourthStepSchema,
     },
     5: {
@@ -101,17 +111,23 @@ export const SignUp = ({
   };
 
   const continueButtonCondition = [1, 3, 5].indexOf(activeStep) !== -1;
+  const backCondition = [1, 2, 4].indexOf(activeStep) !== -1;
 
   return (
     <>
-      <Button
-        ariaLabel="back-to-signin"
-        iconName="PiCaretLeftBold"
-        iconSide="center"
-        variant="secondary"
-        onClick={() => (activeStep === 1 ? handlePhase(PHASE_SIGNIN_SOCIAL) : setActiveStep(activeStep - 1))}
-        size="xs"
-      />
+      {
+        backCondition
+          ? (
+            <Button
+              ariaLabel="back-to-signin"
+              iconName="PiCaretLeftBold"
+              iconSide="center"
+              variant="secondary"
+              onClick={() => (activeStep === 1 ? handlePhase(PHASE_SIGNIN_SOCIAL) : setActiveStep(activeStep - 1))}
+              size="xs"
+            />
+          ) : null
+      }
       {STEP_MAPPER[activeStep].step}
       {
         continueButtonCondition

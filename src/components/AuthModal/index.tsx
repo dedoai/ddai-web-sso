@@ -15,6 +15,21 @@ import SignUp from './signUp';
 
 import './style.css';
 
+export interface IFormData {
+  signin: {
+    email: string;
+    password: string;
+  };
+  signup: {
+    email: string;
+    confirmationEmailCode: string;
+    hasEmailCodeBeenChecked: boolean;
+    phoneNumberPrefix: string;
+    phoneNumber: string;
+    confirmationPhoneNumberCode: string;
+    hasPhoneNumberCodeBeenChecked: boolean;
+  };
+}
 const INITIAL_DATA = {
   signin: {
     email: '',
@@ -98,11 +113,10 @@ export const AuthModal = ({
     <Modal
       isOpen={isOpen}
       isModalParentOpen={false}
-      noHeader={noHeaderCondition}
-      variant="glass"
       noFooter
       onCloseCb={handleClose}
       bodyFullHeight
+      noHeader={noHeaderCondition}
       disableBodyScroll
       noBackdrop={phase !== PHASE_SIGNUP}
       title={

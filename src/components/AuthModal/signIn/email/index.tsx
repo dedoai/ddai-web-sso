@@ -5,6 +5,7 @@ import {
 } from '@dedo_ai/gui-com-lib';
 import { useQuery } from '@tanstack/react-query';
 
+import { type IFormData } from '@/components/AuthModal';
 import SocialSignIn from '@/components/AuthModal/signIn/social';
 import NeedHelp from '@/components/NeedHelp';
 
@@ -12,7 +13,7 @@ import schema from './validationSchemas';
 
 interface IEmailSignInProps {
   errors: any;
-  formData: any;
+  formData: IFormData['signin'];
   handleChange: (_key: string, _value: string) => void;
   validate: (schema: any, context?: any) => boolean;
 }

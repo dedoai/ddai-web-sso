@@ -185,18 +185,13 @@
     "code": "CM"
   },
   {
-    "name": "Canada",
-    "dial_code": "+1",
-    "code": "CA"
-  },
-  {
     "name": "Cape Verde",
     "dial_code": "+238",
     "code": "CV"
   },
   {
     "name": "Cayman Islands",
-    "dial_code": "+ 345",
+    "dial_code": "+345",
     "code": "KY"
   },
   {

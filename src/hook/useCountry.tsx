@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-type Country = {
+export type Country = {
   name: string;
   dial_code: string;
   code: string;
@@ -27,8 +27,8 @@ const useCountry = () => {
 
   return {
     countries,
-    countryCodes: getCountryCodes(),
-    prefixes: getPrefixes(),
+    countryCodes: getCountryCodes()?.sort((a: string, b: string) => a.localeCompare(b)),
+    prefixes: getPrefixes()?.sort((a: string, b: string) => a.localeCompare(b)),
   };
 };
 

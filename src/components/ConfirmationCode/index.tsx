@@ -83,7 +83,10 @@ const ConfirmationCode = ({
   });
 
   useEffect(() => {
-    if (isCodeLenghtValid && !hasCodeBeenChecked) checkCode();
+    if (isCodeLenghtValid) {
+      if (hasCodeBeenChecked) nextStepCb();
+      else checkCode();
+    }
   }, [value]);
 
   useEffect(() => {
@@ -126,7 +129,7 @@ const ConfirmationCode = ({
             : '',
         })}
         ariaLabel="resend-code"
-        disabled={isTimerRolling || !isCodeLenghtValid}
+        disabled={isTimerRolling}
         onClick={() => {
           handleChange('signup.confirmationEmailCode', '');
           sendCode();
