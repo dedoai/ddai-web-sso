@@ -1,7 +1,7 @@
 /* eslint-disable no-useless-catch */
 import axios from 'axios';
 
-import { API_PATH, API_VERSION } from './const';
+import { API_AUTH_PATH, API_VERSION } from './const';
 
 export const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -26,7 +26,7 @@ export const apiWrap = async (promise: Promise<any>): Promise<IApiWrap> => {
 const pathMiddleware = (path: string, overrideMiddleware?: boolean) => (
   overrideMiddleware
     ? path
-    : `${API_VERSION}${API_PATH}${path}`
+    : `${API_VERSION}${API_AUTH_PATH}${path}`
 );
 
 export const apiGet = async (url: string, config?: any) => apiWrap(
