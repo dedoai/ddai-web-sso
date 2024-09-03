@@ -17,6 +17,7 @@ interface IApiWrap {
 export const apiWrap = async (promise: Promise<any>): Promise<IApiWrap> => {
   try {
     const { data } = await promise;
+
     return data;
   } catch (error) {
     throw error;

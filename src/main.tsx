@@ -47,6 +47,7 @@ const queryClient = new QueryClient({
         }, 5000);
         return true;
       },
+      retry: 0,
     },
   },
 });
