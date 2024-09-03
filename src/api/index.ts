@@ -29,6 +29,15 @@ const pathMiddleware = (path: string, overrideMiddleware?: boolean) => (
     : `${API_VERSION}${API_AUTH_PATH}${path}`
 );
 
+export const recaptchaMiddleware = async (
+  action: string,
+): Promise<string> => new Promise((res) => {
+  (window as any).grecaptcha.enterprise.ready(async () => {
+    const token = await (window as any).grecaptcha.enterprise.execute(import.meta.env.VITE_RECAPTCHA_KEY, { action });
+    res(token);
+  });
+});
+
 export const apiGet = async (url: string, config?: any) => apiWrap(
   axiosInstance.get(pathMiddleware(url), config),
 );

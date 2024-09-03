@@ -5,7 +5,7 @@ import {
 } from '@dedo_ai/gui-com-lib';
 import { useQuery } from '@tanstack/react-query';
 
-import { apiPost } from '@/api';
+import { apiPost, recaptchaMiddleware } from '@/api';
 import { EP_CONTACT_US } from '@/api/const';
 import { IFormData, PHASE_RESET_PASSWORD, PHASE_SIGNIN_SOCIAL } from '@/components/AuthModal';
 
@@ -43,7 +43,19 @@ const ContactUs = ({
   } = useQuery({
     queryKey: ['contactUs'],
     queryFn: async () => {
-      const data = await apiPost(EP_CONTACT_US, formData, {}, true);
+      const action = 'CONTACT';
+      const token = await recaptchaMiddleware(action);
+
+      const data = await apiPost(EP_CONTACT_US, {
+        client: `CLIENT_WEB_SSO_${import.meta.env.VITE_ENV}`,
+        email,
+        first_name: name,
+        last_name: surname,
+        message,
+        recaptchaAction: action,
+        recaptchaToken: token,
+        subject: 'SSO_CONTACT',
+      }, {}, true);
 
       return data;
     },
