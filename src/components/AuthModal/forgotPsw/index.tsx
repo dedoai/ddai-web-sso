@@ -5,7 +5,7 @@ import {
 } from '@dedo_ai/gui-com-lib';
 import { useQuery } from '@tanstack/react-query';
 
-import { apiPost } from '@/api';
+import { apiPost, recaptchaMiddleware } from '@/api';
 import { EP_RESET_PASSWORD } from '@/api/const';
 import NeedHelp from '@/components/NeedHelp';
 
@@ -39,7 +39,15 @@ export const ForgotPassword = ({
   } = useQuery({
     queryKey: ['forgotPassword'],
     queryFn: async () => {
-      const data = await apiPost(EP_RESET_PASSWORD, { email });
+      const action = 'FORGOT_PASSWORD';
+      const token = await recaptchaMiddleware(action);
+
+      const data = await apiPost(EP_RESET_PASSWORD, {
+        client: `CLIENT_WEB_SSO_${import.meta.env.VITE_ENV}`,
+        email,
+        recaptchaAction: action,
+        recaptchaToken: token,
+      });
       return data;
     },
     enabled: false,
