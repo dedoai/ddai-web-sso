@@ -1,0 +1,86 @@
+{
+  "main": {
+    "forms": {
+      "isRequired": "{{field}} est requis",
+      "valid": "Veuillez entrer un {{field}} valide"
+    }
+  },
+  "authModal": {
+    "title": "Bonjour, bienvenue sur DedoAI 👋",
+    "social": {
+      "facebook": "Continuer avec Facebook",
+      "google": "Continuer avec Google",
+      "apple": "Continuer avec Apple",
+      "signup": "Ou inscrivez-vous avec",
+      "signin": "Vous avez déjà un compte ?"
+    },
+    "signin": {
+      "email": "E-mail",
+      "password": "Mot de passe",
+      "login": "Se connecter",
+      "orSignInWith": "Ou connectez-vous avec",
+      "forgotPassword": "Mot de passe oublié ?",
+      "havingTrouble": "Rencontrez-vous des problèmes ?",
+      "rememberMe": "Se souvenir de moi"
+    },
+    "signup": {
+      "emailLabel": "Entrez votre e-mail",
+      "emailPlaceholder": "E-mail",
+      "enterValidEmail": "Veuillez entrer un e-mail valide",
+      "orSignWith": "Ou inscrivez-vous avec",
+      "nextStep": "Continuer",
+      "createAccount": "Créer un compte",
+      "needHelp": "Besoin d'aide ?",
+      "contactUs": "Contactez-nous",
+      "confirmEmailLabel": "Confirmez votre e-mail",
+      "confirmEmailDescription": "Nous avons envoyé un code à 6 chiffres à <span>{{email}}</span>. Veuillez le saisir ci-dessous pour confirmer votre e-mail.",
+      "enterValidCode": "Veuillez entrer un code valide",
+      "enterPhoneNumber": "Entrez votre numéro de téléphone",
+      "enterPhoneNumberDescription": "Nous utilisons votre numéro de téléphone pour une sécurité accrue, en envoyant des codes de vérification pour garder votre compte sécurisé.",
+      "phoneNumberPrefix": "Préfixe",
+      "phoneNumber": "Numéro de téléphone",
+      "confirmPhoneNumberLabel": "Confirmez votre numéro de téléphone",
+      "confirmPhoneNumberDescription": "Nous avons envoyé un code à 6 chiffres à <span>{{phoneNumberPrefix}} {{phoneNumber}}</span>. Veuillez le saisir ci-dessous pour confirmer votre numéro de téléphone.",
+      "sendSms": "Envoyer un SMS",
+      "sendSmsFirst": "Vous devez d'abord envoyer le SMS",
+      "resend": "Renvoyer le code{{article}}{{time}}",
+      "resendIn": " dans",
+      "createPassword": "Créez votre mot de passe",
+      "createPasswordDescription": "Entrez votre mot de passe ci-dessous pour compléter le processus d'inscription. Assurez-vous qu'il soit fort et sécurisé.",
+      "password": "Mot de passe",
+      "enterYourPassword": "Entrez votre mot de passe",
+      "passwordPlaceholder": "Le mot de passe doit comporter au moins 8 caractères",
+      "confirmPasswordPlaceholder": "Répétez le mot de passe",
+      "passwordsDontMatch": "Les mots de passe ne correspondent pas",
+      "pleaseRepeatPassword": "Veuillez répéter votre mot de passe",
+      "acceptNewsletter": "Restez informé des dernières nouvelles et offres personnalisées de DedoAI par e-mail.",
+      "invalidCode": "Code invalide"
+    },
+    "resendCode": "Renvoyer le code",
+    "forgotPassword": {
+      "title": "Réinitialisez votre mot de passe",
+      "description": "Veuillez entrer votre adresse e-mail pour recevoir un lien de réinitialisation de votre mot de passe.",
+      "email": "E-mail",
+      "emailPlaceholder": "Entrez votre adresse e-mail",
+      "cta": "Envoyer la demande"
+    },
+    "resetPassword": {
+      "createNewPassword": "Créer un Nouveau Mot de Passe",
+      "createANewPassword": "Créer un Nouveau Mot de Passe",
+      "enterNewPasswordBelow": "Entrez votre nouveau mot de passe ci-dessous pour compléter le processus de réinitialisation. Assurez-vous qu'il soit fort et sécurisé."
+    },
+    "contactUs": {
+      "title": "Contactez-nous",
+      "description": "Veuillez remplir le formulaire ci-dessous et nous vous contacterons dès que possible.",
+      "name": "Nom",
+      "namePlaceholder": "Entrez votre nom",
+      "surname": "Prénom",
+      "surnamePlaceholder": "Entrez votre prénom",
+      "email": "E-mail",
+      "emailPlaceholder": "Entrez votre adresse e-mail",
+      "message": "Message",
+      "messagePlaceholder": "Entrez votre message",
+      "cta": "Envoyer"
+    }
+  }
+}
