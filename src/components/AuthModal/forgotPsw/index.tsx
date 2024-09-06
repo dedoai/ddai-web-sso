@@ -9,7 +9,7 @@ import { apiPost, recaptchaMiddleware } from '@/api';
 import { EP_RESET_PASSWORD } from '@/api/const';
 import NeedHelp from '@/components/NeedHelp';
 
-import { IFormData, PHASE_SIGNIN_EMAIL } from '..';
+import { IFormData } from '..';
 
 import schema from './validationSchema';
 
@@ -55,17 +55,6 @@ export const ForgotPassword = ({
 
   return (
     <>
-      <Button
-        ariaLabel="back-button"
-        iconSide="center"
-        iconName="PiCaretLeft"
-        variant="secondary"
-        size="sm"
-        onClick={() => {
-          handlePhase(PHASE_SIGNIN_EMAIL);
-          handleChange('forgotPassword.email', '');
-        }}
-      />
       <H2 content={t(`${baseT}.title`)} />
       <Body2 content={t(`${baseT}.description`)} className="text-text-bright dark:text-text-gloomy" />
       <Input

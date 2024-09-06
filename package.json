@@ -14,7 +14,7 @@
     "deploy:prod": "git tag prod-$npm_package_version && git push origin prod-$npm_package_version"
   },
   "dependencies": {
-    "@dedo_ai/gui-com-lib": "2.0.50",
+    "@dedo_ai/gui-com-lib": "2.0.55",
     "@en1-gma/use-form": "1.0.5",
     "@tanstack/react-query-devtools": "5.44.0",
     "@tanstack/react-query": "5.44.0",
@@ -26,7 +26,6 @@
     "react-dom": "18.3.1",
     "react-i18next": "13.5.0",
     "react": "18.3.1",
-    "swiper": "8.4.7",
     "vite-tsconfig-paths": "5.0.1",
     "yup": "1.4.0"
   },

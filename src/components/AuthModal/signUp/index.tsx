@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Body2, Button, Label } from '@dedo_ai/gui-com-lib';
 import { useQuery } from '@tanstack/react-query';
@@ -9,7 +8,7 @@ import SocialSignIn from '@/components/AuthModal/signIn/social';
 import ConfirmationCode from '@/components/ConfirmationCode';
 import NeedHelp from '@/components/NeedHelp';
 
-import { type IFormData, PHASE_SIGNIN_SOCIAL } from '..';
+import { type IFormData } from '..';
 
 import FifthStep from './steps/fifthStep';
 import FirstStep from './steps/firstStep';
@@ -18,7 +17,7 @@ import schema from './validationSchemas';
 
 import './style.css';
 
-const ACTIVE_STEP_MAPPER = {
+export const ACTIVE_STEP_MAPPER = {
   hasEmailCodeBeenChecked: 3,
   hasPhoneNumberCodeBeenChecked: 5,
 };
@@ -29,6 +28,8 @@ interface ISignUpProps {
   handleChange: (_key: string, _value: any) => void;
   errors: any;
   validate: (schema: any, context?: any) => boolean;
+  activeStep: number;
+  setActiveStep: (_step: number) => void;
 }
 export const SignUp = ({
   handlePhase,
@@ -36,6 +37,8 @@ export const SignUp = ({
   errors,
   handleChange,
   validate,
+  activeStep,
+  setActiveStep,
 }: ISignUpProps) => {
   const baseT = 'authModal.signup';
   const { t } = useTranslation();
@@ -54,13 +57,8 @@ export const SignUp = ({
     phoneNumber,
     phoneNumberPrefix,
     confirmationPhoneNumberCode,
-    hasEmailCodeBeenChecked,
-    hasPhoneNumberCodeBeenChecked,
+    password,
   } = formData;
-
-  const emailCodeEval = hasEmailCodeBeenChecked ? 'hasEmailCodeBeenChecked' : '';
-  const phoneNumberNameEval = hasPhoneNumberCodeBeenChecked ? 'hasPhoneNumberCodeBeenChecked' : '';
-  const [activeStep, setActiveStep] = useState(ACTIVE_STEP_MAPPER[phoneNumberNameEval || emailCodeEval] || 1);
 
   const commonProps = {
     formData,
@@ -75,7 +73,12 @@ export const SignUp = ({
   } = useQuery({
     queryKey: ['signup'],
     queryFn: async () => {
-      const data = await apiPost(EP_SIGNUP, formData);
+      const data = await apiPost(EP_SIGNUP, {
+        email,
+        password,
+        phone: `${phoneNumberPrefix}${phoneNumber}`,
+        username: email,
+      });
 
       return data;
     },
@@ -133,24 +136,9 @@ export const SignUp = ({
   };
 
   const continueButtonCondition = [1, 3, 5].indexOf(activeStep) !== -1;
-  const backCondition = [1, 2, 4].indexOf(activeStep) !== -1;
 
   return (
     <>
-      {
-        backCondition
-          ? (
-            <Button
-              ariaLabel="back-to-signin"
-              iconName="PiCaretLeftBold"
-              iconSide="center"
-              variant="secondary"
-              disabled={isSigninUp}
-              onClick={() => (activeStep === 1 ? handlePhase(PHASE_SIGNIN_SOCIAL) : setActiveStep(activeStep - 1))}
-              size="xs"
-            />
-          ) : null
-      }
       {STEP_MAPPER[activeStep].step}
       {
         continueButtonCondition

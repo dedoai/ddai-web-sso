@@ -69,7 +69,7 @@ export const ThirdStep = ({
         type="text"
         value={phoneNumber}
         error={error?.message}
-        prefixClassName={prefix ? '' : 'ml-0 w-[30%]'}
+        prefixClassName={prefix ? '' : 'ml-0 w-[40%]'}
         mandatory
         prefix={prefix
           ? (

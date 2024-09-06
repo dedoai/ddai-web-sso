@@ -113,7 +113,7 @@ const ConfirmationCode = ({
       </Body2>
       <Input
         ariaLabel="confirmation-code"
-        className="max-w-[60%]"
+        className="max-w-[75%]"
         disabled={isCodeChecking}
         error={isCodeValid ? '' : t('authModal.signup.invalidCode')}
         onChange={(value) => handleChange(valuePath, value)}

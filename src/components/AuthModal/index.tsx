@@ -13,7 +13,7 @@ import SocialSignIn from './signIn/social';
 import ContactUs from './contactUs';
 import ForgotPassword from './forgotPsw';
 import ResetPsw from './resetPsw';
-import SignUp from './signUp';
+import SignUp, { ACTIVE_STEP_MAPPER } from './signUp';
 
 import './style.css';
 
@@ -23,13 +23,15 @@ export interface IFormData {
     password: string;
   },
   signup: {
-    email: string;
     confirmationEmailCode: string;
-    hasEmailCodeBeenChecked: boolean;
-    phoneNumberPrefix: string;
-    phoneNumber: string;
     confirmationPhoneNumberCode: string;
+    confirmPassword: string;
+    email: string;
+    hasEmailCodeBeenChecked: boolean;
     hasPhoneNumberCodeBeenChecked: boolean;
+    password: string;
+    phoneNumber: string;
+    phoneNumberPrefix: string;
   },
   forgotPassword: {
     email: string;
@@ -104,6 +106,17 @@ export const AuthModal = ({
     validate,
   } = useForm(INITIAL_DATA);
 
+  const {
+    signup: {
+      hasEmailCodeBeenChecked,
+      hasPhoneNumberCodeBeenChecked,
+    },
+  } = formData;
+
+  const emailCodeEval = hasEmailCodeBeenChecked ? 'hasEmailCodeBeenChecked' : '';
+  const phoneNumberNameEval = hasPhoneNumberCodeBeenChecked ? 'hasPhoneNumberCodeBeenChecked' : '';
+  const [activeStep, setActiveStep] = useState(ACTIVE_STEP_MAPPER[phoneNumberNameEval || emailCodeEval] || 1);
+
   const resetErrors = () => {
     setErrors({});
   };
@@ -123,10 +136,12 @@ export const AuthModal = ({
     ),
     [PHASE_SIGNUP]: (
       <SignUp
+        activeStep={activeStep}
         errors={errors}
         formData={formData.signup}
         handleChange={handleChange}
         handlePhase={handlePhase}
+        setActiveStep={setActiveStep}
         validate={validate}
       />
     ),
@@ -145,8 +160,6 @@ export const AuthModal = ({
         handleChange={handleChange}
         errors={errors}
         validate={validate}
-        handlePhase={handlePhase}
-        isResetPassword={resetPassword}
       />
     ),
     [PHASE_RESET_PASSWORD]: (
@@ -167,6 +180,8 @@ export const AuthModal = ({
 
   const noHeaderCondition = [PHASE_SIGNUP, PHASE_FORGOT_PASSWORD, PHASE_CONTACT_US, PHASE_RESET_PASSWORD].indexOf(phase) !== -1;
 
+  const backCondition = [1, 2, 4].indexOf(activeStep) !== -1;
+
   useEffect(resetErrors, [phase]);
 
   useEffect(() => setPhase(DEFAULT_PHASE), [resetPassword]);
@@ -174,36 +189,32 @@ export const AuthModal = ({
   return (
     <Modal
       isOpen={isOpen}
-      isModalParentOpen={false}
-      noFooter
       onCloseCb={handleClose}
-      bodyFullHeight
-      noHeader={noHeaderCondition}
       disableBodyScroll
-      title={
-        [PHASE_SIGNIN_EMAIL].indexOf(phase) !== -1
-          ? (
-            <Button
-              ariaLabel="auth-modal-back"
-              iconName="PiCaretLeftBold"
-              iconSide="center"
-              size="xs"
-              onClick={() => handlePhase(PHASE_SIGNIN_SOCIAL)}
-              variant="secondary"
-            />
-          )
-          : null
-      }
-    >
-      <div slot={Modal.SLOTS.BODY} className="flex flex-col gap-4">
-        {
-          noHeaderCondition
-            ? null
-            : <H2 className="text-center -mt-4" content={t(`${baseT}.title`)} />
-        }
-        {PHASE_MAPPER[phase]}
-      </div>
-    </Modal>
+      className="min-w-[423px]"
+      headerClassName={`pr-2 ${phase !== PHASE_SIGNIN_SOCIAL && backCondition ? '' : 'flex-row-reverse'}`}
+      title={(backCondition && phase !== PHASE_SIGNIN_SOCIAL) || phase === PHASE_SIGNIN_EMAIL
+        ? (
+          <Button
+            ariaLabel="back-to-signin"
+            iconName="PiCaretLeftBold"
+            iconSide="center"
+            variant="secondary"
+            onClick={() => (activeStep === 1 ? handlePhase(PHASE_SIGNIN_SOCIAL) : setActiveStep(activeStep - 1))}
+            size="xs"
+          />
+        ) : null}
+      body={(
+        <div className="flex flex-col gap-4">
+          {
+            noHeaderCondition
+              ? null
+              : <H2 className="text-center -mt-4" content={t(`${baseT}.title`)} />
+          }
+          {PHASE_MAPPER[phase]}
+        </div>
+      )}
+    />
   );
 };
 
