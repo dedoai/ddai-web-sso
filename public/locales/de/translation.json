@@ -1,0 +1,86 @@
+{
+  "main": {
+    "forms": {
+      "isRequired": "{{field}} ist erforderlich",
+      "valid": "Bitte geben Sie ein gültiges {{field}} ein"
+    }
+  },
+  "authModal": {
+    "title": "Hallo, Willkommen bei DedoAI 👋",
+    "social": {
+      "facebook": "Mit Facebook fortfahren",
+      "google": "Mit Google fortfahren",
+      "apple": "Mit Apple fortfahren",
+      "signup": "Oder registrieren Sie sich mit",
+      "signin": "Haben Sie bereits ein Konto?"
+    },
+    "signin": {
+      "email": "E-Mail",
+      "password": "Passwort",
+      "login": "Anmelden",
+      "orSignInWith": "Oder anmelden mit",
+      "forgotPassword": "Passwort vergessen?",
+      "havingTrouble": "Haben Sie Probleme?",
+      "rememberMe": "Angemeldet bleiben"
+    },
+    "signup": {
+      "emailLabel": "Geben Sie Ihre E-Mail-Adresse ein",
+      "emailPlaceholder": "E-Mail",
+      "enterValidEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+      "orSignWith": "Oder registrieren Sie sich mit",
+      "nextStep": "Weiter",
+      "createAccount": "Ein Konto erstellen",
+      "needHelp": "Brauchen Sie Hilfe?",
+      "contactUs": "Kontaktieren Sie uns",
+      "confirmEmailLabel": "Bestätigen Sie Ihre E-Mail-Adresse",
+      "confirmEmailDescription": "Wir haben einen 6-stelligen Code an <span>{{email}}</span> gesendet. Bitte geben Sie ihn unten ein, um Ihre E-Mail-Adresse zu bestätigen.",
+      "enterValidCode": "Bitte geben Sie einen gültigen Code ein",
+      "enterPhoneNumber": "Geben Sie Ihre Telefonnummer ein",
+      "enterPhoneNumberDescription": "Wir verwenden Ihre Telefonnummer zur zusätzlichen Sicherheit, indem wir Bestätigungscodes senden, um Ihr Konto zu schützen.",
+      "phoneNumberPrefix": "Vorwahl",
+      "phoneNumber": "Telefonnummer",
+      "confirmPhoneNumberLabel": "Bestätigen Sie Ihre Telefonnummer",
+      "confirmPhoneNumberDescription": "Wir haben einen 6-stelligen Code an <span>{{phoneNumberPrefix}} {{phoneNumber}}</span> gesendet. Bitte geben Sie ihn unten ein, um Ihre Telefonnummer zu bestätigen.",
+      "sendSms": "SMS senden",
+      "sendSmsFirst": "Sie müssen zuerst die SMS senden",
+      "resend": "Code erneut senden{{article}}{{time}}",
+      "resendIn": " in",
+      "createPassword": "Erstellen Sie Ihr Passwort",
+      "createPasswordDescription": "Geben Sie Ihr Passwort unten ein, um den Registrierungsprozess abzuschließen. Stellen Sie sicher, dass es stark und sicher ist.",
+      "password": "Passwort",
+      "enterYourPassword": "Geben Sie Ihr Passwort ein",
+      "passwordPlaceholder": "Das Passwort muss mindestens 8 Zeichen lang sein",
+      "confirmPasswordPlaceholder": "Passwort wiederholen",
+      "passwordsDontMatch": "Passwörter stimmen nicht überein",
+      "pleaseRepeatPassword": "Bitte wiederholen Sie Ihr Passwort",
+      "acceptNewsletter": "Bleiben Sie auf dem Laufenden mit den neuesten Nachrichten und personalisierten Angeboten von DedoAI per E-Mail.",
+      "invalidCode": "Ungültiger Code"
+    },
+    "resendCode": "Code erneut senden",
+    "forgotPassword": {
+      "title": "Setzen Sie Ihr Passwort zurück",
+      "description": "Bitte geben Sie Ihre E-Mail-Adresse ein, um einen Link zum Zurücksetzen Ihres Passworts zu erhalten.",
+      "email": "E-Mail",
+      "emailPlaceholder": "Geben Sie Ihre E-Mail-Adresse ein",
+      "cta": "Anfrage senden"
+    },
+    "resetPassword": {
+      "createNewPassword": "Neues Passwort erstellen",
+      "createANewPassword": "Ein neues Passwort erstellen",
+      "enterNewPasswordBelow": "Geben Sie Ihr neues Passwort unten ein, um den Zurücksetzungsprozess abzuschließen. Stellen Sie sicher, dass es stark und sicher ist."
+    },
+    "contactUs": {
+      "title": "Kontaktieren Sie uns",
+      "description": "Bitte füllen Sie das folgende Formular aus und wir werden uns so schnell wie möglich bei Ihnen melden.",
+      "name": "Name",
+      "namePlaceholder": "Geben Sie Ihren Namen ein",
+      "surname": "Nachname",
+      "surnamePlaceholder": "Geben Sie Ihren Nachnamen ein",
+      "email": "E-Mail",
+      "emailPlaceholder": "Geben Sie Ihre E-Mail-Adresse ein",
+      "message": "Nachricht",
+      "messagePlaceholder": "Geben Sie Ihre Nachricht ein",
+      "cta": "Absenden"
+    }
+  }
+}
