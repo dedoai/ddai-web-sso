@@ -1,0 +1,81 @@
+{
+  "main": {
+    "forms": {
+      "isRequired": "{{field}} este obligatoriu",
+      "valid": "Vă rugăm să introduceți un {{field}} valid"
+    }
+  },
+  "authModal": {
+    "title": "Salut, Bun venit la DedoAI 👋",
+    "social": {
+      "facebook": "Continuă cu Facebook",
+      "google": "Continuă cu Google",
+      "apple": "Continuă cu Apple",
+      "signup": "Sau înregistrează-te cu",
+      "signin": "Ai deja un cont?"
+    },
+    "signin": {
+      "email": "E-mail",
+      "password": "Parolă",
+      "login": "Autentificare",
+      "orSignInWith": "Sau autentifică-te cu",
+      "forgotPassword": "Ai uitat parola?",
+      "havingTrouble": "Ai probleme?",
+      "rememberMe": "Ține-mă minte"
+    },
+    "signup": {
+      "emailLabel": "Introduceți adresa de email",
+      "emailPlaceholder": "Email",
+      "enterValidEmail": "Vă rugăm să introduceți o adresă de email validă",
+      "orSignWith": "Sau înregistrează-te cu",
+      "nextStep": "Continuă",
+      "createAccount": "Creează un cont",
+      "needHelp": "Ai nevoie de ajutor?",
+      "contactUs": "Contactează-ne",
+      "confirmEmailLabel": "Confirmă adresa de email",
+      "confirmEmailDescription": "Am trimis un cod cu 6 cifre la adresa <span>{{email}}</span>. Vă rugăm să îl introduceți mai jos pentru a confirma adresa de email.",
+      "enterValidCode": "Vă rugăm să introduceți un cod valid",
+      "enterPhoneNumber": "Introduceți numărul de telefon",
+      "enterPhoneNumberDescription": "Folosim numărul dvs. de telefon pentru securitate suplimentară, trimiterea de coduri de verificare pentru a vă menține contul în siguranță.",
+      "phoneNumberPrefix": "Prefix",
+      "phoneNumber": "Număr de telefon",
+      "confirmPhoneNumberLabel": "Confirmă numărul de telefon",
+      "confirmPhoneNumberDescription": "Am trimis un cod cu 6 cifre la numărul <span>{{phoneNumberPrefix}} {{phoneNumber}}</span>. Vă rugăm să îl introduceți mai jos pentru a confirma numărul de telefon.",
+      "sendSms": "Trimite SMS",
+      "sendSmsFirst": "Trebuie să trimiteți SMS-ul mai întâi",
+      "resend": "Retrimite codul{{article}}{{time}}",
+      "resendIn": " în",
+      "createPassword": "Creează-ți parola",
+      "createPasswordDescription": "Introduceți parola dvs. mai jos pentru a finaliza procesul de înregistrare. Asigurați-vă că este puternică și sigură.",
+      "password": "Parolă",
+      "enterYourPassword": "Introduceți parola dvs.",
+      "passwordPlaceholder": "Parola trebuie să aibă cel puțin 8 caractere",
+      "confirmPasswordPlaceholder": "Repetă parola",
+      "passwordsDontMatch": "Parolele nu se potrivesc",
+      "pleaseRepeatPassword": "Vă rugăm să repetați parola",
+      "acceptNewsletter": "Rămâneți la curent cu ultimele știri și oferte personalizate de la DedoAI prin email.",
+      "invalidCode": "Cod invalid"
+    },
+    "resendCode": "Retrimite codul",
+    "forgotPassword": {
+      "title": "Resetează parola",
+      "description": "Vă rugăm să introduceți adresa dvs. de email pentru a primi un link pentru resetarea parolei.",
+      "email": "Email",
+      "emailPlaceholder": "Introduceți adresa dvs. de email",
+      "cta": "Trimite cererea"
+    },
+    "contactUs": {
+      "title": "Contactează-ne",
+      "description": "Vă rugăm să completați formularul de mai jos și vă vom răspunde cât mai curând posibil.",
+      "name": "Nume",
+      "namePlaceholder": "Introduceți numele dvs.",
+      "surname": "Prenume",
+      "surnamePlaceholder": "Introduceți prenumele dvs.",
+      "email": "Email",
+      "emailPlaceholder": "Introduceți adresa dvs. de email",
+      "message": "Mesaj",
+      "messagePlaceholder": "Introduceți mesajul dvs.",
+      "cta": "Trimite"
+    }
+  }
+}
