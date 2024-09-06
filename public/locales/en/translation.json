@@ -2,7 +2,7 @@
   "main": {
     "forms": {
       "isRequired": "{{field}} is required",
-      "valid": "Plase enter a valid {{field}}"
+      "valid": "Please enter a valid {{field}}"
     }
   },
   "authModal": {
@@ -63,6 +63,11 @@
       "email": "Email",
       "emailPlaceholder": "Enter your email address",
       "cta": "Send request"
+    },
+    "resetPassword": {
+      "createNewPassword": "Create New Password",
+      "createANewPassword": "Create a New Password",
+      "enterNewPasswordBelow": "Enter your new password below to complete  the reset process. Ensure it’s strong and secure."
     },
     "contactUs": {
       "title": "Contact us",

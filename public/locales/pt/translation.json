@@ -1,0 +1,86 @@
+{
+  "main": {
+    "forms": {
+      "isRequired": "{{field}} é obrigatório",
+      "valid": "Por favor, insira um {{field}} válido"
+    }
+  },
+  "authModal": {
+    "title": "Olá, Bem-vindo ao DedoAI 👋",
+    "social": {
+      "facebook": "Continuar com o Facebook",
+      "google": "Continuar com o Google",
+      "apple": "Continuar com a Apple",
+      "signup": "Ou registre-se com",
+      "signin": "Já tem uma conta?"
+    },
+    "signin": {
+      "email": "E-mail",
+      "password": "Senha",
+      "login": "Entrar",
+      "orSignInWith": "Ou entre com",
+      "forgotPassword": "Esqueceu a senha?",
+      "havingTrouble": "Está tendo problemas?",
+      "rememberMe": "Lembrar de mim"
+    },
+    "signup": {
+      "emailLabel": "Insira seu e-mail",
+      "emailPlaceholder": "E-mail",
+      "enterValidEmail": "Por favor, insira um e-mail válido",
+      "orSignWith": "Ou registre-se com",
+      "nextStep": "Continuar",
+      "createAccount": "Criar uma conta",
+      "needHelp": "Precisa de ajuda?",
+      "contactUs": "Contate-nos",
+      "confirmEmailLabel": "Confirme seu e-mail",
+      "confirmEmailDescription": "Enviamos um código de 6 dígitos para <span>{{email}}</span>. Por favor, insira-o abaixo para confirmar seu e-mail.",
+      "enterValidCode": "Por favor, insira um código válido",
+      "enterPhoneNumber": "Insira seu número de telefone",
+      "enterPhoneNumberDescription": "Usamos seu número de telefone para maior segurança, enviando códigos de verificação para manter sua conta segura.",
+      "phoneNumberPrefix": "Prefixo",
+      "phoneNumber": "Número de telefone",
+      "confirmPhoneNumberLabel": "Confirme seu número de telefone",
+      "confirmPhoneNumberDescription": "Enviamos um código de 6 dígitos para <span>{{phoneNumberPrefix}} {{phoneNumber}}</span>. Por favor, insira-o abaixo para confirmar seu número de telefone.",
+      "sendSms": "Enviar SMS",
+      "sendSmsFirst": "Você precisa enviar o SMS primeiro",
+      "resend": "Reenviar código{{article}}{{time}}",
+      "resendIn": " em",
+      "createPassword": "Crie sua senha",
+      "createPasswordDescription": "Insira sua senha abaixo para concluir o processo de registro. Certifique-se de que ela seja forte e segura.",
+      "password": "Senha",
+      "enterYourPassword": "Insira sua senha",
+      "passwordPlaceholder": "A senha deve ter pelo menos 8 caracteres",
+      "confirmPasswordPlaceholder": "Repita a senha",
+      "passwordsDontMatch": "As senhas não coincidem",
+      "pleaseRepeatPassword": "Por favor, repita sua senha",
+      "acceptNewsletter": "Mantenha-se atualizado com as últimas notícias e ofertas personalizadas do DedoAI por e-mail.",
+      "invalidCode": "Código inválido"
+    },
+    "resendCode": "Reenviar código",
+    "forgotPassword": {
+      "title": "Redefinir sua senha",
+      "description": "Por favor, insira seu endereço de e-mail para receber um link para redefinir sua senha.",
+      "email": "E-mail",
+      "emailPlaceholder": "Insira seu endereço de e-mail",
+      "cta": "Enviar solicitação"
+    },
+    "resetPassword": {
+      "createNewPassword": "Criar Nova Senha",
+      "createANewPassword": "Criar uma Nova Senha",
+      "enterNewPasswordBelow": "Digite sua nova senha abaixo para concluir o processo de redefinição. Certifique-se de que ela seja forte e segura."
+    },
+    "contactUs": {
+      "title": "Contate-nos",
+      "description": "Por favor, preencha o formulário abaixo e entraremos em contato o mais breve possível.",
+      "name": "Nome",
+      "namePlaceholder": "Insira seu nome",
+      "surname": "Sobrenome",
+      "surnamePlaceholder": "Insira seu sobrenome",
+      "email": "E-mail",
+      "emailPlaceholder": "Insira seu endereço de e-mail",
+      "message": "Mensagem",
+      "messagePlaceholder": "Insira sua mensagem",
+      "cta": "Enviar"
+    }
+  }
+}

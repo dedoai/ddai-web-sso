@@ -25,8 +25,8 @@ const ResetPsw = ({
   validate,
   handlePhase,
 }: ResetPswProps) => {
-  const baseT = 'authModal.resetPsw';
   const { t } = useTranslation();
+  const resetPwTKey = 'authModal.resetPassword';
 
   const {
     data,
@@ -44,10 +44,10 @@ const ResetPsw = ({
 
   return (
     <>
-      <H2 content="Create a New Password" />
+      <H2 content={t(`${resetPwTKey}.createANewPassword`)} />
       <Body2
         className="text-text-bright dark:text-text-gloomy"
-        content="Enter your new password below to complete  the reset process. Ensure it’s strong and secure."
+        content={t(`${resetPwTKey}.enterNewPasswordBelow`)}
       />
       <FifthStep
         disabled={isResettingPsw}
@@ -59,7 +59,7 @@ const ResetPsw = ({
       <Button
         ariaLabel="reset-password"
         isLoading={isResettingPsw}
-        text="Create New Password"
+        text={t(`${resetPwTKey}.createNewPassword`)}
         onClick={async () => {
           const isInvalid = await validate({});
 

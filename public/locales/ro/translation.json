@@ -1,0 +1,86 @@
+{
+  "main": {
+    "forms": {
+      "isRequired": "{{field}} este necesar",
+      "valid": "Vă rugăm să introduceți un {{field}} valid"
+    }
+  },
+  "authModal": {
+    "title": "Bună, bun venit la DedoAI 👋",
+    "social": {
+      "facebook": "Continuați cu Facebook",
+      "google": "Continuați cu Google",
+      "apple": "Continuați cu Apple",
+      "signup": "Sau înregistrați-vă cu",
+      "signin": "Aveți deja un cont?"
+    },
+    "signin": {
+      "email": "E-mail",
+      "password": "Parolă",
+      "login": "Autentificare",
+      "orSignInWith": "Sau autentificați-vă cu",
+      "forgotPassword": "Ați uitat parola?",
+      "havingTrouble": "Aveți probleme?",
+      "rememberMe": "Ține-mă minte"
+    },
+    "signup": {
+      "emailLabel": "Introduceți e-mailul dumneavoastră",
+      "emailPlaceholder": "E-mail",
+      "enterValidEmail": "Vă rugăm să introduceți un e-mail valid",
+      "orSignWith": "Sau înregistrați-vă cu",
+      "nextStep": "Continuare",
+      "createAccount": "Creează un cont",
+      "needHelp": "Aveți nevoie de ajutor?",
+      "contactUs": "Contactați-ne",
+      "confirmEmailLabel": "Confirmați e-mailul dumneavoastră",
+      "confirmEmailDescription": "Am trimis un cod de 6 cifre la <span>{{email}}</span>. Vă rugăm să-l introduceți mai jos pentru a confirma e-mailul.",
+      "enterValidCode": "Vă rugăm să introduceți un cod valid",
+      "enterPhoneNumber": "Introduceți numărul dumneavoastră de telefon",
+      "enterPhoneNumberDescription": "Folosim numărul dumneavoastră de telefon pentru o securitate suplimentară, trimițând coduri de verificare pentru a menține contul dumneavoastră în siguranță.",
+      "phoneNumberPrefix": "Prefix",
+      "phoneNumber": "Număr de telefon",
+      "confirmPhoneNumberLabel": "Confirmați numărul dumneavoastră de telefon",
+      "confirmPhoneNumberDescription": "Am trimis un cod de 6 cifre la <span>{{phoneNumberPrefix}} {{phoneNumber}}</span>. Vă rugăm să-l introduceți mai jos pentru a confirma numărul dumneavoastră de telefon.",
+      "sendSms": "Trimiteți SMS",
+      "sendSmsFirst": "Trebuie să trimiteți mai întâi SMS-ul",
+      "resend": "Retrimiteți codul{{article}}{{time}}",
+      "resendIn": " în",
+      "createPassword": "Creează parola",
+      "createPasswordDescription": "Introduceți parola dumneavoastră mai jos pentru a finaliza procesul de înregistrare. Asigurați-vă că este puternică și sigură.",
+      "password": "Parolă",
+      "enterYourPassword": "Introduceți parola dumneavoastră",
+      "passwordPlaceholder": "Parola trebuie să aibă cel puțin 8 caractere",
+      "confirmPasswordPlaceholder": "Repetați parola",
+      "passwordsDontMatch": "Parolele nu se potrivesc",
+      "pleaseRepeatPassword": "Vă rugăm să repetați parola",
+      "acceptNewsletter": "Rămâneți la curent cu ultimele noutăți și oferte personalizate de la DedoAI prin e-mail.",
+      "invalidCode": "Cod invalid"
+    },
+    "resendCode": "Retrimiteți codul",
+    "forgotPassword": {
+      "title": "Resetați parola",
+      "description": "Vă rugăm să introduceți adresa dumneavoastră de e-mail pentru a primi un link pentru resetarea parolei.",
+      "email": "E-mail",
+      "emailPlaceholder": "Introduceți adresa dumneavoastră de e-mail",
+      "cta": "Trimiteți cererea"
+    },
+    "resetPassword": {
+      "createNewPassword": "Creează o Nouă Parolă",
+      "createANewPassword": "Creează o Nouă Parolă",
+      "enterNewPasswordBelow": "Introduceți parola nouă mai jos pentru a finaliza procesul de resetare. Asigurați-vă că este puternică și sigură."
+    },
+    "contactUs": {
+      "title": "Contactați-ne",
+      "description": "Vă rugăm să completați formularul de mai jos și vă vom contacta cât mai curând posibil.",
+      "name": "Nume",
+      "namePlaceholder": "Introduceți numele dumneavoastră",
+      "surname": "Prenume",
+      "surnamePlaceholder": "Introduceți prenumele dumneavoastră",
+      "email": "E-mail",
+      "emailPlaceholder": "Introduceți adresa dumneavoastră de e-mail",
+      "message": "Mesaj",
+      "messagePlaceholder": "Introduceți mesajul dumneavoastră",
+      "cta": "Trimiteți"
+    }
+  }
+}
