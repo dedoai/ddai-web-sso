@@ -20,7 +20,6 @@ export const SocialSignIn = ({
   const { t } = useTranslation();
 
   const isMinimalMode = mode === 'minimal';
-  console.log('SOCIAL_BUTTONS', SOCIAL_BUTTONS);
 
   return (
     <>
