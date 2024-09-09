@@ -76,8 +76,7 @@ export const SignUp = ({
       const data = await apiPost(EP_SIGNUP, {
         email,
         password,
-        phone: `${phoneNumberPrefix}${phoneNumber}`,
-        username: email,
+        phone: `+${phoneNumberPrefix}${phoneNumber}`,
       });
 
       return data;
