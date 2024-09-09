@@ -1,8 +1,12 @@
 import { useTranslation } from 'react-i18next';
-import { Body2, Button } from '@dedo_ai/gui-com-lib';
+import { Body2 } from '@dedo_ai/gui-com-lib';
 
 import { SOCIAL_BUTTONS } from '@/App';
 import { PHASE_SIGNIN_EMAIL, PHASE_SIGNUP } from '@/components/AuthModal';
+
+import AppleButton from './apple';
+import FacebookButton from './fb';
+import GoogleButton from './google';
 
 interface ISocialSignInProps {
   handlePhase?: (_phase: string) => void;
@@ -19,21 +23,17 @@ export const SocialSignIn = ({
 
   return (
     <>
-      <div className={`flex gap-[10px] ${isMinimalMode ? 'justify-center flex-wrap' : 'flex-col'}`}>
+      <>
         {
           SOCIAL_BUTTONS.map((buttonId) => (
-            <Button
-              variant="secondary"
-              key={buttonId}
-              customIcon={<img src={`/assets/${buttonId}.svg`} alt="" />}
-              ariaLabel={buttonId}
-              size="lg"
-              text={isMinimalMode ? '' : t(`${baseT}.${buttonId.split('-')[0]}`)}
-            />
+            <div key={buttonId} className={`flex gap-[10px] ${isMinimalMode ? 'justify-center flex-wrap' : 'flex-col'}`}>
+              {buttonId === 'facebook' ? <FacebookButton isMinimalMode={isMinimalMode} /> : null}
+              {buttonId === 'google' ? <GoogleButton isMinimalMode={isMinimalMode} /> : null}
+              {buttonId?.split('-')[0] === 'apple' ? <AppleButton buttonId={buttonId} isMinimalMode={isMinimalMode} /> : null}
+            </div>
           ))
         }
-      </div>
-
+      </>
       {
         isMinimalMode
           ? null
