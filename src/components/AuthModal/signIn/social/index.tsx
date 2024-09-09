@@ -1,12 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import { Body2 } from '@dedo_ai/gui-com-lib';
 
-import { SOCIAL_BUTTONS } from '@/App';
 import { PHASE_SIGNIN_EMAIL, PHASE_SIGNUP } from '@/components/AuthModal';
-
-import AppleButton from './apple';
-import FacebookButton from './fb';
-import GoogleButton from './google';
+import SocialButton from '@/components/SocialButton';
+import { SOCIAL_BUTTONS } from '@/utils';
 
 interface ISocialSignInProps {
   handlePhase?: (_phase: string) => void;
@@ -23,23 +20,22 @@ export const SocialSignIn = ({
 
   return (
     <>
-      <>
+      <div className={`flex gap-[10px] ${isMinimalMode ? 'justify-center flex-wrap' : 'flex-col'}`}>
         {
-          SOCIAL_BUTTONS.map((buttonId) => (
-            <div key={buttonId} className={`flex gap-[10px] ${isMinimalMode ? 'justify-center flex-wrap' : 'flex-col'}`}>
-              {buttonId === 'facebook' ? <FacebookButton isMinimalMode={isMinimalMode} /> : null}
-              {buttonId === 'google' ? <GoogleButton isMinimalMode={isMinimalMode} /> : null}
-              {buttonId?.split('-')[0] === 'apple' ? <AppleButton buttonId={buttonId} isMinimalMode={isMinimalMode} /> : null}
-            </div>
+          SOCIAL_BUTTONS.map((socialButton, key) => (
+            <SocialButton
+              key={`social-login-${key}`}
+              {...socialButton}
+              isMinimalMode={isMinimalMode}
+            />
           ))
         }
-      </>
+      </div>
       {
         isMinimalMode
           ? null
           : (
             <>
-
               <Body2
                 className="inline-flex gap-1 justify-center text-text-bright dark:text-text-gloomy"
               >
@@ -67,7 +63,6 @@ export const SocialSignIn = ({
             </>
           )
       }
-
     </>
   );
 };

@@ -33,8 +33,8 @@ const pathMiddleware = (path: string, overrideMiddleware?: boolean) => (
 export const recaptchaMiddleware = async (
   action: string,
 ): Promise<string> => new Promise((res) => {
-  (window as any).grecaptcha.enterprise.ready(async () => {
-    const token = await (window as any).grecaptcha.enterprise.execute(import.meta.env.VITE_RECAPTCHA_KEY, { action });
+  window.grecaptcha.enterprise.ready(async () => {
+    const token = await window.grecaptcha.enterprise.execute(import.meta.env.VITE_RECAPTCHA_KEY, { action });
     res(token);
   });
 });
