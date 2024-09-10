@@ -1,10 +1,21 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@dedo_ai/gui-com-lib';
-import { useGoogleLogin } from '@react-oauth/google';
+import { type UseGoogleLoginOptionsImplicitFlow, useGoogleLogin } from '@react-oauth/google';
+import { isEmpty } from 'lodash';
 
+const HOOKS_MAPPER = {
+  'google-hook': useGoogleLogin,
+};
+
+type HookCall = {
+  args: UseGoogleLoginOptionsImplicitFlow;
+  name: string;
+  overloadLoginCb?: boolean;
+}
 export interface ISocialButtonProps {
   id: string;
+  initHookCb?: () => HookCall;
   initCb?: () => void;
   isMinimalMode?: boolean;
   loginCb?: () => void;
@@ -14,35 +25,33 @@ export const SocialButton = ({
   initCb,
   isMinimalMode = false,
   loginCb,
+  initHookCb,
 }: ISocialButtonProps) => {
   const baseT = 'authModal.social';
   const { t } = useTranslation();
 
+  const hookConfig = initHookCb?.();
+
+  if (!isEmpty(hookConfig)) {
+    const {
+      args,
+      name,
+      overloadLoginCb = false,
+    } = hookConfig;
+
+    const res = HOOKS_MAPPER[name](args);
+
+    if (overloadLoginCb) loginCb = res;
+  }
+
   useEffect(() => initCb?.(), []);
-
-  const googleLogin = id === 'google' ? useGoogleLogin({
-    onSuccess: (tokenResponse) => {
-      console.log('Google login successful', tokenResponse);
-    },
-    onError: (error) => {
-      console.error('Google login failed', error);
-    },
-  }) : null;
-
-  const handleOnClick = () => {
-    if (id === 'google') {
-      googleLogin();
-    } else {
-      loginCb?.();
-    }
-  };
 
   return (
     <Button
       ariaLabel={id}
       customIcon={<img src={`/assets/${id}.svg`} alt={id} />}
       key={id}
-      onClick={handleOnClick}
+      onClick={loginCb}
       size="lg"
       text={isMinimalMode ? '' : t(`${baseT}.${id.split('-')?.[0]}`)}
       variant="secondary"

@@ -38,8 +38,15 @@ export const SOCIAL_BUTTONS: Omit<ISocialButtonProps, 'isMinimalMode'>[] = [
   },
   {
     id: 'google',
-    initCb: () => {},
-    loginCb: () => {},
+    initHookCb: () => ({
+      name: 'google-hook',
+      overloadLoginCb: true,
+      args: {
+        onSuccess: (res) => {
+          console.log('>> google login success', res);
+        },
+      },
+    }),
   },
   {
     id: `apple-${theme}`,
