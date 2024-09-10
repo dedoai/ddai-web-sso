@@ -3,7 +3,9 @@ import i18next from 'i18next';
 
 import AuthModal from '@/components/AuthModal';
 
-import { language, mode, theme } from './utils';
+import {
+  language, mode, theme,
+} from './utils';
 
 const THEME_MAPPER = {
   dark: 'dark',
@@ -26,8 +28,8 @@ const App = () => {
   };
 
   useEffect(() => {
-    document.body.classList.add(THEME_MAPPER[theme] || 'dark');
-    i18next.changeLanguage(language || 'en');
+    document.body.classList.add(THEME_MAPPER[theme]);
+    i18next.changeLanguage(language);
 
     if (mode === 'rp') {
       document.body.style.background = 'url(/assets/bg-standalone.svg) no-repeat center/cover';

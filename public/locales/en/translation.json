@@ -58,8 +58,8 @@
       "successAccountCreation": {
         "title": "Account successfully created",
         "description": "Now you can explore the marketplace and the services it offers. When you're ready to start your adventure, remember to verify your identity.",
-        "verifyIdentity": "Verify your identity",
-        "exploreDedoai": "Explore DedoAI"
+        "cta1": "Verify your identity",
+        "cta2": "Explore DedoAI"
       }
     },
     "resendCode": "Resend code",
@@ -72,13 +72,18 @@
       "successResetPasswordSent": {
         "title": "Security link sent to your inbox",
         "description": "Please check your email for the password reset link. If you don't see it, check your spam or junk folder.",
-        "goBackHome": "Go back home"
+        "cta1": "Go back home"
       }
     },
     "resetPassword": {
       "createNewPassword": "Create New Password",
       "createANewPassword": "Create a New Password",
-      "enterNewPasswordBelow": "Enter your new password below to complete  the reset process. Ensure it’s strong and secure."
+      "enterNewPasswordBelow": "Enter your new password below to complete  the reset process. Ensure it’s strong and secure.",
+      "successReset": {
+        "title": "Password reset successful",
+        "description": "You can now log in with your new passowrd. if you encounter any issues, please contact our support.",
+        "cta1": "Back to Log in"
+      }
     },
     "contactUs": {
       "title": "Contact us",

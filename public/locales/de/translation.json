@@ -58,8 +58,8 @@
       "successAccountCreation": {
         "title": "Konto erfolgreich erstellt",
         "description": "Jetzt können Sie den Marktplatz und die angebotenen Dienstleistungen erkunden. Wenn Sie bereit sind, Ihr Abenteuer zu beginnen, denken Sie daran, Ihre Identität zu verifizieren.",
-        "verifyIdentity": "Verifizieren Sie Ihre Identität",
-        "exploreDedoai": "Erkunden Sie DedoAI"
+        "cta1": "Verifizieren Sie Ihre Identität",
+        "cta2": "Erkunden Sie DedoAI"
       }
     },
     "resendCode": "Code erneut senden",
@@ -72,13 +72,18 @@
       "successResetPasswordSent": {
         "title": "Sicherheitslink an Ihr Postfach gesendet",
         "description": "Bitte überprüfen Sie Ihre E-Mails auf den Link zum Zurücksetzen des Passworts. Wenn Sie ihn nicht sehen, überprüfen Sie Ihren Spam- oder Junk-Ordner.",
-        "goBackHome": "Zurück zur Startseite"
+        "cta1": "Zurück zur Startseite"
       }
     },
     "resetPassword": {
       "createNewPassword": "Neues Passwort erstellen",
       "createANewPassword": "Ein neues Passwort erstellen",
-      "enterNewPasswordBelow": "Geben Sie Ihr neues Passwort unten ein, um den Zurücksetzungsprozess abzuschließen. Stellen Sie sicher, dass es stark und sicher ist."
+      "enterNewPasswordBelow": "Geben Sie Ihr neues Passwort unten ein, um den Zurücksetzungsprozess abzuschließen. Stellen Sie sicher, dass es stark und sicher ist.",
+      "successReset": {
+        "title": "Passwort erfolgreich zurückgesetzt",
+        "description": "Sie können sich jetzt mit Ihrem neuen Passwort anmelden. Wenn Sie auf Probleme stoßen, kontaktieren Sie bitte unseren Support.",
+        "cta1": "Zurück zur Anmeldung"
+      }
     },
     "contactUs": {
       "title": "Kontaktieren Sie uns",

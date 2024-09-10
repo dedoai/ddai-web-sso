@@ -7,7 +7,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { apiPost, recaptchaMiddleware } from '@/api';
 import { EP_CONTACT_US } from '@/api/const';
-import { IFormData } from '@/components/AuthModal';
+import { type IFormData } from '@/consts';
 
 import schema from './validationSchema';
 

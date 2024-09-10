@@ -1,16 +1,19 @@
 import { useTranslation } from 'react-i18next';
 import {
   Body2,
-  Button, Checkbox, Icon, Input,
+  Button,
+  Checkbox,
+  Icon,
+  Input,
   Label,
 } from '@dedo_ai/gui-com-lib';
 import { useQuery } from '@tanstack/react-query';
 
 import { apiPost } from '@/api';
 import { EP_LOGIN } from '@/api/const';
-import { type IFormData, PHASE_FORGOT_PASSWORD } from '@/components/AuthModal';
 import SocialSignIn from '@/components/AuthModal/signIn/social';
 import NeedHelp from '@/components/NeedHelp';
+import { type IFormData, PHASE_FORGOT_PASSWORD } from '@/consts';
 
 import schema from './validationSchemas';
 

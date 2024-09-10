@@ -5,7 +5,7 @@ import {
   Flag, H2, Input,
 } from '@dedo_ai/gui-com-lib';
 
-import { IFormData } from '@/components/AuthModal';
+import { type IFormData } from '@/consts';
 import useCountry, { Country } from '@/hook/useCountry';
 
 interface IPrefixProps {

@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { Body2 } from '@dedo_ai/gui-com-lib';
 
-import { PHASE_SIGNIN_EMAIL, PHASE_SIGNUP } from '@/components/AuthModal';
 import SocialButton from '@/components/SocialButton';
+import { PHASE_SIGNIN_EMAIL, PHASE_SIGNUP } from '@/consts';
 import { SOCIAL_BUTTONS } from '@/utils';
 
 interface ISocialSignInProps {

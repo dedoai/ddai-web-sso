@@ -58,8 +58,8 @@
       "successAccountCreation": {
         "title": "Compte créé avec succès",
         "description": "Vous pouvez maintenant explorer le marché et les services qu'il offre. Lorsque vous êtes prêt à commencer votre aventure, n'oubliez pas de vérifier votre identité.",
-        "verifyIdentity": "Vérifiez votre identité",
-        "exploreDedoai": "Explorez DedoAI"
+        "cta1": "Vérifiez votre identité",
+        "cta2": "Explorez DedoAI"
       }
     },
     "resendCode": "Renvoyer le code",
@@ -72,13 +72,18 @@
       "successResetPasswordSent": {
         "title": "Lien de sécurité envoyé à votre boîte de réception",
         "description": "Veuillez vérifier votre e-mail pour le lien de réinitialisation du mot de passe. Si vous ne le voyez pas, vérifiez votre dossier spam ou courrier indésirable.",
-        "goBackHome": "Retourner à l'accueil"
+        "cta1": "Retourner à l'accueil"
       }
     },
     "resetPassword": {
       "createNewPassword": "Créer un Nouveau Mot de Passe",
       "createANewPassword": "Créer un Nouveau Mot de Passe",
-      "enterNewPasswordBelow": "Entrez votre nouveau mot de passe ci-dessous pour compléter le processus de réinitialisation. Assurez-vous qu'il soit fort et sécurisé."
+      "enterNewPasswordBelow": "Entrez votre nouveau mot de passe ci-dessous pour compléter le processus de réinitialisation. Assurez-vous qu'il soit fort et sécurisé.",
+      "successReset": {
+        "title": "Réinitialisation du mot de passe réussie",
+        "description": "Vous pouvez maintenant vous connecter avec votre nouveau mot de passe. Si vous rencontrez des problèmes, veuillez contacter notre support.",
+        "cta1": "Retour à la connexion"
+      }
     },
     "contactUs": {
       "title": "Contactez-nous",

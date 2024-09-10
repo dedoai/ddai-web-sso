@@ -58,8 +58,8 @@
       "successAccountCreation": {
         "title": "Conta criada com sucesso",
         "description": "Agora você pode explorar o marketplace e os serviços que ele oferece. Quando estiver pronto para começar sua aventura, lembre-se de verificar sua identidade.",
-        "verifyIdentity": "Verificar sua identidade",
-        "exploreDedoai": "Explorar DedoAI"
+        "cta1": "Verificar sua identidade",
+        "cta2": "Explorar DedoAI"
       }
     },
     "resendCode": "Reenviar código",
@@ -72,13 +72,18 @@
       "successResetPasswordSent": {
         "title": "Link de segurança enviado para sua caixa de entrada",
         "description": "Por favor, verifique seu e-mail para o link de redefinição de senha. Se você não o encontrar, verifique sua pasta de spam ou lixo eletrônico.",
-        "goBackHome": "Voltar para a página inicial"
+        "cta1": "Voltar para a página inicial"
       }
     },
     "resetPassword": {
       "createNewPassword": "Criar Nova Senha",
       "createANewPassword": "Criar uma Nova Senha",
-      "enterNewPasswordBelow": "Digite sua nova senha abaixo para concluir o processo de redefinição. Certifique-se de que ela seja forte e segura."
+      "enterNewPasswordBelow": "Digite sua nova senha abaixo para concluir o processo de redefinição. Certifique-se de que ela seja forte e segura.",
+      "successReset": {
+        "title": "Redefinição de senha bem-sucedida",
+        "description": "Agora você pode fazer login com sua nova senha. Se encontrar algum problema, entre em contato com nosso suporte.",
+        "cta1": "Voltar para o login"
+      }
     },
     "contactUs": {
       "title": "Contate-nos",

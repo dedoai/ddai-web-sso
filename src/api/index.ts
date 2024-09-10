@@ -3,6 +3,12 @@ import axios from 'axios';
 
 import { API_AUTH_PATH, API_VERSION } from './const';
 
+type DefaultApiDto = {
+  status: 'success' | 'error';
+  error?: string;
+  errMsg?: string; // This is the error, boundary from useQuery
+}
+
 export const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
   headers: {
@@ -14,7 +20,7 @@ interface IApiWrap<T> {
   data?: T;
   errMsg?: string;
 }
-export const apiWrap = async <T>(promise: Promise<any>): Promise<IApiWrap<T>> => {
+export const apiWrap = async <T>(promise: Promise<any>): Promise<IApiWrap<T & DefaultApiDto>> => {
   try {
     const { data } = await promise;
 

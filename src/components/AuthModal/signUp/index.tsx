@@ -7,8 +7,7 @@ import { EP_SIGNUP } from '@/api/const';
 import SocialSignIn from '@/components/AuthModal/signIn/social';
 import ConfirmationCode from '@/components/ConfirmationCode';
 import NeedHelp from '@/components/NeedHelp';
-
-import { type IFormData, PHASE_SUCCESS_ACCOUNT_CREATION } from '..';
+import { IFormData, PHASE_SUCCESS_ACCOUNT_CREATION } from '@/consts';
 
 import { CreatePasswordStep } from './steps/createPasswordStep';
 import { EmailStep } from './steps/emailStep';
@@ -23,10 +22,8 @@ export const ACTIVE_STEP_MAPPER = {
 };
 interface ISignUpDto {
   errMsg?: string;
-  error?: string;
   otp_secret?: string;
   otp_url?: string;
-  status: 'success' | 'error';
   user_id?: string;
 }
 

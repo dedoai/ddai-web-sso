@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Body2 } from '@dedo_ai/gui-com-lib';
 
-import { PHASE_CONTACT_US } from '@/components/AuthModal';
+import { PHASE_CONTACT_US } from '@/consts';
 
 interface INeedHelpProps {
   disabled?: boolean;

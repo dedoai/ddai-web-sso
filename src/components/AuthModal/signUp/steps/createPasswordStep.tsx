@@ -22,6 +22,8 @@ export const CreatePasswordStep = ({
 
   const formDataBasePath = isResetPassword ? 'resetPassword' : 'signup';
 
+  const passwordError = errors?.[`${formDataBasePath}.password`]?.message;
+
   return (
     <>
       {
@@ -46,8 +48,8 @@ export const CreatePasswordStep = ({
           placeholder={t(`${baseT}.enterYourPassword`)}
           type="password"
           value={password}
-          error={errors?.[`${formDataBasePath}.password`]?.message}
-          auxiliary={t(`${baseT}.passwordPlaceholder`)}
+          error={passwordError}
+          auxiliary={passwordError ? null : t(`${baseT}.passwordPlaceholder`)}
           disabled={disabled}
         />
         <Input

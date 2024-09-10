@@ -8,10 +8,27 @@ import {
 } from '@dedo_ai/gui-com-lib';
 import useForm from '@en1-gma/use-form';
 
+import {
+  INITIAL_DATA,
+  PAYLOAD_CONTACT_US,
+  PAYLOAD_FORGOT_PASSWORD,
+  PAYLOAD_RESET_PASSWORD,
+  PAYLOAD_SIGNUP,
+  PHASE_CONTACT_US,
+  PHASE_FORGOT_PASSWORD,
+  PHASE_RESET_PASSWORD,
+  PHASE_SIGNIN_EMAIL,
+  PHASE_SIGNIN_SOCIAL,
+  PHASE_SIGNUP,
+  PHASE_SUCCESS_ACCOUNT_CREATION,
+  PHASE_SUCCESS_RESET_PASSWORD,
+  PHASE_SUCCESS_RESET_PASSWORD_SENT,
+} from '@/consts';
+import { language, theme } from '@/utils';
+
 import EmailSignIn from './signIn/email';
 import SocialSignIn from './signIn/social';
-import SuccessAccountCreation from './statuses/SuccessAccountCreation';
-import SuccessResetPasswordSent from './statuses/SuccessResetPasswordSent';
+import Success from './statuses/Success';
 import ContactUs from './contactUs';
 import ForgotPassword from './forgotPsw';
 import ResetPsw from './resetPsw';
@@ -19,73 +36,6 @@ import SignUp, { ACTIVE_STEP_MAPPER } from './signUp';
 
 import './style.css';
 
-export interface IFormData {
-  signin: {
-    email: string;
-    password: string;
-  },
-  signup: {
-    confirmationEmailCode: string;
-    confirmationPhoneNumberCode: string;
-    confirmPassword: string;
-    email: string;
-    hasEmailCodeBeenChecked: boolean;
-    hasPhoneNumberCodeBeenChecked: boolean;
-    password: string;
-    phoneNumber: string;
-    phoneNumberPrefix: string;
-  },
-  forgotPassword: {
-    email: string;
-  },
-  contactUs: {
-    email: string;
-    message: string;
-    name: string;
-    surname: string;
-  },
-  resetPassword: {
-    password: string;
-    confirmPassword: string;
-  }
-}
-const INITIAL_DATA = {
-  signin: {
-    email: '',
-    password: '',
-  },
-  signup: {
-    email: '',
-    confirmationEmailCode: '',
-    hasEmailCodeBeenChecked: false,
-    phoneNumberPrefix: '',
-    phoneNumber: '',
-    confirmationPhoneNumberCode: '',
-    hasPhoneNumberCodeBeenChecked: false,
-  },
-  forgotPassword: {
-    email: '',
-  },
-  contactUs: {
-    email: '',
-    message: '',
-    name: '',
-    surname: '',
-  },
-  resetPassword: {
-    password: '',
-    confirmPassword: '',
-  },
-};
-
-export const PHASE_CONTACT_US = 'contact-us';
-export const PHASE_FORGOT_PASSWORD = 'forgot';
-export const PHASE_RESET_PASSWORD = 'reset-password';
-export const PHASE_SIGNIN_EMAIL = 'signin-email';
-export const PHASE_SIGNIN_SOCIAL = 'signin-social';
-export const PHASE_SIGNUP = 'signup';
-export const PHASE_SUCCESS_ACCOUNT_CREATION = 'success-account-creation';
-export const PHASE_SUCCESS_RESET_PASSWORD_SENT = 'success-reset-password-sent';
 interface IAuthModalProps extends Pick<IModalProps, 'isOpen' | 'onCloseCb'> {
   resetPassword?: boolean;
 }
@@ -123,6 +73,66 @@ export const AuthModal = ({
 
   const resetErrors = () => {
     setErrors({});
+  };
+
+  const signUpbackButtonCondition = [1, 2, 4].indexOf(activeStep) !== -1;
+
+  const flexReverse = 'flex-row-reverse';
+
+  const PHASE_APPEARANCE_MAPPER = {
+    [PHASE_SIGNIN_SOCIAL]: {
+      hasHeader: true,
+      headerClassName: flexReverse,
+    },
+    [PHASE_SIGNIN_EMAIL]: {
+      hasBackButton: true,
+      hasHeader: true,
+      headerClassName: '',
+    },
+    [PHASE_SIGNUP]: {
+      hasBackButton: signUpbackButtonCondition,
+      headerClassName: signUpbackButtonCondition ? '' : flexReverse,
+    },
+    [PHASE_FORGOT_PASSWORD]: {
+      hasBackButton: true,
+      backTo: PHASE_SIGNIN_EMAIL,
+    },
+    [PHASE_SUCCESS_RESET_PASSWORD_SENT]: {
+      headerClassName: flexReverse,
+      onClosePhaseCb: () => handleChange(PAYLOAD_FORGOT_PASSWORD, INITIAL_DATA[PAYLOAD_FORGOT_PASSWORD]),
+    },
+    [PHASE_SUCCESS_RESET_PASSWORD]: {
+      headerClassName: flexReverse,
+      onClosePhaseCb: () => handleChange(PAYLOAD_RESET_PASSWORD, INITIAL_DATA[PAYLOAD_RESET_PASSWORD]),
+    },
+    [PHASE_SUCCESS_ACCOUNT_CREATION]: {
+      headerClassName: flexReverse,
+      onClosePhaseCb: () => {
+        handleChange(PAYLOAD_SIGNUP, INITIAL_DATA[PAYLOAD_SIGNUP]);
+        setActiveStep(1);
+      },
+    },
+    [PHASE_RESET_PASSWORD]: {
+      headerClassName: flexReverse,
+    },
+    [PHASE_CONTACT_US]: {
+      headerClassName: flexReverse,
+      onClosePhaseCb: () => handleChange(PAYLOAD_CONTACT_US, INITIAL_DATA[PAYLOAD_CONTACT_US]),
+    },
+  };
+
+  const {
+    backTo = PHASE_SIGNIN_SOCIAL,
+    hasBackButton = false,
+    hasHeader = false,
+    headerClassName = '',
+    onClosePhaseCb,
+  } = PHASE_APPEARANCE_MAPPER[phase];
+
+  const handleClose = () => {
+    onClosePhaseCb?.();
+    setPhase(DEFAULT_PHASE);
+    onCloseCb();
   };
 
   const PHASE_MAPPER = {
@@ -175,59 +185,60 @@ export const AuthModal = ({
         handlePhase={handlePhase}
       />
     ),
-    [PHASE_SUCCESS_RESET_PASSWORD_SENT]: (
-      <SuccessResetPasswordSent handlePhase={handlePhase} />
-    ),
     [PHASE_SUCCESS_ACCOUNT_CREATION]: (
-      <SuccessAccountCreation handlePhase={handlePhase} />
+      <Success
+        actions={[
+          <Button
+            ariaLabel="verify-identity"
+            text={t(`${baseT}.signup.successAccountCreation.cta1`)}
+            size="xl"
+            variant="secondary"
+            key="action-verify-identity"
+            onClick={() => console.log('>> START KYC PROCESS')}
+          />,
+          <Button
+            ariaLabel="explore-dedoai"
+            text={t(`${baseT}.signup.successAccountCreation.cta2`)}
+            size="xl"
+            key="action-explore-dedoai"
+            onClick={handleClose}
+          />,
+        ]}
+        handlePhase={handlePhase}
+        phase={PHASE_SUCCESS_ACCOUNT_CREATION}
+        translationNamespace={`${baseT}.signup.successAccountCreation`}
+      />
     ),
-  };
-
-  const signUpbackButtonCondition = [1, 2, 4].indexOf(activeStep) !== -1;
-
-  const PHASE_APPEARANCE_MAPPER = {
-    [PHASE_SIGNIN_SOCIAL]: {
-      hasHeader: true,
-      headerClassName: 'flex-row-reverse',
-    },
-    [PHASE_SIGNIN_EMAIL]: {
-      hasBackButton: true,
-      hasHeader: true,
-      headerClassName: '',
-    },
-    [PHASE_SIGNUP]: {
-      hasBackButton: signUpbackButtonCondition,
-      headerClassName: signUpbackButtonCondition ? '' : 'flex-row-reverse',
-    },
-    [PHASE_FORGOT_PASSWORD]: {
-      hasBackButton: true,
-      backTo: PHASE_SIGNIN_EMAIL,
-    },
-    [PHASE_SUCCESS_RESET_PASSWORD_SENT]: {
-      headerClassName: 'flex-row-reverse',
-      onClosePhaseCb: () => handleChange('forgotPassword', INITIAL_DATA.forgotPassword),
-    },
-    [PHASE_SUCCESS_ACCOUNT_CREATION]: {
-      headerClassName: 'flex-row-reverse',
-      onClosePhaseCb: () => {
-        handleChange('signup', INITIAL_DATA.signup);
-        setActiveStep(1);
-      },
-    },
-  };
-
-  const {
-    backTo = PHASE_SIGNIN_SOCIAL,
-    hasBackButton = false,
-    hasHeader = false,
-    headerClassName = '',
-    onClosePhaseCb,
-  } = PHASE_APPEARANCE_MAPPER[phase];
-
-  const handleClose = () => {
-    onClosePhaseCb?.();
-    setPhase(DEFAULT_PHASE);
-    onCloseCb();
+    [PHASE_SUCCESS_RESET_PASSWORD_SENT]: (
+      <Success
+        actions={[
+          <Button
+            key="go-back-home"
+            ariaLabel="go-back-home"
+            text={t(`${baseT}.forgotPassword.successResetPasswordSent.cta1`)}
+            onClick={handleClose}
+          />,
+        ]}
+        phase={PHASE_SUCCESS_RESET_PASSWORD_SENT}
+        translationNamespace={`${baseT}.forgotPassword.successResetPasswordSent`}
+        handlePhase={handlePhase}
+      />
+    ),
+    [PHASE_SUCCESS_RESET_PASSWORD]: (
+      <Success
+        actions={[
+          <Button
+            key="go-to-login"
+            ariaLabel="go-to-login"
+            text={t(`${baseT}.resetPassword.successReset.cta1`)}
+            onClick={() => { window.location.href = `/?t=${theme}&l=${language}`; }}
+          />,
+        ]}
+        phase={PHASE_SUCCESS_RESET_PASSWORD}
+        translationNamespace={`${baseT}.resetPassword.successReset`}
+        handlePhase={handlePhase}
+      />
+    ),
   };
 
   useEffect(resetErrors, [phase]);

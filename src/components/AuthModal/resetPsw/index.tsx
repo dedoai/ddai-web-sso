@@ -1,6 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import {
-  Body2, Button, H2, Label,
+  Body2,
+  Button,
+  H2,
+  Label,
 } from '@dedo_ai/gui-com-lib';
 import { useQuery } from '@tanstack/react-query';
 
@@ -8,8 +11,9 @@ import { apiPost } from '@/api';
 import { EP_RESET_PASSWORD } from '@/api/const';
 import CreatePasswordStep from '@/components/AuthModal/signUp/steps/createPasswordStep';
 import NeedHelp from '@/components/NeedHelp';
+import { type IFormData, PHASE_SUCCESS_RESET_PASSWORD } from '@/consts';
 
-import { IFormData } from '..';
+import schema from './validationSchema';
 
 interface ResetPswProps {
   formData: IFormData['resetPassword'];
@@ -35,8 +39,8 @@ const ResetPsw = ({
   } = useQuery({
     queryKey: ['resetPassword'],
     queryFn: async () => {
-      const data = await apiPost(EP_RESET_PASSWORD, formData);
-
+      const { data } = await apiPost(EP_RESET_PASSWORD, formData);
+      handlePhase(PHASE_SUCCESS_RESET_PASSWORD);
       return data;
     },
     enabled: false,
@@ -61,7 +65,7 @@ const ResetPsw = ({
         isLoading={isResettingPsw}
         text={t(`${baseT}.createNewPassword`)}
         onClick={async () => {
-          const isInvalid = await validate({});
+          const isInvalid = await validate(schema());
 
           if (!isInvalid) resetPsw();
         }}

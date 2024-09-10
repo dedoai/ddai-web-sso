@@ -1,0 +1,9 @@
+export const PHASE_CONTACT_US = 'contact-us';
+export const PHASE_FORGOT_PASSWORD = 'forgot';
+export const PHASE_RESET_PASSWORD = 'reset-password';
+export const PHASE_SIGNIN_EMAIL = 'signin-email';
+export const PHASE_SIGNIN_SOCIAL = 'signin-social';
+export const PHASE_SIGNUP = 'signup';
+export const PHASE_SUCCESS_ACCOUNT_CREATION = 'success-account-creation';
+export const PHASE_SUCCESS_RESET_PASSWORD = 'success-reset-password';
+export const PHASE_SUCCESS_RESET_PASSWORD_SENT = 'success-reset-password-sent';
