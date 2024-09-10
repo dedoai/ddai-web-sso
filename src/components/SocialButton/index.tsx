@@ -7,7 +7,7 @@ export interface ISocialButtonProps {
   id: string;
   initCb?: () => void;
   isMinimalMode?: boolean;
-  loginCb?: (res?: any) => void;
+  loginCb?: () => void;
 }
 export const SocialButton = ({
   id,
