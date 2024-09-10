@@ -6,7 +6,6 @@ export const SOCIAL_BUTTONS: Omit<ISocialButtonProps, 'isMinimalMode'>[] = [
   {
     id: 'facebook',
     initCb: () => {
-      console.log('>> FACEBOOK INIT');
       window.fbAsyncInit = () => {
         window.FB.init({
           appId: import.meta.env.VITE_FB_APP_ID,
@@ -39,12 +38,12 @@ export const SOCIAL_BUTTONS: Omit<ISocialButtonProps, 'isMinimalMode'>[] = [
   },
   {
     id: 'google',
-    initCb: () => console.log('>> GOOGLE INIT'),
+    initCb: () => {},
     loginCb: () => {},
   },
   {
     id: `apple-${theme}`,
-    initCb: () => console.log('>> APPLE INIT'),
+    initCb: () => {},
   },
 ];
 

@@ -10,6 +10,8 @@ import useForm from '@en1-gma/use-form';
 
 import EmailSignIn from './signIn/email';
 import SocialSignIn from './signIn/social';
+import SuccessAccountCreation from './statuses/SuccessAccountCreation';
+import SuccessResetPasswordSent from './statuses/SuccessResetPasswordSent';
 import ContactUs from './contactUs';
 import ForgotPassword from './forgotPsw';
 import ResetPsw from './resetPsw';
@@ -76,12 +78,14 @@ const INITIAL_DATA = {
   },
 };
 
-export const PHASE_SIGNIN_SOCIAL = 'signin-social';
-export const PHASE_SIGNIN_EMAIL = 'signin-email';
-export const PHASE_SIGNUP = 'signup';
-export const PHASE_FORGOT_PASSWORD = 'forgot';
 export const PHASE_CONTACT_US = 'contact-us';
+export const PHASE_FORGOT_PASSWORD = 'forgot';
 export const PHASE_RESET_PASSWORD = 'reset-password';
+export const PHASE_SIGNIN_EMAIL = 'signin-email';
+export const PHASE_SIGNIN_SOCIAL = 'signin-social';
+export const PHASE_SIGNUP = 'signup';
+export const PHASE_SUCCESS_ACCOUNT_CREATION = 'success-account-creation';
+export const PHASE_SUCCESS_RESET_PASSWORD_SENT = 'success-reset-password-sent';
 interface IAuthModalProps extends Pick<IModalProps, 'isOpen' | 'onCloseCb'> {
   resetPassword?: boolean;
 }
@@ -171,16 +175,60 @@ export const AuthModal = ({
         handlePhase={handlePhase}
       />
     ),
+    [PHASE_SUCCESS_RESET_PASSWORD_SENT]: (
+      <SuccessResetPasswordSent handlePhase={handlePhase} />
+    ),
+    [PHASE_SUCCESS_ACCOUNT_CREATION]: (
+      <SuccessAccountCreation handlePhase={handlePhase} />
+    ),
   };
 
+  const signUpbackButtonCondition = [1, 2, 4].indexOf(activeStep) !== -1;
+
+  const PHASE_APPEARANCE_MAPPER = {
+    [PHASE_SIGNIN_SOCIAL]: {
+      hasHeader: true,
+      headerClassName: 'flex-row-reverse',
+    },
+    [PHASE_SIGNIN_EMAIL]: {
+      hasBackButton: true,
+      hasHeader: true,
+      headerClassName: '',
+    },
+    [PHASE_SIGNUP]: {
+      hasBackButton: signUpbackButtonCondition,
+      headerClassName: signUpbackButtonCondition ? '' : 'flex-row-reverse',
+    },
+    [PHASE_FORGOT_PASSWORD]: {
+      hasBackButton: true,
+      backTo: PHASE_SIGNIN_EMAIL,
+    },
+    [PHASE_SUCCESS_RESET_PASSWORD_SENT]: {
+      headerClassName: 'flex-row-reverse',
+      onClosePhaseCb: () => handleChange('forgotPassword', INITIAL_DATA.forgotPassword),
+    },
+    [PHASE_SUCCESS_ACCOUNT_CREATION]: {
+      headerClassName: 'flex-row-reverse',
+      onClosePhaseCb: () => {
+        handleChange('signup', INITIAL_DATA.signup);
+        setActiveStep(1);
+      },
+    },
+  };
+
+  const {
+    backTo = PHASE_SIGNIN_SOCIAL,
+    hasBackButton = false,
+    hasHeader = false,
+    headerClassName = '',
+    onClosePhaseCb,
+  } = PHASE_APPEARANCE_MAPPER[phase];
+
   const handleClose = () => {
+    onClosePhaseCb?.();
     setPhase(DEFAULT_PHASE);
     onCloseCb();
   };
-
-  const noHeaderCondition = [PHASE_SIGNUP, PHASE_FORGOT_PASSWORD, PHASE_CONTACT_US, PHASE_RESET_PASSWORD].indexOf(phase) !== -1;
-
-  const backCondition = [1, 2, 4].indexOf(activeStep) !== -1;
 
   useEffect(resetErrors, [phase]);
 
@@ -192,24 +240,24 @@ export const AuthModal = ({
       onCloseCb={handleClose}
       disableBodyScroll
       className="min-w-[423px]"
-      headerClassName={`pr-2 ${phase !== PHASE_SIGNIN_SOCIAL && backCondition ? '' : 'flex-row-reverse'}`}
-      title={(backCondition && phase !== PHASE_SIGNIN_SOCIAL) || phase === PHASE_SIGNIN_EMAIL
+      headerClassName={`pr-2 ${headerClassName}`}
+      title={hasBackButton
         ? (
           <Button
             ariaLabel="back-to-signin"
             iconName="PiCaretLeftBold"
             iconSide="center"
             variant="secondary"
-            onClick={() => (activeStep === 1 ? handlePhase(PHASE_SIGNIN_SOCIAL) : setActiveStep(activeStep - 1))}
+            onClick={() => (activeStep === 1 ? handlePhase(backTo) : setActiveStep(activeStep - 1))}
             size="xs"
           />
         ) : null}
       body={(
         <div className="flex flex-col gap-4">
           {
-            noHeaderCondition
-              ? null
-              : <H2 className="text-center -mt-4" content={t(`${baseT}.title`)} />
+            hasHeader
+              ? <H2 className="text-center -mt-4" content={t(`${baseT}.title`)} />
+              : null
           }
           {PHASE_MAPPER[phase]}
         </div>

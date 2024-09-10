@@ -1,20 +1,20 @@
 import { useTranslation } from 'react-i18next';
 import { Body2, H2, Input } from '@dedo_ai/gui-com-lib';
 
-interface IFifthStepProps {
+interface ICreatePasswordStepProps {
   formData: any;
   handleChange: (_key: string, _value: string) => void;
   errors: any;
   isResetPassword?: boolean;
   disabled?: boolean;
 }
-export const FifthStep = ({
+export const CreatePasswordStep = ({
   formData,
   handleChange,
   errors,
   isResetPassword,
   disabled,
-}: IFifthStepProps) => {
+}: ICreatePasswordStepProps) => {
   const baseT = 'authModal.signup';
   const { t } = useTranslation();
 
@@ -37,7 +37,6 @@ export const FifthStep = ({
             </>
           )
       }
-
       <div>
         <Input
           ariaLabel="password"
@@ -68,4 +67,4 @@ export const FifthStep = ({
   );
 };
 
-export default FifthStep;
+export default CreatePasswordStep;

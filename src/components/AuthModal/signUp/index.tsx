@@ -8,11 +8,11 @@ import SocialSignIn from '@/components/AuthModal/signIn/social';
 import ConfirmationCode from '@/components/ConfirmationCode';
 import NeedHelp from '@/components/NeedHelp';
 
-import { type IFormData } from '..';
+import { type IFormData, PHASE_SUCCESS_ACCOUNT_CREATION } from '..';
 
-import FifthStep from './steps/fifthStep';
-import FirstStep from './steps/firstStep';
-import ThirdStep from './steps/thirdStep';
+import { CreatePasswordStep } from './steps/createPasswordStep';
+import { EmailStep } from './steps/emailStep';
+import { PhoneNumberStep } from './steps/phoneNumberStep';
 import schema from './validationSchemas';
 
 import './style.css';
@@ -21,6 +21,14 @@ export const ACTIVE_STEP_MAPPER = {
   hasEmailCodeBeenChecked: 3,
   hasPhoneNumberCodeBeenChecked: 5,
 };
+interface ISignUpDto {
+  errMsg?: string;
+  error?: string;
+  otp_secret?: string;
+  otp_url?: string;
+  status: 'success' | 'error';
+  user_id?: string;
+}
 
 interface ISignUpProps {
   handlePhase: (_phase: string) => void;
@@ -73,11 +81,13 @@ export const SignUp = ({
   } = useQuery({
     queryKey: ['signup'],
     queryFn: async () => {
-      const data = await apiPost(EP_SIGNUP, {
+      const { data } = await apiPost<ISignUpDto>(EP_SIGNUP, {
         email,
         password,
         phone: `+${phoneNumberPrefix}${phoneNumber}`,
       });
+
+      if (data?.user_id) handlePhase(PHASE_SUCCESS_ACCOUNT_CREATION);
 
       return data;
     },
@@ -93,7 +103,7 @@ export const SignUp = ({
 
   const STEP_MAPPER = {
     1: {
-      step: <FirstStep {...commonProps} />,
+      step: <EmailStep {...commonProps} />,
       schema: firstStepSchema,
     },
     2: {
@@ -111,7 +121,7 @@ export const SignUp = ({
       schema: secondStepSchema,
     },
     3: {
-      step: <ThirdStep {...commonProps} />,
+      step: <PhoneNumberStep {...commonProps} />,
       schema: thirdStepSchema,
     },
     4: {
@@ -129,7 +139,7 @@ export const SignUp = ({
       schema: fourthStepSchema,
     },
     5: {
-      step: <FifthStep {...commonProps} />,
+      step: <CreatePasswordStep {...commonProps} />,
       schema: fifthStepSchema,
     },
   };
@@ -155,7 +165,6 @@ export const SignUp = ({
             />
           ) : null
       }
-
       <Body2 content={t(`${baseT}.orSignWith`)} className="text-center text-text-bright dark:text-text-gloomy" />
       <SocialSignIn mode="minimal" />
       <NeedHelp handlePhase={handlePhase} />

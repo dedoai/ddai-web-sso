@@ -8,7 +8,16 @@ import {
 import { IFormData } from '@/components/AuthModal';
 import useCountry, { Country } from '@/hook/useCountry';
 
-const Prefix = ({ countries, prefixToCheck, resetCb }: {countries: Country[], prefixToCheck: string, resetCb: () => void}) => (
+interface IPrefixProps {
+  countries: Country[];
+  prefixToCheck: string;
+  resetCb: () => void;
+}
+const Prefix = ({
+  countries,
+  prefixToCheck,
+  resetCb,
+}: IPrefixProps) => (
   <div className="flex items-center gap-1 cursor-pointer" onClick={resetCb}>
     <Flag
       code={
@@ -22,16 +31,16 @@ const Prefix = ({ countries, prefixToCheck, resetCb }: {countries: Country[], pr
   </div>
 );
 
-interface IThirdStepProps {
+interface IPhoneNumberStep {
   formData: IFormData['signup'];
   handleChange: (_key: string, _value: string) => void;
   errors: any;
 }
-export const ThirdStep = ({
+export const PhoneNumberStep = ({
   formData,
   handleChange,
   errors,
-}: IThirdStepProps) => {
+}: IPhoneNumberStep) => {
   const baseT = 'authModal.signup';
   const { t } = useTranslation();
 
@@ -117,4 +126,4 @@ export const ThirdStep = ({
   );
 };
 
-export default ThirdStep;
+export default PhoneNumberStep;

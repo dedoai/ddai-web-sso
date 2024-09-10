@@ -10,11 +10,11 @@ export const axiosInstance = axios.create({
   },
 });
 
-interface IApiWrap {
-  data?: any;
+interface IApiWrap<T> {
+  data?: T;
   errMsg?: string;
 }
-export const apiWrap = async (promise: Promise<any>): Promise<IApiWrap> => {
+export const apiWrap = async <T>(promise: Promise<any>): Promise<IApiWrap<T>> => {
   try {
     const { data } = await promise;
 
@@ -39,18 +39,18 @@ export const recaptchaMiddleware = async (
   });
 });
 
-export const apiGet = async (url: string, config?: any) => apiWrap(
+export const apiGet = async <T>(url: string, config?: any) => apiWrap<T>(
   axiosInstance.get(pathMiddleware(url), config),
 );
-export const apiPost = async (url: string, data: any, config?: any, overrideMiddleware = false) => apiWrap(
+export const apiPost = async <T>(url: string, data: any, config?: any, overrideMiddleware = false) => apiWrap<T>(
   axiosInstance.post(pathMiddleware(url, overrideMiddleware), data, config),
 );
-export const apiPut = async (url: string, data: any, config?: any) => apiWrap(
+export const apiPut = async <T>(url: string, data: any, config?: any) => apiWrap<T>(
   axiosInstance.put(pathMiddleware(url), data, config),
 );
-export const apiPatch = async (url: string, data: any, config?: any) => apiWrap(
+export const apiPatch = async <T>(url: string, data: any, config?: any) => apiWrap<T>(
   axiosInstance.patch(pathMiddleware(url), data, config),
 );
-export const apiDelete = async (url: string, config?: any) => apiWrap(
+export const apiDelete = async <T>(url: string, config?: any) => apiWrap<T>(
   axiosInstance.delete(pathMiddleware(url), config),
 );

@@ -6,7 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { apiPost } from '@/api';
 import { EP_RESET_PASSWORD } from '@/api/const';
-import FifthStep from '@/components/AuthModal/signUp/steps/fifthStep';
+import CreatePasswordStep from '@/components/AuthModal/signUp/steps/createPasswordStep';
 import NeedHelp from '@/components/NeedHelp';
 
 import { IFormData } from '..';
@@ -49,7 +49,7 @@ const ResetPsw = ({
         className="text-text-bright dark:text-text-gloomy"
         content={t(`${baseT}.enterNewPasswordBelow`)}
       />
-      <FifthStep
+      <CreatePasswordStep
         disabled={isResettingPsw}
         errors={errors}
         formData={formData}

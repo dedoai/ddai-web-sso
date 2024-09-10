@@ -1,16 +1,16 @@
 import { useTranslation } from 'react-i18next';
 import { Checkbox, H2, Input } from '@dedo_ai/gui-com-lib';
 
-interface IFirstStepProps {
+interface IEmailStepProps {
   formData: any;
   handleChange: (_key: string, _value: string) => void;
   errors: any;
 }
-export const FirstStep = ({
+export const EmailStep = ({
   formData,
   handleChange,
   errors,
-}: IFirstStepProps) => {
+}: IEmailStepProps) => {
   const baseT = 'authModal.signup';
   const { t } = useTranslation();
 
@@ -35,4 +35,4 @@ export const FirstStep = ({
   );
 };
 
-export default FirstStep;
+export default EmailStep;
