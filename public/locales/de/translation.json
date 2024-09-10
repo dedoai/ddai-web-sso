@@ -54,7 +54,13 @@
       "passwordsDontMatch": "Passwörter stimmen nicht überein",
       "pleaseRepeatPassword": "Bitte wiederholen Sie Ihr Passwort",
       "acceptNewsletter": "Bleiben Sie auf dem Laufenden mit den neuesten Nachrichten und personalisierten Angeboten von DedoAI per E-Mail.",
-      "invalidCode": "Ungültiger Code"
+      "invalidCode": "Ungültiger Code",
+      "successAccountCreation": {
+        "title": "Konto erfolgreich erstellt",
+        "description": "Jetzt können Sie den Marktplatz und die angebotenen Dienstleistungen erkunden. Wenn Sie bereit sind, Ihr Abenteuer zu beginnen, denken Sie daran, Ihre Identität zu verifizieren.",
+        "verifyIdentity": "Verifizieren Sie Ihre Identität",
+        "exploreDedoai": "Erkunden Sie DedoAI"
+      }
     },
     "resendCode": "Code erneut senden",
     "forgotPassword": {
@@ -62,7 +68,12 @@
       "description": "Bitte geben Sie Ihre E-Mail-Adresse ein, um einen Link zum Zurücksetzen Ihres Passworts zu erhalten.",
       "email": "E-Mail",
       "emailPlaceholder": "Geben Sie Ihre E-Mail-Adresse ein",
-      "cta": "Anfrage senden"
+      "cta": "Anfrage senden",
+      "successResetPasswordSent": {
+        "title": "Sicherheitslink an Ihr Postfach gesendet",
+        "description": "Bitte überprüfen Sie Ihre E-Mails auf den Link zum Zurücksetzen des Passworts. Wenn Sie ihn nicht sehen, überprüfen Sie Ihren Spam- oder Junk-Ordner.",
+        "goBackHome": "Zurück zur Startseite"
+      }
     },
     "resetPassword": {
       "createNewPassword": "Neues Passwort erstellen",

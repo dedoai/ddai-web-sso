@@ -54,7 +54,13 @@
       "passwordsDontMatch": "As senhas não coincidem",
       "pleaseRepeatPassword": "Por favor, repita sua senha",
       "acceptNewsletter": "Mantenha-se atualizado com as últimas notícias e ofertas personalizadas do DedoAI por e-mail.",
-      "invalidCode": "Código inválido"
+      "invalidCode": "Código inválido",
+      "successAccountCreation": {
+        "title": "Conta criada com sucesso",
+        "description": "Agora você pode explorar o marketplace e os serviços que ele oferece. Quando estiver pronto para começar sua aventura, lembre-se de verificar sua identidade.",
+        "verifyIdentity": "Verificar sua identidade",
+        "exploreDedoai": "Explorar DedoAI"
+      }
     },
     "resendCode": "Reenviar código",
     "forgotPassword": {
@@ -62,7 +68,12 @@
       "description": "Por favor, insira seu endereço de e-mail para receber um link para redefinir sua senha.",
       "email": "E-mail",
       "emailPlaceholder": "Insira seu endereço de e-mail",
-      "cta": "Enviar solicitação"
+      "cta": "Enviar solicitação",
+      "successResetPasswordSent": {
+        "title": "Link de segurança enviado para sua caixa de entrada",
+        "description": "Por favor, verifique seu e-mail para o link de redefinição de senha. Se você não o encontrar, verifique sua pasta de spam ou lixo eletrônico.",
+        "goBackHome": "Voltar para a página inicial"
+      }
     },
     "resetPassword": {
       "createNewPassword": "Criar Nova Senha",

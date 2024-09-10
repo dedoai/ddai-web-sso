@@ -54,7 +54,13 @@
       "passwordsDontMatch": "Parolele nu se potrivesc",
       "pleaseRepeatPassword": "Vă rugăm să repetați parola",
       "acceptNewsletter": "Rămâneți la curent cu ultimele noutăți și oferte personalizate de la DedoAI prin e-mail.",
-      "invalidCode": "Cod invalid"
+      "invalidCode": "Cod invalid",
+      "successAccountCreation": {
+        "title": "Cont creat cu succes",
+        "description": "Acum puteți explora piața și serviciile oferite. Când sunteți gata să începeți aventura, nu uitați să vă verificați identitatea.",
+        "verifyIdentity": "Verificați-vă identitatea",
+        "exploreDedoai": "Explorați DedoAI"
+      }
     },
     "resendCode": "Retrimiteți codul",
     "forgotPassword": {
@@ -62,7 +68,12 @@
       "description": "Vă rugăm să introduceți adresa dumneavoastră de e-mail pentru a primi un link pentru resetarea parolei.",
       "email": "E-mail",
       "emailPlaceholder": "Introduceți adresa dumneavoastră de e-mail",
-      "cta": "Trimiteți cererea"
+      "cta": "Trimiteți cererea",
+      "successResetPasswordSent": {
+        "title": "Link de securitate trimis în căsuța dvs. de e-mail",
+        "description": "Vă rugăm să verificați e-mailul pentru linkul de resetare a parolei. Dacă nu îl vedeți, verificați folderul de spam sau junk.",
+        "goBackHome": "Întoarceți-vă acasă"
+      }
     },
     "resetPassword": {
       "createNewPassword": "Creează o Nouă Parolă",
