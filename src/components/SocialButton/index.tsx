@@ -29,11 +29,11 @@ export const SocialButton = ({
     },
   }) : null;
 
-  const handleButtonClick = () => {
+  const handleOnClick = () => {
     if (id === 'google') {
       googleLogin();
-    } else if (loginCb) {
-      loginCb();
+    } else {
+      loginCb?.();
     }
   };
 
@@ -42,7 +42,7 @@ export const SocialButton = ({
       ariaLabel={id}
       customIcon={<img src={`/assets/${id}.svg`} alt={id} />}
       key={id}
-      onClick={handleButtonClick}
+      onClick={handleOnClick}
       size="lg"
       text={isMinimalMode ? '' : t(`${baseT}.${id.split('-')?.[0]}`)}
       variant="secondary"

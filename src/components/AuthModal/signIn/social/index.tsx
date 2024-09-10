@@ -22,20 +22,20 @@ export const SocialSignIn = ({
   return (
     <>
       <div className={`flex gap-[10px] ${isMinimalMode ? 'justify-center flex-wrap' : 'flex-col'}`}>
-        {SOCIAL_BUTTONS.map((socialButton, i) => (socialButton.id === 'google' ? (
-          <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID} key={`social-login-${i}`}>
+        {SOCIAL_BUTTONS.map((socialButton, i) => {
+          const toRender = (
             <SocialButton
+              key={`social-login-${i}`}
               {...socialButton}
               isMinimalMode={isMinimalMode}
             />
-          </GoogleOAuthProvider>
-        ) : (
-          <SocialButton
-            key={`social-login-${i}`}
-            {...socialButton}
-            isMinimalMode={isMinimalMode}
-          />
-        )))}
+          );
+          return socialButton.id === 'google' ? (
+            <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID} key={`social-login-${i}`}>
+              {toRender}
+            </GoogleOAuthProvider>
+          ) : toRender;
+        })}
       </div>
       {
         isMinimalMode
