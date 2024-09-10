@@ -46,12 +46,11 @@ export const EmailSignIn = ({
   } = useQuery({
     queryKey: ['login'],
     queryFn: async () => {
-      const data = await apiPost(EP_LOGIN, { email, password });
+      const { data } = await apiPost(EP_LOGIN, { email, password });
 
       return data;
     },
     enabled: false,
-    initialData: {},
   });
 
   return (

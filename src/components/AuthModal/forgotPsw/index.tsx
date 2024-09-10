@@ -43,15 +43,18 @@ export const ForgotPassword = ({
     queryKey: ['forgotPassword'],
     queryFn: async () => {
       const action = 'FORGOT_PASSWORD';
+
       const token = await recaptchaMiddleware(action);
 
-      const data = await apiPost(EP_RESET_PASSWORD, {
+      const { data } = await apiPost(EP_RESET_PASSWORD, {
         client: `CLIENT_WEB_SSO_${import.meta.env.VITE_ENV}`,
         email,
         recaptchaAction: action,
         recaptchaToken: token,
       });
-      handlePhase(PHASE_SUCCESS_RESET_PASSWORD_SENT);
+
+      if (data?.status === 'success') handlePhase(PHASE_SUCCESS_RESET_PASSWORD_SENT);
+
       return data;
     },
     enabled: false,

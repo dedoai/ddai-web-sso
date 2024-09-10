@@ -42,7 +42,7 @@ const ContactUs = ({
       const action = 'CONTACT';
       const token = await recaptchaMiddleware(action);
 
-      const data = await apiPost(EP_CONTACT_US, {
+      const { data } = await apiPost(EP_CONTACT_US, {
         client: `CLIENT_WEB_SSO_${import.meta.env.VITE_ENV}`,
         email,
         first_name: name,
