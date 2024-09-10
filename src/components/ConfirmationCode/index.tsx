@@ -5,28 +5,35 @@ import {
 } from '@dedo_ai/gui-com-lib';
 import { useQuery } from '@tanstack/react-query';
 
+import { apiPost } from '@/api';
+import { EP_OTP } from '@/api/const';
+
 var interval: NodeJS.Timeout;
 
 const CODE_LENGHT = 6;
 
 interface IConfirmationCodeProps {
-  title: string;
+  codeType: 'email' | 'sms';
   descriptionTKey: string;
+  handleChange: (_key: string, _value: string) => void;
+  hasCodeBeenChecked: boolean;
+  nextStepCb: () => void;
+  sendCodeCb?: () => void;
+  setCodeChecked: () => void;
+  title: string;
   tValues?: {
     [key: string]: string;
   };
-  handleChange: (_key: string, _value: string) => void;
   value: string;
-  hasCodeBeenChecked: boolean;
-  setCodeChecked: () => void;
-  nextStepCb: () => void;
   valuePath: string;
 }
 const ConfirmationCode = ({
+  codeType,
   descriptionTKey,
   handleChange,
   hasCodeBeenChecked,
   nextStepCb,
+  sendCodeCb,
   setCodeChecked,
   title,
   tValues,
@@ -35,6 +42,7 @@ const ConfirmationCode = ({
 }: IConfirmationCodeProps) => {
   const { t } = useTranslation();
 
+  const [isCodeValid, setIsCodeValid] = useState(true);
   const [time, setTime] = useState(0);
   const [timer, setTimer] = useState(false);
   const toggleTimer = () => {
@@ -49,31 +57,33 @@ const ConfirmationCode = ({
   const values = Object.entries(tValues || {}).reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {});
 
   const {
-    data: isCodeValid,
     refetch: checkCode,
+    isFetching: isCodeChecking,
   } = useQuery({
     queryKey: ['checkCode'],
-    queryFn: () => {
-      const res = true;
+    queryFn: async () => {
+      const { data } = await apiPost(`${EP_OTP}/${codeType}`, { otp: value });
 
-      if (res) {
+      const isValid = data?.status === 'success';
+
+      if (isValid) {
         setCodeChecked();
         nextStepCb();
       }
 
-      return res;
+      setIsCodeValid(isValid);
+
+      return data;
     },
     enabled: false,
-    initialData: true,
   });
 
   const {
     refetch: sendCode,
-    isFetching: isCodeChecking,
   } = useQuery({
-    queryKey: ['sendCode'],
-    queryFn: async () => {
-      // TODO insert here the logic to send the code (api call towards lambda-twilio)
+    queryKey: ['resendCode'],
+    queryFn: () => {
+      sendCodeCb?.();
 
       toggleTimer();
 
@@ -114,10 +124,10 @@ const ConfirmationCode = ({
       <Input
         ariaLabel="confirmation-code"
         className="max-w-[75%]"
+        codeLenght={CODE_LENGHT}
         disabled={isCodeChecking}
         error={isCodeValid ? '' : t('authModal.signup.invalidCode')}
         onChange={(value) => handleChange(valuePath, value)}
-        codeLenght={CODE_LENGHT}
         type="confirmation-code"
         value={value || ''}
       />
@@ -132,7 +142,8 @@ const ConfirmationCode = ({
         disabled={isTimerRolling}
         status={isCodeValid ? 'default' : 'error'}
         onClick={() => {
-          handleChange('signup.confirmationEmailCode', '');
+          setIsCodeValid(true);
+          handleChange(valuePath, '');
           sendCode();
         }}
         isLoading={isCodeChecking}

@@ -2,12 +2,14 @@ import { useTranslation } from 'react-i18next';
 import { Body2, Button, Label } from '@dedo_ai/gui-com-lib';
 import { useQuery } from '@tanstack/react-query';
 
-import { apiPost } from '@/api';
-import { EP_SIGNUP } from '@/api/const';
+import { apiGet, apiPost } from '@/api';
+import { EP_EMAIL, EP_OTP, EP_SIGNUP } from '@/api/const';
 import SocialSignIn from '@/components/AuthModal/signIn/social';
 import ConfirmationCode from '@/components/ConfirmationCode';
 import NeedHelp from '@/components/NeedHelp';
-import { IFormData, PHASE_SUCCESS_ACCOUNT_CREATION } from '@/consts';
+import {
+  IFormData, PHASE_SUCCESS_ACCOUNT_CREATION, PR_EMAIL, PR_SMS,
+} from '@/consts';
 
 import { CreatePasswordStep } from './steps/createPasswordStep';
 import { EmailStep } from './steps/emailStep';
@@ -28,22 +30,22 @@ interface ISignUpDto {
 }
 
 interface ISignUpProps {
-  handlePhase: (_phase: string) => void;
+  activeStep: number;
+  errors: any;
   formData: IFormData['signup'];
   handleChange: (_key: string, _value: any) => void;
-  errors: any;
-  validate: (schema: any, context?: any) => boolean;
-  activeStep: number;
+  handlePhase: (_phase: string) => void;
   setActiveStep: (_step: number) => void;
+  validate: (schema: any, context?: any) => boolean;
 }
 export const SignUp = ({
-  handlePhase,
-  formData,
-  errors,
-  handleChange,
-  validate,
   activeStep,
+  errors,
+  formData,
+  handleChange,
+  handlePhase,
   setActiveStep,
+  validate,
 }: ISignUpProps) => {
   const baseT = 'authModal.signup';
   const { t } = useTranslation();
@@ -72,6 +74,20 @@ export const SignUp = ({
   };
 
   const {
+    data: emailOtp,
+    isFetching,
+    refetch: sendEmailOtp,
+  } = useQuery({
+    queryKey: ['sendEmailOtp'],
+    queryFn: async () => {
+      const { data } = await apiGet(`${EP_OTP}${EP_EMAIL}`, { email });
+      console.log('>> EMAIL OTP', data);
+      return data;
+    },
+    enabled: false,
+  });
+
+  const {
     data,
     isFetching: isSigninUp,
     refetch: signUp,
@@ -94,7 +110,10 @@ export const SignUp = ({
   const goToNextStep = (isInvalid?: boolean) => {
     if (!isInvalid) {
       if (activeStep === 5) signUp();
-      else setActiveStep(activeStep + 1);
+      else {
+        if (activeStep === 1) sendEmailOtp();
+        setActiveStep(activeStep + 1);
+      }
     }
   };
 
@@ -105,10 +124,12 @@ export const SignUp = ({
     },
     2: {
       step: <ConfirmationCode
+        codeType={PR_EMAIL}
         descriptionTKey="authModal.signup.confirmEmailDescription"
         handleChange={handleChange}
         hasCodeBeenChecked={formData.hasEmailCodeBeenChecked}
         nextStepCb={() => goToNextStep(false)}
+        sendCodeCb={sendEmailOtp}
         setCodeChecked={() => handleChange('signup.hasEmailCodeBeenChecked', true)}
         title="authModal.signup.confirmEmailLabel"
         tValues={{ email }}
@@ -123,6 +144,7 @@ export const SignUp = ({
     },
     4: {
       step: <ConfirmationCode
+        codeType={PR_SMS}
         descriptionTKey="authModal.signup.confirmPhoneNumberDescription"
         handleChange={handleChange}
         hasCodeBeenChecked={formData.hasPhoneNumberCodeBeenChecked}

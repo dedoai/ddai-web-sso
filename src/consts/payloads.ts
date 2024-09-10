@@ -17,6 +17,7 @@ export const PR_NAME = 'name';
 export const PR_PASSWORD = 'password';
 export const PR_PHONE_NUMBER = 'phoneNumber';
 export const PR_PHONE_NUMBER_PREFIX = 'phoneNumberPrefix';
+export const PR_SMS = 'sms';
 export const PR_SURNAME = 'surname';
 
 // Interfaces
