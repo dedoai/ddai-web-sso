@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Body2 } from '@dedo_ai/gui-com-lib';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 import SocialButton from '@/components/SocialButton';
 import { PHASE_SIGNIN_EMAIL, PHASE_SIGNUP } from '@/consts';
@@ -21,15 +22,20 @@ export const SocialSignIn = ({
   return (
     <>
       <div className={`flex gap-[10px] ${isMinimalMode ? 'justify-center flex-wrap' : 'flex-col'}`}>
-        {
-          SOCIAL_BUTTONS.map((socialButton, key) => (
+        {SOCIAL_BUTTONS.map((socialButton, i) => {
+          const toRender = (
             <SocialButton
-              key={`social-login-${key}`}
+              key={`social-login-${i}`}
               {...socialButton}
               isMinimalMode={isMinimalMode}
             />
-          ))
-        }
+          );
+          return socialButton.id === 'google' ? (
+            <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID} key={`social-login-${i}`}>
+              {toRender}
+            </GoogleOAuthProvider>
+          ) : toRender;
+        })}
       </div>
       {
         isMinimalMode
