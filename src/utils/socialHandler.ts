@@ -41,25 +41,26 @@ export const SOCIAL_BUTTONS: Omit<ISocialButtonProps, 'isMinimalMode'>[] = [
   {
     id: 'google',
     initHookCb: () => ({
-      name: 'google-hook',
-      overloadLoginCb: true,
       args: {
         onSuccess: (res) => {
           console.log('>> google login success', res);
         },
       },
+      name: 'google-hook',
+      overloadLoginCb: true,
     }),
   },
   {
     id: `apple-${theme}`,
     initHookCb: () => ({
+      args: appleAuthHelpers.APPLE_SCRIPT_SRC,
       name: 'apple-hook',
     }),
     loginCb: () => appleAuthHelpers.signIn({
       authOptions: {
         clientId: import.meta.env.VITE_APPLE_CLIENT_ID,
         scope: 'email name',
-        redirectURI: 'https://example.com/auth/callback', // TODO, app's URL where the user will be redirected after login
+        redirectURI: import.meta.env.VITE_API_APP_URI, // TODO, app's URL where the user will be redirected after login
         usePopup: true,
       },
       onSuccess: (res) => console.log('>> apple login success', res),
