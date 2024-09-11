@@ -1,3 +1,5 @@
+import { appleAuthHelpers } from 'react-apple-signin-auth';
+
 import { type ISocialButtonProps } from '@/components/SocialButton';
 
 import { theme } from './urlParams';
@@ -50,7 +52,19 @@ export const SOCIAL_BUTTONS: Omit<ISocialButtonProps, 'isMinimalMode'>[] = [
   },
   {
     id: `apple-${theme}`,
-    initCb: () => {},
+    initHookCb: () => ({
+      name: 'apple-hook',
+    }),
+    loginCb: () => appleAuthHelpers.signIn({
+      authOptions: {
+        clientId: import.meta.env.VITE_APPLE_CLIENT_ID,
+        scope: 'email name',
+        redirectURI: 'https://example.com/auth/callback', // TODO, app's URL where the user will be redirected after login
+        usePopup: true,
+      },
+      onSuccess: (res) => console.log('>> apple login success', res),
+      onError: (err) => console.error('>> apple login error', err),
+    }),
   },
 ];
 

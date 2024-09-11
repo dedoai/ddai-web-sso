@@ -4,12 +4,15 @@ import { Button } from '@dedo_ai/gui-com-lib';
 import { type UseGoogleLoginOptionsImplicitFlow, useGoogleLogin } from '@react-oauth/google';
 import { isEmpty } from 'lodash';
 
+import useAppleAuth from './useAppleAuth';
+
 const HOOKS_MAPPER = {
   'google-hook': useGoogleLogin,
+  'apple-hook': useAppleAuth,
 };
 
 type HookCall = {
-  args: UseGoogleLoginOptionsImplicitFlow;
+  args?: UseGoogleLoginOptionsImplicitFlow;
   name: string;
   overloadLoginCb?: boolean;
 }
@@ -39,7 +42,7 @@ export const SocialButton = ({
       overloadLoginCb = false,
     } = hookConfig;
 
-    const res = HOOKS_MAPPER[name](args);
+    const res = HOOKS_MAPPER[name]?.(args);
 
     if (overloadLoginCb) loginCb = res;
   }
