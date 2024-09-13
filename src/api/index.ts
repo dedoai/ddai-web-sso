@@ -1,5 +1,5 @@
 /* eslint-disable no-useless-catch */
-import axios from 'axios';
+import axios, { type AxiosRequestConfig } from 'axios';
 
 import { API_AUTH_PATH, API_VERSION } from './const';
 
@@ -45,18 +45,24 @@ export const recaptchaMiddleware = async (
   });
 });
 
-export const apiGet = async <T>(url: string, config?: any) => apiWrap<T>(
+export const apiGet = async <T>(url: string, config?: AxiosRequestConfig<any>) => apiWrap<T>(
   axiosInstance.get(pathMiddleware(url), config),
 );
-export const apiPost = async <T>(url: string, data: any, config?: any, overrideMiddleware = false) => apiWrap<T>(
+export const apiPost = async <T>(url: string,
+  data: any,
+  config?: AxiosRequestConfig<any>,
+  overrideMiddleware = false,
+) => apiWrap<T>(
   axiosInstance.post(pathMiddleware(url, overrideMiddleware), data, config),
 );
-export const apiPut = async <T>(url: string, data: any, config?: any) => apiWrap<T>(
+export const apiPut = async <T>(url: string, data: any, config?: AxiosRequestConfig<any>) => apiWrap<T>(
   axiosInstance.put(pathMiddleware(url), data, config),
 );
-export const apiPatch = async <T>(url: string, data: any, config?: any) => apiWrap<T>(
+export const apiPatch = async <T>(url: string, data: any, config?: AxiosRequestConfig<any>) => apiWrap<T>(
   axiosInstance.patch(pathMiddleware(url), data, config),
 );
-export const apiDelete = async <T>(url: string, config?: any) => apiWrap<T>(
+export const apiDelete = async <T>(url: string, config?: AxiosRequestConfig<any>) => apiWrap<T>(
   axiosInstance.delete(pathMiddleware(url), config),
 );
+
+export * from './const';

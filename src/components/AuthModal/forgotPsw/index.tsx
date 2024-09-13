@@ -9,8 +9,7 @@ import {
 } from '@dedo_ai/gui-com-lib';
 import { useQuery } from '@tanstack/react-query';
 
-import { apiPost, recaptchaMiddleware } from '@/api';
-import { EP_RESET_PASSWORD } from '@/api/const';
+import { apiPost, EP_RESET_PASSWORD, recaptchaMiddleware } from '@/api';
 import NeedHelp from '@/components/NeedHelp';
 import { type IFormData, PHASE_SUCCESS_RESET_PASSWORD_SENT } from '@/consts';
 

@@ -2,8 +2,9 @@ import { useTranslation } from 'react-i18next';
 import { Body2, Button, Label } from '@dedo_ai/gui-com-lib';
 import { useQuery } from '@tanstack/react-query';
 
-import { apiGet, apiPost } from '@/api';
-import { EP_EMAIL, EP_OTP, EP_SIGNUP } from '@/api/const';
+import {
+  apiGet, apiPost, EP_EMAIL, EP_OTP, EP_SIGNUP,
+} from '@/api';
 import SocialSignIn from '@/components/AuthModal/signIn/social';
 import ConfirmationCode from '@/components/ConfirmationCode';
 import NeedHelp from '@/components/NeedHelp';
@@ -74,13 +75,11 @@ export const SignUp = ({
   };
 
   const {
-    data: emailOtp,
-    isFetching,
     refetch: sendEmailOtp,
   } = useQuery({
-    queryKey: ['sendEmailOtp'],
+    queryKey: ['sendEmailOtpRequest'],
     queryFn: async () => {
-      const { data } = await apiGet(`${EP_OTP}${EP_EMAIL}`, { email });
+      const { data } = await apiGet(`${EP_OTP}${EP_EMAIL}`, { params: { email } });
       console.log('>> EMAIL OTP', data);
       return data;
     },

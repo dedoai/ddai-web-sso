@@ -7,8 +7,7 @@ import {
 } from '@dedo_ai/gui-com-lib';
 import { useQuery } from '@tanstack/react-query';
 
-import { apiPost } from '@/api';
-import { EP_RESET_PASSWORD } from '@/api/const';
+import { apiPost, EP_RESET_PASSWORD } from '@/api';
 import CreatePasswordStep from '@/components/AuthModal/signUp/steps/createPasswordStep';
 import NeedHelp from '@/components/NeedHelp';
 import { type IFormData, PHASE_SUCCESS_RESET_PASSWORD } from '@/consts';

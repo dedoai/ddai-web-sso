@@ -5,8 +5,7 @@ import {
 } from '@dedo_ai/gui-com-lib';
 import { useQuery } from '@tanstack/react-query';
 
-import { apiPost, recaptchaMiddleware } from '@/api';
-import { EP_CONTACT_US } from '@/api/const';
+import { apiPost, EP_CONTACT_US, recaptchaMiddleware } from '@/api';
 import { type IFormData } from '@/consts';
 
 import schema from './validationSchema';

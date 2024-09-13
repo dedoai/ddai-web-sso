@@ -5,8 +5,7 @@ import {
 } from '@dedo_ai/gui-com-lib';
 import { useQuery } from '@tanstack/react-query';
 
-import { apiPost } from '@/api';
-import { EP_OTP } from '@/api/const';
+import { apiPost, EP_OTP } from '@/api';
 
 var interval: NodeJS.Timeout;
 
@@ -62,7 +61,7 @@ const ConfirmationCode = ({
   } = useQuery({
     queryKey: ['checkCode'],
     queryFn: async () => {
-      const { data } = await apiPost(`${EP_OTP}/${codeType}`, { otp: value });
+      const { data } = await apiPost(`${EP_OTP}/${codeType}`, { otpToken: value, ...values });
 
       const isValid = data?.status === 'success';
 
@@ -89,7 +88,7 @@ const ConfirmationCode = ({
 
       return null;
     },
-    enabled: !hasCodeBeenChecked,
+    enabled: false,
   });
 
   useEffect(() => {
@@ -110,6 +109,8 @@ const ConfirmationCode = ({
 
     return () => clearInterval(interval);
   }, [timer]);
+
+  useEffect(toggleTimer, []);
 
   return (
     <>
@@ -144,7 +145,7 @@ const ConfirmationCode = ({
         onClick={() => {
           setIsCodeValid(true);
           handleChange(valuePath, '');
-          sendCode();
+          if (!hasCodeBeenChecked) sendCode();
         }}
         isLoading={isCodeChecking}
       />
