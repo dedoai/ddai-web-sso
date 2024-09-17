@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import {
   apiGet, apiPost, EP_EMAIL, EP_OTP, EP_SIGNUP,
+  EP_SMS,
 } from '@/api';
 import SocialSignIn from '@/components/AuthModal/signIn/social';
 import ConfirmationCode from '@/components/ConfirmationCode';
@@ -80,7 +81,19 @@ export const SignUp = ({
     queryKey: ['sendEmailOtpRequest'],
     queryFn: async () => {
       const { data } = await apiGet(`${EP_OTP}${EP_EMAIL}`, { params: { email } });
-      console.log('>> EMAIL OTP', data);
+
+      return data;
+    },
+    enabled: false,
+  });
+
+  const {
+    refetch: sendSmsOtp,
+  } = useQuery({
+    queryKey: ['sendSmsOtpRequest'],
+    queryFn: async () => {
+      const { data } = await apiGet(`${EP_OTP}${EP_SMS}`, { params: { phoneNumber: `${phoneNumberPrefix}${phoneNumber}` } });
+
       return data;
     },
     enabled: false,
@@ -110,7 +123,10 @@ export const SignUp = ({
     if (!isInvalid) {
       if (activeStep === 5) signUp();
       else {
-        if (activeStep === 1) sendEmailOtp();
+        Object({
+          1: sendEmailOtp,
+          3: sendSmsOtp,
+        })[activeStep]?.();
         setActiveStep(activeStep + 1);
       }
     }
@@ -148,6 +164,7 @@ export const SignUp = ({
         handleChange={handleChange}
         hasCodeBeenChecked={formData.hasPhoneNumberCodeBeenChecked}
         nextStepCb={() => goToNextStep(false)}
+        sendCodeCb={sendSmsOtp}
         setCodeChecked={() => handleChange('signup.hasPhoneNumberCodeBeenChecked', true)}
         title="authModal.signup.confirmPhoneNumberLabel"
         tValues={{ phoneNumber, phoneNumberPrefix }}

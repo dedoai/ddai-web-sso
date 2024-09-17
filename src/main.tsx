@@ -37,16 +37,6 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false,
-      throwOnError(error, query) {
-        query.setData({
-          errMsg: error.message,
-        });
-
-        setTimeout(() => {
-          query.setData({});
-        }, 5000);
-        return true;
-      },
       retry: 0,
     },
   },

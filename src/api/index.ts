@@ -4,9 +4,9 @@ import axios, { type AxiosRequestConfig } from 'axios';
 import { API_AUTH_PATH, API_VERSION } from './const';
 
 type DefaultApiDto = {
-  status: 'success' | 'error';
-  error?: string;
+  description?: string;
   errMsg?: string; // This is the error, boundary from useQuery
+  statusCode: number;
 }
 
 export const axiosInstance = axios.create({

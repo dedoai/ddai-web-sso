@@ -63,14 +63,10 @@ const ConfirmationCode = ({
     queryFn: async () => {
       const { data } = await apiPost(`${EP_OTP}/${codeType}`, { otpToken: value, ...values });
 
-      const isValid = data?.status === 'success';
+      setCodeChecked();
+      nextStepCb();
 
-      if (isValid) {
-        setCodeChecked();
-        nextStepCb();
-      }
-
-      setIsCodeValid(isValid);
+      setIsCodeValid(true);
 
       return data;
     },
