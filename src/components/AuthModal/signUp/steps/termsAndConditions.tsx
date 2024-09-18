@@ -31,7 +31,7 @@ const TermsAndConditions = ({
   const {
     copy: termsAndConditionsCopy,
     updatedAt,
-  } = termsAndConditions;
+  } = termsAndConditions ?? {};
 
   return (
     <>
