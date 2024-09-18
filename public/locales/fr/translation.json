@@ -60,43 +60,47 @@
         "description": "Vous pouvez maintenant explorer le marché et les services qu'il offre. Lorsque vous êtes prêt à commencer votre aventure, n'oubliez pas de vérifier votre identité.",
         "cta1": "Vérifiez votre identité",
         "cta2": "Explorez DedoAI"
-      }
-    },
-    "resendCode": "Renvoyer le code",
-    "forgotPassword": {
-      "title": "Réinitialisez votre mot de passe",
-      "description": "Veuillez entrer votre adresse e-mail pour recevoir un lien de réinitialisation de votre mot de passe.",
-      "email": "E-mail",
-      "emailPlaceholder": "Entrez votre adresse e-mail",
-      "cta": "Envoyer la demande",
-      "successResetPasswordSent": {
-        "title": "Lien de sécurité envoyé à votre boîte de réception",
-        "description": "Veuillez vérifier votre e-mail pour le lien de réinitialisation du mot de passe. Si vous ne le voyez pas, vérifiez votre dossier spam ou courrier indésirable.",
-        "cta1": "Retourner à l'accueil"
-      }
-    },
-    "resetPassword": {
-      "createNewPassword": "Créer un Nouveau Mot de Passe",
-      "createANewPassword": "Créer un Nouveau Mot de Passe",
-      "enterNewPasswordBelow": "Entrez votre nouveau mot de passe ci-dessous pour compléter le processus de réinitialisation. Assurez-vous qu'il soit fort et sécurisé.",
-      "successReset": {
-        "title": "Réinitialisation du mot de passe réussie",
-        "description": "Vous pouvez maintenant vous connecter avec votre nouveau mot de passe. Si vous rencontrez des problèmes, veuillez contacter notre support.",
-        "cta1": "Retour à la connexion"
-      }
-    },
-    "contactUs": {
-      "title": "Contactez-nous",
-      "description": "Veuillez remplir le formulaire ci-dessous et nous vous contacterons dès que possible.",
-      "name": "Nom",
-      "namePlaceholder": "Entrez votre nom",
-      "surname": "Prénom",
-      "surnamePlaceholder": "Entrez votre prénom",
-      "email": "E-mail",
-      "emailPlaceholder": "Entrez votre adresse e-mail",
-      "message": "Message",
-      "messagePlaceholder": "Entrez votre message",
-      "cta": "Envoyer"
+      },
+      "termsOfServicesTitle": "Conditions d'utilisation",
+      "termsOfServicesDescription": "Mis à jour {{date}}",
+      "agreeTermsAndConditions": "J'accepte les <span>Conditions d'utilisation</span> de DedoAI *",
+      "agreePrivacyPolicy": "J'accepte la <span>Politique de confidentialité</span> de DedoAI, et confirme que j'ai au moins 18 ans *"
     }
+  },
+  "resendCode": "Renvoyer le code",
+  "forgotPassword": {
+    "title": "Réinitialisez votre mot de passe",
+    "description": "Veuillez entrer votre adresse e-mail pour recevoir un lien de réinitialisation de votre mot de passe.",
+    "email": "E-mail",
+    "emailPlaceholder": "Entrez votre adresse e-mail",
+    "cta": "Envoyer la demande",
+    "successResetPasswordSent": {
+      "title": "Lien de sécurité envoyé à votre boîte de réception",
+      "description": "Veuillez vérifier votre e-mail pour le lien de réinitialisation du mot de passe. Si vous ne le voyez pas, vérifiez votre dossier spam ou courrier indésirable.",
+      "cta1": "Retourner à l'accueil"
+    }
+  },
+  "resetPassword": {
+    "createNewPassword": "Créer un Nouveau Mot de Passe",
+    "createANewPassword": "Créer un Nouveau Mot de Passe",
+    "enterNewPasswordBelow": "Entrez votre nouveau mot de passe ci-dessous pour compléter le processus de réinitialisation. Assurez-vous qu'il soit fort et sécurisé.",
+    "successReset": {
+      "title": "Réinitialisation du mot de passe réussie",
+      "description": "Vous pouvez maintenant vous connecter avec votre nouveau mot de passe. Si vous rencontrez des problèmes, veuillez contacter notre support.",
+      "cta1": "Retour à la connexion"
+    }
+  },
+  "contactUs": {
+    "title": "Contactez-nous",
+    "description": "Veuillez remplir le formulaire ci-dessous et nous vous contacterons dès que possible.",
+    "name": "Nom",
+    "namePlaceholder": "Entrez votre nom",
+    "surname": "Prénom",
+    "surnamePlaceholder": "Entrez votre prénom",
+    "email": "E-mail",
+    "emailPlaceholder": "Entrez votre adresse e-mail",
+    "message": "Message",
+    "messagePlaceholder": "Entrez votre message",
+    "cta": "Envoyer"
   }
 }

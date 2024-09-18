@@ -60,43 +60,47 @@
         "description": "Ora puoi esplorare il marketplace e i servizi che offre. Quando sei pronto per iniziare la tua avventura, ricorda di verificare la tua identità.",
         "cta1": "Verifica la tua identità",
         "cta2": "Esplora DedoAI"
-      }
-    },
-    "resendCode": "Reinvia codice",
-    "forgotPassword": {
-      "title": "Reimposta la tua password",
-      "description": "Inserisci il tuo indirizzo e-mail per ricevere un link per reimpostare la tua password.",
-      "email": "E-mail",
-      "emailPlaceholder": "Inserisci il tuo indirizzo e-mail",
-      "cta": "Invia richiesta",
-      "successResetPasswordSent": {
-        "title": "Un link è stato inviato alla tua email",
-        "description": "Per favore controlla la tua email per il link di reset della password. Se non lo vedi, controlla la cartella spam o posta indesiderata.",
-        "cta1": "Torna alla home"
-      }
-    },
-    "resetPassword": {
-      "createNewPassword": "Crea una Nuova Password",
-      "createANewPassword": "Crea una Nuova Password",
-      "enterNewPasswordBelow": "Inserisci la tua nuova password qui sotto per completare il processo di reimpostazione. Assicurati che sia forte e sicura.",
-      "successReset": {
-        "title": "Reset della password riuscita",
-        "description": "Ora puoi accedere con la tua nuova password. Se riscontri problemi, contatta il nostro supporto.",
-        "cta1": "Torna al login"
-      }
-    },
-    "contactUs": {
-      "title": "Contattaci",
-      "description": "Compila il modulo qui sotto e ti contatteremo il prima possibile.",
-      "name": "Nome",
-      "namePlaceholder": "Inserisci il tuo nome",
-      "surname": "Cognome",
-      "surnamePlaceholder": "Inserisci il tuo cognome",
-      "email": "E-mail",
-      "emailPlaceholder": "Inserisci il tuo indirizzo e-mail",
-      "message": "Messaggio",
-      "messagePlaceholder": "Inserisci il tuo messaggio",
-      "cta": "Invia"
+      },
+      "termsOfServicesTitle": "Termini di Servizio",
+      "termsOfServicesDescription": "Aggiornato {{date}}",
+      "agreeTermsAndConditions": "Accetto i <span>Termini e Condizioni</span> di DedoAI *",
+      "agreePrivacyPolicy": "Accetto la <span>Politica sulla Privacy</span> di DedoAI e confermo di avere almeno 18 anni *"
     }
+  },
+  "resendCode": "Reinvia codice",
+  "forgotPassword": {
+    "title": "Reimposta la tua password",
+    "description": "Inserisci il tuo indirizzo e-mail per ricevere un link per reimpostare la tua password.",
+    "email": "E-mail",
+    "emailPlaceholder": "Inserisci il tuo indirizzo e-mail",
+    "cta": "Invia richiesta",
+    "successResetPasswordSent": {
+      "title": "Un link è stato inviato alla tua email",
+      "description": "Per favore controlla la tua email per il link di reset della password. Se non lo vedi, controlla la cartella spam o posta indesiderata.",
+      "cta1": "Torna alla home"
+    }
+  },
+  "resetPassword": {
+    "createNewPassword": "Crea una Nuova Password",
+    "createANewPassword": "Crea una Nuova Password",
+    "enterNewPasswordBelow": "Inserisci la tua nuova password qui sotto per completare il processo di reimpostazione. Assicurati che sia forte e sicura.",
+    "successReset": {
+      "title": "Reset della password riuscita",
+      "description": "Ora puoi accedere con la tua nuova password. Se riscontri problemi, contatta il nostro supporto.",
+      "cta1": "Torna al login"
+    }
+  },
+  "contactUs": {
+    "title": "Contattaci",
+    "description": "Compila il modulo qui sotto e ti contatteremo il prima possibile.",
+    "name": "Nome",
+    "namePlaceholder": "Inserisci il tuo nome",
+    "surname": "Cognome",
+    "surnamePlaceholder": "Inserisci il tuo cognome",
+    "email": "E-mail",
+    "emailPlaceholder": "Inserisci il tuo indirizzo e-mail",
+    "message": "Messaggio",
+    "messagePlaceholder": "Inserisci il tuo messaggio",
+    "cta": "Invia"
   }
 }

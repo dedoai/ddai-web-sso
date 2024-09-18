@@ -60,43 +60,47 @@
         "description": "Ahora puedes explorar el mercado y los servicios que ofrece. Cuando estés listo para comenzar tu aventura, recuerda verificar tu identidad.",
         "cta1": "Verifica tu identidad",
         "cta2": "Explora DedoAI"
-      }
-    },
-    "resendCode": "Reenviar código",
-    "forgotPassword": {
-      "title": "Restablece tu contraseña",
-      "description": "Por favor, ingresa tu dirección de e-mail para recibir un enlace para restablecer tu contraseña.",
-      "email": "E-mail",
-      "emailPlaceholder": "Ingresa tu dirección de e-mail",
-      "cta": "Enviar solicitud",
-      "successResetPasswordSent": {
-        "title": "Enlace de seguridad enviado a tu bandeja de entrada",
-        "description": "Por favor, revisa tu e-mail para encontrar el enlace de restablecimiento de contraseña. Si no lo ves, revisa tu carpeta de spam o correo no deseado.",
-        "cta1": "Volver a inicio"
-      }
-    },
-    "resetPassword": {
-      "createNewPassword": "Crear Nueva Contraseña",
-      "createANewPassword": "Crear una Nueva Contraseña",
-      "enterNewPasswordBelow": "Ingresa tu nueva contraseña a continuación para completar el proceso de restablecimiento. Asegúrate de que sea fuerte y segura.",
-      "successReset": {
-        "title": "Restablecimiento de contraseña exitoso",
-        "description": "Ahora puedes iniciar sesión con tu nueva contraseña. Si encuentras algún problema, por favor contacta a nuestro soporte.",
-        "cta1": "Volver a Iniciar sesión"
-      }
-    },
-    "contactUs": {
-      "title": "Contáctanos",
-      "description": "Por favor, completa el formulario a continuación y nos pondremos en contacto contigo lo antes posible.",
-      "name": "Nombre",
-      "namePlaceholder": "Ingresa tu nombre",
-      "surname": "Apellido",
-      "surnamePlaceholder": "Ingresa tu apellido",
-      "email": "E-mail",
-      "emailPlaceholder": "Ingresa tu dirección de e-mail",
-      "message": "Mensaje",
-      "messagePlaceholder": "Ingresa tu mensaje",
-      "cta": "Enviar"
+      },
+      "termsOfServicesTitle": "Términos de Servicios",
+      "termsOfServicesDescription": "Actualizado {{date}}",
+      "agreeTermsAndConditions": "Estoy de acuerdo con los <span>Términos y Condiciones</span> de DedoAI *",
+      "agreePrivacyPolicy": "Estoy de acuerdo con la <span>Política de Privacidad</span> de DedoAI, y confirmo que tengo al menos 18 años *"
     }
+  },
+  "resendCode": "Reenviar código",
+  "forgotPassword": {
+    "title": "Restablece tu contraseña",
+    "description": "Por favor, ingresa tu dirección de e-mail para recibir un enlace para restablecer tu contraseña.",
+    "email": "E-mail",
+    "emailPlaceholder": "Ingresa tu dirección de e-mail",
+    "cta": "Enviar solicitud",
+    "successResetPasswordSent": {
+      "title": "Enlace de seguridad enviado a tu bandeja de entrada",
+      "description": "Por favor, revisa tu e-mail para encontrar el enlace de restablecimiento de contraseña. Si no lo ves, revisa tu carpeta de spam o correo no deseado.",
+      "cta1": "Volver a inicio"
+    }
+  },
+  "resetPassword": {
+    "createNewPassword": "Crear Nueva Contraseña",
+    "createANewPassword": "Crear una Nueva Contraseña",
+    "enterNewPasswordBelow": "Ingresa tu nueva contraseña a continuación para completar el proceso de restablecimiento. Asegúrate de que sea fuerte y segura.",
+    "successReset": {
+      "title": "Restablecimiento de contraseña exitoso",
+      "description": "Ahora puedes iniciar sesión con tu nueva contraseña. Si encuentras algún problema, por favor contacta a nuestro soporte.",
+      "cta1": "Volver a Iniciar sesión"
+    }
+  },
+  "contactUs": {
+    "title": "Contáctanos",
+    "description": "Por favor, completa el formulario a continuación y nos pondremos en contacto contigo lo antes posible.",
+    "name": "Nombre",
+    "namePlaceholder": "Ingresa tu nombre",
+    "surname": "Apellido",
+    "surnamePlaceholder": "Ingresa tu apellido",
+    "email": "E-mail",
+    "emailPlaceholder": "Ingresa tu dirección de e-mail",
+    "message": "Mensaje",
+    "messagePlaceholder": "Ingresa tu mensaje",
+    "cta": "Enviar"
   }
 }

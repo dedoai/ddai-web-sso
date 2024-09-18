@@ -60,43 +60,47 @@
         "description": "Acum puteți explora piața și serviciile oferite. Când sunteți gata să începeți aventura, nu uitați să vă verificați identitatea.",
         "cta1": "Verificați-vă identitatea",
         "cta2": "Explorați DedoAI"
-      }
-    },
-    "resendCode": "Retrimiteți codul",
-    "forgotPassword": {
-      "title": "Resetați parola",
-      "description": "Vă rugăm să introduceți adresa dumneavoastră de e-mail pentru a primi un link pentru resetarea parolei.",
-      "email": "E-mail",
-      "emailPlaceholder": "Introduceți adresa dumneavoastră de e-mail",
-      "cta": "Trimiteți cererea",
-      "successResetPasswordSent": {
-        "title": "Link de securitate trimis în căsuța dvs. de e-mail",
-        "description": "Vă rugăm să verificați e-mailul pentru linkul de resetare a parolei. Dacă nu îl vedeți, verificați folderul de spam sau junk.",
-        "cta1": "Întoarceți-vă acasă"
-      }
-    },
-    "resetPassword": {
-      "createNewPassword": "Creează o Nouă Parolă",
-      "createANewPassword": "Creează o Nouă Parolă",
-      "enterNewPasswordBelow": "Introduceți parola nouă mai jos pentru a finaliza procesul de resetare. Asigurați-vă că este puternică și sigură.",
-      "successReset": {
-        "title": "Resetarea parolei a fost realizată cu succes",
-        "description": "Acum vă puteți autentifica cu noua parolă. Dacă întâmpinați probleme, vă rugăm să contactați suportul nostru.",
-        "cta1": "Înapoi la Autentificare"
-      }
-    },
-    "contactUs": {
-      "title": "Contactați-ne",
-      "description": "Vă rugăm să completați formularul de mai jos și vă vom contacta cât mai curând posibil.",
-      "name": "Nume",
-      "namePlaceholder": "Introduceți numele dumneavoastră",
-      "surname": "Prenume",
-      "surnamePlaceholder": "Introduceți prenumele dumneavoastră",
-      "email": "E-mail",
-      "emailPlaceholder": "Introduceți adresa dumneavoastră de e-mail",
-      "message": "Mesaj",
-      "messagePlaceholder": "Introduceți mesajul dumneavoastră",
-      "cta": "Trimiteți"
+      },
+      "termsOfServicesTitle": "Termeni și condiții",
+      "termsOfServicesDescription": "Actualizat {{date}}",
+      "agreeTermsAndConditions": "Sunt de acord cu <span>Termenii și condițiile</span> DedoAI *",
+      "agreePrivacyPolicy": "Sunt de acord cu <span>Politica de confidențialitate</span> DedoAI și confirm că am cel puțin 18 ani *"
     }
+  },
+  "resendCode": "Retrimiteți codul",
+  "forgotPassword": {
+    "title": "Resetați parola",
+    "description": "Vă rugăm să introduceți adresa dumneavoastră de e-mail pentru a primi un link pentru resetarea parolei.",
+    "email": "E-mail",
+    "emailPlaceholder": "Introduceți adresa dumneavoastră de e-mail",
+    "cta": "Trimiteți cererea",
+    "successResetPasswordSent": {
+      "title": "Link de securitate trimis în căsuța dvs. de e-mail",
+      "description": "Vă rugăm să verificați e-mailul pentru linkul de resetare a parolei. Dacă nu îl vedeți, verificați folderul de spam sau junk.",
+      "cta1": "Întoarceți-vă acasă"
+    }
+  },
+  "resetPassword": {
+    "createNewPassword": "Creează o Nouă Parolă",
+    "createANewPassword": "Creează o Nouă Parolă",
+    "enterNewPasswordBelow": "Introduceți parola nouă mai jos pentru a finaliza procesul de resetare. Asigurați-vă că este puternică și sigură.",
+    "successReset": {
+      "title": "Resetarea parolei a fost realizată cu succes",
+      "description": "Acum vă puteți autentifica cu noua parolă. Dacă întâmpinați probleme, vă rugăm să contactați suportul nostru.",
+      "cta1": "Înapoi la Autentificare"
+    }
+  },
+  "contactUs": {
+    "title": "Contactați-ne",
+    "description": "Vă rugăm să completați formularul de mai jos și vă vom contacta cât mai curând posibil.",
+    "name": "Nume",
+    "namePlaceholder": "Introduceți numele dumneavoastră",
+    "surname": "Prenume",
+    "surnamePlaceholder": "Introduceți prenumele dumneavoastră",
+    "email": "E-mail",
+    "emailPlaceholder": "Introduceți adresa dumneavoastră de e-mail",
+    "message": "Mesaj",
+    "messagePlaceholder": "Introduceți mesajul dumneavoastră",
+    "cta": "Trimiteți"
   }
 }
