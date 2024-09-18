@@ -1,5 +1,8 @@
 import { t } from 'i18next';
-import { object, string } from 'yup';
+import {
+  boolean,
+  object, string,
+} from 'yup';
 
 const schema = () => {
   const baseT = 'authModal.signup';
@@ -50,6 +53,14 @@ const schema = () => {
             confirmPassword: string()
               .test('passwords-match', t(`${baseT}.passwordsDontMatch`), (value, context) => value === context.parent.password)
               .required(t(`${baseT}.pleaseRepeatPassword`)),
+          }),
+      }),
+    termsAndConditionsSchema: object()
+      .shape({
+        signup: object()
+          .shape({
+            agreePrivacyPolicy: boolean().isTrue(),
+            agreeTermsAndConditions: boolean().isTrue(),
           }),
       }),
   };

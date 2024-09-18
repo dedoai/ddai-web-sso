@@ -1,10 +1,11 @@
 import { useTranslation } from 'react-i18next';
-import { Body2, Button, Label } from '@dedo_ai/gui-com-lib';
+import { Body2, Button } from '@dedo_ai/gui-com-lib';
 import { useQuery } from '@tanstack/react-query';
 
 import {
   apiGet, apiPost, EP_EMAIL, EP_OTP, EP_SIGNUP,
   EP_SMS,
+  EP_TERMS_AND_CONDITIONS,
 } from '@/api';
 import SocialSignIn from '@/components/AuthModal/signIn/social';
 import ConfirmationCode from '@/components/ConfirmationCode';
@@ -16,13 +17,14 @@ import {
 import { CreatePasswordStep } from './steps/createPasswordStep';
 import { EmailStep } from './steps/emailStep';
 import { PhoneNumberStep } from './steps/phoneNumberStep';
+import TermsAndConditions, { TTermsAndConditions } from './steps/termsAndConditions';
 import schema from './validationSchemas';
 
 import './style.css';
 
 export const ACTIVE_STEP_MAPPER = {
-  hasEmailCodeBeenChecked: 3,
-  hasPhoneNumberCodeBeenChecked: 5,
+  hasEmailCodeBeenChecked: 4,
+  hasPhoneNumberCodeBeenChecked: 6,
 };
 interface ISignUpDto {
   errMsg?: string;
@@ -53,11 +55,12 @@ export const SignUp = ({
   const { t } = useTranslation();
 
   const {
-    firstStep: firstStepSchema,
-    secondStep: secondStepSchema,
-    thirdStep: thirdStepSchema,
-    fourthStep: fourthStepSchema,
     fifthStep: fifthStepSchema,
+    firstStep: firstStepSchema,
+    fourthStep: fourthStepSchema,
+    secondStep: secondStepSchema,
+    termsAndConditionsSchema,
+    thirdStep: thirdStepSchema,
   } = schema();
 
   const {
@@ -76,13 +79,29 @@ export const SignUp = ({
   };
 
   const {
+    data: termsAndConditions,
+  } = useQuery({
+    queryKey: ['termsAndConditions'],
+    queryFn: async () => {
+      const { data } = await apiGet<TTermsAndConditions>({
+        url: EP_TERMS_AND_CONDITIONS,
+      });
+
+      return data;
+    },
+  });
+
+  const {
     refetch: sendEmailOtp,
   } = useQuery({
     queryKey: ['sendEmailOtpRequest'],
     queryFn: async () => {
-      const { data } = await apiGet(`${EP_OTP}${EP_EMAIL}`, { params: { email } });
+      await apiGet({
+        url: `${EP_OTP}${EP_EMAIL}`,
+        config: { params: { email } },
+      });
 
-      return data;
+      return {};
     },
     enabled: false,
   });
@@ -92,40 +111,45 @@ export const SignUp = ({
   } = useQuery({
     queryKey: ['sendSmsOtpRequest'],
     queryFn: async () => {
-      const { data } = await apiGet(`${EP_OTP}${EP_SMS}`, { params: { phoneNumber: `${phoneNumberPrefix}${phoneNumber}` } });
+      await apiGet({
+        url: `${EP_OTP}${EP_SMS}`,
+        config: { params: { phoneNumber: `${phoneNumberPrefix}${phoneNumber}` } },
+      });
 
-      return data;
+      return {};
     },
     enabled: false,
   });
 
   const {
-    data,
     isFetching: isSigninUp,
     refetch: signUp,
   } = useQuery({
     queryKey: ['signup'],
     queryFn: async () => {
-      const { data } = await apiPost<ISignUpDto>(EP_SIGNUP, {
-        email,
-        password,
-        phone: `+${phoneNumberPrefix}${phoneNumber}`,
+      const { data } = await apiPost<ISignUpDto>({
+        url: EP_SIGNUP,
+        data: {
+          email,
+          password,
+          phone: `+${phoneNumberPrefix}${phoneNumber}`,
+        },
       });
 
       if (data?.user_id) handlePhase(PHASE_SUCCESS_ACCOUNT_CREATION);
 
-      return data;
+      return {};
     },
     enabled: false,
   });
 
   const goToNextStep = (isInvalid?: boolean) => {
     if (!isInvalid) {
-      if (activeStep === 5) signUp();
+      if (activeStep === 6) signUp();
       else {
         Object({
-          1: sendEmailOtp,
-          3: sendSmsOtp,
+          2: sendEmailOtp,
+          4: sendSmsOtp,
         })[activeStep]?.();
         setActiveStep(activeStep + 1);
       }
@@ -134,10 +158,19 @@ export const SignUp = ({
 
   const STEP_MAPPER = {
     1: {
+      step: <TermsAndConditions
+        formData={formData}
+        errors={errors}
+        handleChange={handleChange}
+        termsAndConditions={termsAndConditions}
+      />,
+      schema: termsAndConditionsSchema,
+    },
+    2: {
       step: <EmailStep {...commonProps} />,
       schema: firstStepSchema,
     },
-    2: {
+    3: {
       step: <ConfirmationCode
         codeType={PR_EMAIL}
         descriptionTKey="authModal.signup.confirmEmailDescription"
@@ -153,11 +186,11 @@ export const SignUp = ({
       />,
       schema: secondStepSchema,
     },
-    3: {
+    4: {
       step: <PhoneNumberStep {...commonProps} />,
       schema: thirdStepSchema,
     },
-    4: {
+    5: {
       step: <ConfirmationCode
         codeType={PR_SMS}
         descriptionTKey="authModal.signup.confirmPhoneNumberDescription"
@@ -173,13 +206,13 @@ export const SignUp = ({
       />,
       schema: fourthStepSchema,
     },
-    5: {
+    6: {
       step: <CreatePasswordStep {...commonProps} />,
       schema: fifthStepSchema,
     },
   };
 
-  const continueButtonCondition = [1, 3, 5].indexOf(activeStep) !== -1;
+  const continueButtonCondition = [1, 2, 4, 6].indexOf(activeStep) !== -1;
 
   return (
     <>
@@ -203,7 +236,6 @@ export const SignUp = ({
       <Body2 content={t(`${baseT}.orSignWith`)} className="text-center text-text-bright dark:text-text-gloomy" />
       <SocialSignIn mode="minimal" />
       <NeedHelp handlePhase={handlePhase} />
-      <Label content={data?.errMsg} className="text-error-base text-center" />
     </>
   );
 };

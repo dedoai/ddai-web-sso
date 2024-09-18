@@ -41,16 +41,20 @@ const ContactUs = ({
       const action = 'CONTACT';
       const token = await recaptchaMiddleware(action);
 
-      const { data } = await apiPost(EP_CONTACT_US, {
-        client: `CLIENT_WEB_SSO_${import.meta.env.VITE_ENV}`,
-        email,
-        first_name: name,
-        last_name: surname,
-        message,
-        recaptchaAction: action,
-        recaptchaToken: token,
-        subject: 'SSO_CONTACT',
-      }, {}, true);
+      const { data } = await apiPost({
+        url: EP_CONTACT_US,
+        data: {
+          client: `CLIENT_WEB_SSO_${import.meta.env.VITE_ENV}`,
+          email,
+          first_name: name,
+          last_name: surname,
+          message,
+          recaptchaAction: action,
+          recaptchaToken: token,
+          subject: 'SSO_CONTACT',
+        },
+        overrideMiddleware: true,
+      });
 
       return data;
     },

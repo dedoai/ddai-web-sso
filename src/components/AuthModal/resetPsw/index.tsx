@@ -38,9 +38,9 @@ const ResetPsw = ({
   } = useQuery({
     queryKey: ['resetPassword'],
     queryFn: async () => {
-      const { data } = await apiPost(EP_RESET_PASSWORD, formData);
+      const { data } = await apiPost({ url: EP_RESET_PASSWORD, data: formData });
 
-      if (data?.status === 'success') handlePhase(PHASE_SUCCESS_RESET_PASSWORD);
+      handlePhase(PHASE_SUCCESS_RESET_PASSWORD);
 
       return data;
     },

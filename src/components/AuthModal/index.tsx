@@ -75,7 +75,7 @@ export const AuthModal = ({
     setErrors({});
   };
 
-  const signUpbackButtonCondition = [1, 2, 4].indexOf(activeStep) !== -1;
+  const signUpbackButtonCondition = [1, 2, 3, 5].indexOf(activeStep) !== -1;
 
   const flexReverse = 'flex-row-reverse';
 
@@ -114,6 +114,7 @@ export const AuthModal = ({
     },
     [PHASE_RESET_PASSWORD]: {
       headerClassName: flexReverse,
+      hasCloseModal: false,
     },
     [PHASE_CONTACT_US]: {
       headerClassName: flexReverse,
@@ -124,6 +125,7 @@ export const AuthModal = ({
   const {
     backTo = PHASE_SIGNIN_SOCIAL,
     hasBackButton = false,
+    hasCloseModal = true,
     hasHeader = false,
     headerClassName = '',
     onClosePhaseCb,
@@ -248,7 +250,7 @@ export const AuthModal = ({
   return (
     <Modal
       isOpen={isOpen}
-      onCloseCb={handleClose}
+      onCloseCb={hasCloseModal ? handleClose : undefined}
       disableBodyScroll
       className="min-w-[423px]"
       headerClassName={`pr-2 ${headerClassName}`}

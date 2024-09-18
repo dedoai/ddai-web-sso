@@ -60,7 +60,11 @@
         "description": "Now you can explore the marketplace and the services it offers. When you're ready to start your adventure, remember to verify your identity.",
         "cta1": "Verify your identity",
         "cta2": "Explore DedoAI"
-      }
+      },
+      "termsOfServicesTitle": "Terms of Services",
+      "termsOfServicesDescription": "Updated {{date}}",
+      "agreeTermsAndConditions": "I agree with DedoAI <span>Terms and Conditions</span> *",
+      "agreePrivacyPolicy": "I agree with DedoAI <span>Privacy Policy</span>, and confirm that I am at least 18 years old *"
     },
     "resendCode": "Resend code",
     "forgotPassword": {

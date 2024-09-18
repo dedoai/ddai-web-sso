@@ -8,3 +8,4 @@ export const EP_OTP = '/otp';
 export const EP_RESET_PASSWORD = '/reset-password';
 export const EP_SIGNUP = '/signup';
 export const EP_SMS = '/sms';
+export const EP_TERMS_AND_CONDITIONS = '/terms-and-conditions';

@@ -14,7 +14,7 @@
     "deploy:prod": "git tag prod-$npm_package_version && git push origin prod-$npm_package_version"
   },
   "dependencies": {
-    "@dedo_ai/gui-com-lib": "2.0.57",
+    "@dedo_ai/gui-com-lib": "2.0.66",
     "@en1-gma/use-form": "1.0.5",
     "@react-oauth/google": "0.12.1",
     "@tanstack/react-query": "5.44.0",

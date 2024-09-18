@@ -6,6 +6,8 @@ export const PAYLOAD_SIGNIN = 'signin';
 export const PAYLOAD_SIGNUP = 'signup';
 
 // Properties
+export const PR_AGREE_PRIVACY_POLICY = 'agreePrivacyPolicy';
+export const PR_AGREE_TERMS_AND_CONDITIONS = 'agreeTermsAndConditions';
 export const PR_CONFIRM_PASSWORD = 'confirmPassword';
 export const PR_CONFIRMATION_EMAIL_CODE = 'confirmationEmailCode';
 export const PR_CONFIRMATION_PHONE_NUMBER_CODE = 'confirmationPhoneNumberCode';
@@ -25,8 +27,10 @@ export interface IFormData {
   signin: {
     email: string;
     password: string;
-  },
+  };
   signup: {
+    agreePrivacyPolicy: boolean;
+    agreeTermsAndConditions: boolean;
     confirmationEmailCode: string;
     confirmationPhoneNumberCode: string;
     confirmPassword: string;
@@ -36,20 +40,20 @@ export interface IFormData {
     password: string;
     phoneNumber: string;
     phoneNumberPrefix: string;
-  },
+  };
   forgotPassword: {
     email: string;
-  },
+  };
   contactUs: {
     email: string;
     message: string;
     name: string;
     surname: string;
-  },
+  };
   resetPassword: {
     password: string;
     confirmPassword: string;
-  }
+  };
 }
 
 // Initial datas
@@ -59,6 +63,8 @@ export const INITIAL_DATA = {
     [PR_PASSWORD]: '',
   },
   [PAYLOAD_SIGNUP]: {
+    [PR_AGREE_PRIVACY_POLICY]: false,
+    [PR_AGREE_TERMS_AND_CONDITIONS]: false,
     [PR_CONFIRM_PASSWORD]: '',
     [PR_CONFIRMATION_EMAIL_CODE]: '',
     [PR_CONFIRMATION_PHONE_NUMBER_CODE]: '',
@@ -82,4 +88,5 @@ export const INITIAL_DATA = {
     [PR_PASSWORD]: '',
     [PR_CONFIRM_PASSWORD]: '',
   },
+
 };

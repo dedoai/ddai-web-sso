@@ -45,14 +45,17 @@ export const ForgotPassword = ({
 
       const token = await recaptchaMiddleware(action);
 
-      const { data } = await apiPost(EP_RESET_PASSWORD, {
-        client: `CLIENT_WEB_SSO_${import.meta.env.VITE_ENV}`,
-        email,
-        recaptchaAction: action,
-        recaptchaToken: token,
+      const { data } = await apiPost({
+        url: EP_RESET_PASSWORD,
+        data: {
+          client: `CLIENT_WEB_SSO_${import.meta.env.VITE_ENV}`,
+          email,
+          recaptchaAction: action,
+          recaptchaToken: token,
+        },
       });
 
-      if (data?.status === 'success') handlePhase(PHASE_SUCCESS_RESET_PASSWORD_SENT);
+      handlePhase(PHASE_SUCCESS_RESET_PASSWORD_SENT);
 
       return data;
     },

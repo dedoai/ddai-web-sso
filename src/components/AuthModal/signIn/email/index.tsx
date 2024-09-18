@@ -45,7 +45,7 @@ export const EmailSignIn = ({
   } = useQuery({
     queryKey: ['login'],
     queryFn: async () => {
-      const { data } = await apiPost(EP_LOGIN, { email, password });
+      const { data } = await apiPost({ url: EP_LOGIN, data: { email, password } });
 
       return data;
     },
