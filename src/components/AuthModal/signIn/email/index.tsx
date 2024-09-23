@@ -94,7 +94,7 @@ export const EmailSignIn = ({
       <Button
         size="lg"
         ariaLabel="log-in"
-        text={t(`${baseT}.login`)}
+        label={t(`${baseT}.login`)}
         isLoading={isLoggingIn}
         onClick={async () => {
           const isInvalid = await validate(schema());

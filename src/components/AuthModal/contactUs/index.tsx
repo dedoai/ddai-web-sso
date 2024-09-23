@@ -112,7 +112,7 @@ const ContactUs = ({
         ariaLabel="submit-contact"
         isLoading={isSubmitting}
         size="lg"
-        text={t(`${baseT}.cta`)}
+        label={t(`${baseT}.cta`)}
         onClick={async () => {
           const isInvalid = await validate(schema());
 

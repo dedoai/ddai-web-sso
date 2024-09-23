@@ -222,7 +222,7 @@ export const SignUp = ({
           ? (
             <Button
               ariaLabel="next-step"
-              text={t(`${baseT}.${activeStep === 5 ? 'createAccount' : 'nextStep'}`)}
+              label={t(`${baseT}.${activeStep === 5 ? 'createAccount' : 'nextStep'}`)}
               size="lg"
               className="mt-2"
               isLoading={isSigninUp}

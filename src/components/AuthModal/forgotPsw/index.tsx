@@ -80,7 +80,7 @@ export const ForgotPassword = ({
       />
       <Button
         ariaLabel="reset-password"
-        text={t(`${baseT}.cta`)}
+        label={t(`${baseT}.cta`)}
         size="lg"
         isLoading={isSendingRequest}
         onClick={async () => {

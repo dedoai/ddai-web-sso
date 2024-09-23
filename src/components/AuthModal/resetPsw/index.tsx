@@ -64,7 +64,7 @@ const ResetPsw = ({
       <Button
         ariaLabel="reset-password"
         isLoading={isResettingPsw}
-        text={t(`${baseT}.createNewPassword`)}
+        label={t(`${baseT}.createNewPassword`)}
         onClick={async () => {
           const isInvalid = await validate(schema());
 

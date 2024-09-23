@@ -128,7 +128,7 @@ const ConfirmationCode = ({
         value={value || ''}
       />
       <Button
-        text={t('authModal.signup.resend', {
+        label={t('authModal.signup.resend', {
           article: isTimerRolling ? t('authModal.signup.resendIn') : '',
           time: time > 0
             ? ` 00:${time.toString().padStart(2, '0')}`

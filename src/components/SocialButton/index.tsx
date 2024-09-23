@@ -53,7 +53,7 @@ export const SocialButton = ({
       key={id}
       onClick={loginCb}
       size="lg"
-      text={isMinimalMode ? '' : t(`${baseT}.${id.split('-')?.[0]}`)}
+      label={isMinimalMode ? '' : t(`${baseT}.${id.split('-')?.[0]}`)}
       variant="secondary"
     />
   );

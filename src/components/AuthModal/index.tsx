@@ -192,7 +192,7 @@ export const AuthModal = ({
         actions={[
           <Button
             ariaLabel="verify-identity"
-            text={t(`${baseT}.signup.successAccountCreation.cta1`)}
+            label={t(`${baseT}.signup.successAccountCreation.cta1`)}
             size="xl"
             variant="secondary"
             key="action-verify-identity"
@@ -200,7 +200,7 @@ export const AuthModal = ({
           />,
           <Button
             ariaLabel="explore-dedoai"
-            text={t(`${baseT}.signup.successAccountCreation.cta2`)}
+            label={t(`${baseT}.signup.successAccountCreation.cta2`)}
             size="xl"
             key="action-explore-dedoai"
             onClick={handleClose}
@@ -217,7 +217,7 @@ export const AuthModal = ({
           <Button
             key="go-back-home"
             ariaLabel="go-back-home"
-            text={t(`${baseT}.forgotPassword.successResetPasswordSent.cta1`)}
+            label={t(`${baseT}.forgotPassword.successResetPasswordSent.cta1`)}
             onClick={handleClose}
           />,
         ]}
@@ -232,7 +232,7 @@ export const AuthModal = ({
           <Button
             key="go-to-login"
             ariaLabel="go-to-login"
-            text={t(`${baseT}.resetPassword.successReset.cta1`)}
+            label={t(`${baseT}.resetPassword.successReset.cta1`)}
             onClick={() => { window.location.href = `/?t=${theme}&l=${language}`; }}
           />,
         ]}
