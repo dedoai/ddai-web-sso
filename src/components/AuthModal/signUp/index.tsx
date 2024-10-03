@@ -100,7 +100,7 @@ export const SignUp = ({
         url: `${EP_OTP}${EP_EMAIL}`,
         config: { params: { email } },
       });
-
+      setActiveStep(activeStep + 1);
       return {};
     },
     enabled: false,
@@ -115,7 +115,7 @@ export const SignUp = ({
         url: `${EP_OTP}${EP_SMS}`,
         config: { params: { phoneNumber: `${phoneNumberPrefix}${phoneNumber}` } },
       });
-
+      setActiveStep(activeStep + 1);
       return {};
     },
     enabled: false,
@@ -143,15 +143,23 @@ export const SignUp = ({
     enabled: false,
   });
 
-  const goToNextStep = (isInvalid?: boolean) => {
+  const goToNextStep = async (isInvalid?: boolean) => {
     if (!isInvalid) {
       if (activeStep === 6) signUp();
       else {
-        Object({
-          2: sendEmailOtp,
-          4: sendSmsOtp,
-        })[activeStep]?.();
-        setActiveStep(activeStep + 1);
+        const mapper = {
+          2: {
+            method: sendEmailOtp,
+          },
+          4: {
+            method: sendSmsOtp,
+          },
+        };
+
+        const { method } = mapper[activeStep] ?? {};
+
+        if (method) method();
+        else setActiveStep(activeStep + 1);
       }
     }
   };
