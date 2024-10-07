@@ -11,7 +11,10 @@ import SocialSignIn from '@/components/AuthModal/signIn/social';
 import ConfirmationCode from '@/components/ConfirmationCode';
 import NeedHelp from '@/components/NeedHelp';
 import {
-  IFormData, PHASE_SUCCESS_ACCOUNT_CREATION, PR_EMAIL, PR_SMS,
+  type IFormData,
+  PHASE_SUCCESS_ACCOUNT_CREATION,
+  PR_EMAIL,
+  PR_SMS,
 } from '@/consts';
 
 import { CreatePasswordStep } from './steps/createPasswordStep';
@@ -92,16 +95,18 @@ export const SignUp = ({
   });
 
   const {
+    data: userId,
     refetch: sendEmailOtp,
   } = useQuery({
     queryKey: ['sendEmailOtpRequest'],
     queryFn: async () => {
-      await apiGet({
+      const { data } = await apiGet<{user_id: string}>({
         url: `${EP_OTP}${EP_EMAIL}`,
         config: { params: { email } },
       });
+
       setActiveStep(activeStep + 1);
-      return {};
+      return data?.user_id;
     },
     enabled: false,
   });
@@ -113,7 +118,12 @@ export const SignUp = ({
     queryFn: async () => {
       await apiGet({
         url: `${EP_OTP}${EP_SMS}`,
-        config: { params: { phoneNumber: `${phoneNumberPrefix}${phoneNumber}` } },
+        config: {
+          params: {
+            phoneNumber: `${phoneNumberPrefix}${phoneNumber}`,
+            userid: userId,
+          },
+        },
       });
       setActiveStep(activeStep + 1);
       return {};
@@ -208,7 +218,7 @@ export const SignUp = ({
         sendCodeCb={sendSmsOtp}
         setCodeChecked={() => handleChange('signup.hasPhoneNumberCodeBeenChecked', true)}
         title="authModal.signup.confirmPhoneNumberLabel"
-        tValues={{ phoneNumber, phoneNumberPrefix }}
+        tValues={{ phoneNumber, phoneNumberPrefix, userId }}
         value={confirmationPhoneNumberCode}
         valuePath="signup.confirmationPhoneNumberCode"
       />,

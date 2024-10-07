@@ -61,7 +61,13 @@ const ConfirmationCode = ({
   } = useQuery({
     queryKey: ['checkCode'],
     queryFn: async () => {
-      await apiPost({ url: `${EP_OTP}/${codeType}`, data: { otpToken: value, ...values } });
+      await apiPost({
+        url: `${EP_OTP}/${codeType}`,
+        data: {
+          otpToken: value,
+          ...values,
+        },
+      });
 
       setCodeChecked();
       nextStepCb();
