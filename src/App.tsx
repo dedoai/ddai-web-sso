@@ -5,6 +5,7 @@ import AuthModal from '@/components/AuthModal';
 
 import { PHASE_FORGOT_PASSWORD, PHASE_SIGNUP } from './consts';
 import {
+  dp,
   language, mode, theme,
 } from './utils';
 
@@ -41,7 +42,7 @@ const App = () => {
       setResetPassword(true);
     }
 
-    if (WHITELISTED_EXTERNAL_PHASES.indexOf(defaultPhase) !== -1) setDefaultPhase(defaultPhase);
+    if (WHITELISTED_EXTERNAL_PHASES.indexOf(dp) !== -1) setDefaultPhase(defaultPhase);
   }, []);
 
   return (
