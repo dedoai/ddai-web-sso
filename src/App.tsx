@@ -3,6 +3,7 @@ import i18next from 'i18next';
 
 import AuthModal from '@/components/AuthModal';
 
+import { PHASE_FORGOT_PASSWORD, PHASE_SIGNUP } from './consts';
 import {
   language, mode, theme,
 } from './utils';
@@ -12,10 +13,13 @@ const THEME_MAPPER = {
   light: 'light',
 };
 
+const WHITELISTED_EXTERNAL_PHASES = [PHASE_SIGNUP, PHASE_FORGOT_PASSWORD];
+
 const App = () => {
   const trustedDomains: string = import.meta.env.VITE_TRUSTED_DOMAINS;
 
   const [resetPassword, setResetPassword] = useState(false);
+  const [defaultPhase, setDefaultPhase] = useState();
 
   const onCloseCb = () => {
     trustedDomains
@@ -36,9 +40,18 @@ const App = () => {
       document.body.style.height = '100vh';
       setResetPassword(true);
     }
+
+    if (WHITELISTED_EXTERNAL_PHASES.indexOf(defaultPhase) !== -1) setDefaultPhase(defaultPhase);
   }, []);
 
-  return <AuthModal isOpen onCloseCb={onCloseCb} resetPassword={resetPassword} />;
+  return (
+    <AuthModal
+      isOpen
+      onCloseCb={onCloseCb}
+      resetPassword={resetPassword}
+      defaultPhase={defaultPhase}
+    />
+  );
 };
 
 export default App;

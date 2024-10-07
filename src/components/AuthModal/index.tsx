@@ -38,16 +38,18 @@ import './style.css';
 
 interface IAuthModalProps extends Pick<IModalProps, 'isOpen' | 'onCloseCb'> {
   resetPassword?: boolean;
+  defaultPhase?: string;
 }
 export const AuthModal = ({
   isOpen,
   onCloseCb,
   resetPassword,
+  defaultPhase,
 }: IAuthModalProps) => {
   const baseT = 'authModal';
   const { t } = useTranslation();
 
-  const DEFAULT_PHASE = resetPassword ? PHASE_RESET_PASSWORD : PHASE_SIGNIN_SOCIAL;
+  const DEFAULT_PHASE = defaultPhase || (resetPassword ? PHASE_RESET_PASSWORD : PHASE_SIGNIN_SOCIAL);
 
   const [phase, setPhase] = useState(DEFAULT_PHASE);
   const handlePhase = (_phase: string) => setPhase(_phase);
@@ -90,11 +92,12 @@ export const AuthModal = ({
       headerClassName: '',
     },
     [PHASE_SIGNUP]: {
-      hasBackButton: signUpbackButtonCondition,
-      headerClassName: signUpbackButtonCondition ? '' : flexReverse,
+      hasBackButton: !defaultPhase && signUpbackButtonCondition,
+      headerClassName: !defaultPhase && signUpbackButtonCondition ? '' : flexReverse,
     },
     [PHASE_FORGOT_PASSWORD]: {
-      hasBackButton: true,
+      hasBackButton: !defaultPhase,
+      headerClassName: defaultPhase ? flexReverse : '',
       backTo: PHASE_SIGNIN_EMAIL,
     },
     [PHASE_SUCCESS_RESET_PASSWORD_SENT]: {
@@ -242,7 +245,6 @@ export const AuthModal = ({
       />
     ),
   };
-
   useEffect(resetErrors, [phase]);
 
   useEffect(() => setPhase(DEFAULT_PHASE), [resetPassword]);
