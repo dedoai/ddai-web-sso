@@ -24,6 +24,7 @@ const Prefix = ({
         countries
           .find(({ dial_code: dialCode }) => dialCode === prefixToCheck)
           ?.code
+          ?.toLowerCase()
       }
     />
     <Body2 content={prefixToCheck} />
@@ -110,6 +111,7 @@ export const PhoneNumberStep = ({
                             countries
                               .find(({ dial_code: dialCode }) => dialCode === _prefix)
                               ?.code
+                              ?.toLowerCase()
                           }
                         />
                         <Body2 content={_prefix} />
