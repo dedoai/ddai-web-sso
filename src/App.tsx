@@ -20,7 +20,6 @@ const App = () => {
   const trustedDomains: string = import.meta.env.VITE_TRUSTED_DOMAINS;
 
   const [resetPassword, setResetPassword] = useState(false);
-  const [defaultPhase, setDefaultPhase] = useState();
 
   const onCloseCb = () => {
     trustedDomains
@@ -41,8 +40,6 @@ const App = () => {
       document.body.style.height = '100vh';
       setResetPassword(true);
     }
-
-    if (WHITELISTED_EXTERNAL_PHASES.indexOf(dp) !== -1) setDefaultPhase(defaultPhase);
   }, []);
 
   return (
@@ -50,7 +47,7 @@ const App = () => {
       isOpen
       onCloseCb={onCloseCb}
       resetPassword={resetPassword}
-      defaultPhase={defaultPhase}
+      defaultPhase={WHITELISTED_EXTERNAL_PHASES.indexOf(dp) !== -1 ? dp : undefined}
     />
   );
 };
