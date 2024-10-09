@@ -3,10 +3,11 @@ import axios, { type AxiosRequestConfig } from 'axios';
 
 import { API_AUTH_PATH, API_VERSION } from './const';
 
-type DefaultApiDto = {
+type DefaultApiDto<T = any> = {
+  data: T;
   description?: string;
-  errMsg?: string; // This is the error, boundary from useQuery
-  statusCode: number;
+  errorCode?: string;
+  statusCode?: number;
 }
 
 export const axiosInstance = axios.create({
@@ -16,10 +17,6 @@ export const axiosInstance = axios.create({
   },
 });
 
-type TApiWrapDto<T> = {
-  data?: T;
-  errMsg?: string;
-}
 interface IApiWrapArgs {
   promise: Promise<any>;
   onErrorCb?: (error: any) => void;
@@ -29,7 +26,7 @@ export const apiWrap = async <T>(
   promise: IApiWrapArgs['promise'],
   onErrorCb?: IApiWrapArgs['onErrorCb'],
   onSuccessCb?: IApiWrapArgs['onSuccessCb'],
-): Promise<TApiWrapDto<T & DefaultApiDto>> => {
+): Promise<DefaultApiDto<T>> => {
   try {
     const { data } = await promise;
     onSuccessCb?.(data);

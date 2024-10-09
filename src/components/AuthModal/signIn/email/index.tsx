@@ -5,7 +5,6 @@ import {
   Checkbox,
   Icon,
   Input,
-  Label,
 } from '@dedo_ai/gui-com-lib';
 import { useQuery } from '@tanstack/react-query';
 
@@ -13,8 +12,15 @@ import { apiPost, EP_LOGIN } from '@/api';
 import SocialSignIn from '@/components/AuthModal/signIn/social';
 import NeedHelp from '@/components/NeedHelp';
 import { type IFormData, PHASE_FORGOT_PASSWORD } from '@/consts';
+import { emit, EMIT_TYPE_SIGNIN } from '@/utils';
 
 import schema from './validationSchemas';
+
+interface ISignInDto {
+  access_token: string;
+  expires_in: number;
+  refresh_token: string;
+}
 
 interface IEmailSignInProps {
   errors: any;
@@ -39,13 +45,14 @@ export const EmailSignIn = ({
   } = formData ?? {};
 
   const {
-    data,
     isFetching: isLoggingIn,
     refetch: doLogin,
   } = useQuery({
     queryKey: ['login'],
     queryFn: async () => {
-      const { data } = await apiPost({ url: EP_LOGIN, data: { email, password } });
+      const { data, statusCode } = await apiPost<ISignInDto>({ url: EP_LOGIN, data: { email, password } });
+
+      if (statusCode === 200) emit(EMIT_TYPE_SIGNIN, data);
 
       return data;
     },
@@ -107,7 +114,6 @@ export const EmailSignIn = ({
       />
       <SocialSignIn mode="minimal" />
       <NeedHelp handlePhase={handlePhase} />
-      <Label content={data?.errMsg} className="text-error-base text-center" />
     </>
   );
 };

@@ -6,7 +6,11 @@ import AuthModal from '@/components/AuthModal';
 import { PHASE_FORGOT_PASSWORD, PHASE_SIGNUP } from './consts';
 import {
   dp,
-  language, mode, theme,
+  emit,
+  EMIT_TYPE_MODAL_CLOSE,
+  language,
+  mode,
+  theme,
 } from './utils';
 
 const THEME_MAPPER = {
@@ -17,19 +21,7 @@ const THEME_MAPPER = {
 const WHITELISTED_EXTERNAL_PHASES = [PHASE_SIGNUP, PHASE_FORGOT_PASSWORD];
 
 const App = () => {
-  const trustedDomains: string = import.meta.env.VITE_TRUSTED_DOMAINS;
-
   const [resetPassword, setResetPassword] = useState(false);
-
-  const onCloseCb = () => {
-    trustedDomains
-      ?.split(',')
-      ?.forEach((domain) => {
-        window.parent.postMessage({
-          type: 'sso-modal-close',
-        }, domain);
-      });
-  };
 
   useEffect(() => {
     document.body.classList.add(THEME_MAPPER[theme]);
@@ -45,7 +37,7 @@ const App = () => {
   return (
     <AuthModal
       isOpen
-      onCloseCb={onCloseCb}
+      onCloseCb={() => emit(EMIT_TYPE_MODAL_CLOSE)}
       resetPassword={resetPassword}
       defaultPhase={WHITELISTED_EXTERNAL_PHASES.indexOf(dp) !== -1 ? dp : undefined}
     />
