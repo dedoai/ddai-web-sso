@@ -1,22 +1,24 @@
 import { useEffect } from 'react';
+import { useScript } from 'react-apple-signin-auth';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@dedo_ai/gui-com-lib';
 import { type UseGoogleLoginOptionsImplicitFlow, useGoogleLogin } from '@react-oauth/google';
 import { isEmpty } from 'lodash';
 
 const HOOKS_MAPPER = {
+  'apple-hook': useScript,
   'google-hook': useGoogleLogin,
 };
 
 type HookCall = {
-  args: UseGoogleLoginOptionsImplicitFlow;
+  args: UseGoogleLoginOptionsImplicitFlow | string;
   name: string;
   overloadLoginCb?: boolean;
 }
 export interface ISocialButtonProps {
   id: string;
-  initHookCb?: () => HookCall;
   initCb?: () => void;
+  initHookCb?: () => HookCall;
   isMinimalMode?: boolean;
   loginCb?: () => void;
 }

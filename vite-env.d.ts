@@ -2,8 +2,11 @@
 
 interface ImportMetaEnv {
   readonly VITE_API_BASE_URL: string;
+  readonly VITE_APP_URI: string;
+  readonly VITE_APPLE_CLIENT_ID: string;
   readonly VITE_ENV: string;
   readonly VITE_FB_APP_ID: string;
+  readonly VITE_GOOGLE_CLIENT_ID: string;
   readonly VITE_RECAPTCHA_KEY: string;
   readonly VITE_TRUSTED_DOMAINS: string;
 }

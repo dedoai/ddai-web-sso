@@ -1,3 +1,5 @@
+import { appleAuthHelpers } from 'react-apple-signin-auth';
+
 import { type ISocialButtonProps } from '@/components/SocialButton';
 
 import { emit, EMIT_TYPE_SIGNIN } from './emitterHandler';
@@ -40,19 +42,32 @@ export const SOCIAL_BUTTONS: Omit<ISocialButtonProps, 'isMinimalMode'>[] = [
   {
     id: 'google',
     initHookCb: () => ({
-      name: 'google-hook',
-      overloadLoginCb: true,
       args: {
         onSuccess: (res) => {
           const { access_token: accessToken, expires_in: expiresIn } = res ?? {};
           if (accessToken && expiresIn) emit(EMIT_TYPE_SIGNIN, { access_token: accessToken, expires_in: expiresIn });
         },
       },
+      name: 'google-hook',
+      overloadLoginCb: true,
     }),
   },
   {
     id: `apple-${theme}`,
-    initCb: () => {},
+    initHookCb: () => ({
+      args: appleAuthHelpers.APPLE_SCRIPT_SRC,
+      name: 'apple-hook',
+    }),
+    loginCb: () => appleAuthHelpers.signIn({
+      authOptions: {
+        clientId: import.meta.env.VITE_APPLE_CLIENT_ID,
+        scope: 'email name',
+        redirectURI: import.meta.env.VITE_API_APP_URI, // TODO, app's URL where the user will be redirected after login
+        usePopup: true,
+      },
+      onSuccess: (res) => console.log('>> apple login success', res),
+      onError: (err) => console.error('>> apple login error', err),
+    }),
   },
 ];
 
