@@ -45,7 +45,7 @@ const ConfirmationCode = ({
   const [time, setTime] = useState(0);
   const [timer, setTimer] = useState(false);
   const toggleTimer = () => {
-    setTime(10);
+    setTime(30);
     setTimer(!timer);
   };
 

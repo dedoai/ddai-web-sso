@@ -3,7 +3,6 @@ import {
   Body2,
   Button,
   H2,
-  Label,
 } from '@dedo_ai/gui-com-lib';
 import { useQuery } from '@tanstack/react-query';
 
@@ -72,7 +71,6 @@ const ResetPsw = ({
         }}
       />
       <NeedHelp handlePhase={handlePhase} disabled={isResettingPsw} />
-      <Label className="text-error-base text-center" content={data?.errMsg} />
     </>
   );
 };

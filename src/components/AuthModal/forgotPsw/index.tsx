@@ -5,11 +5,13 @@ import {
   H2,
   Icon,
   Input,
-  Label,
 } from '@dedo_ai/gui-com-lib';
 import { useQuery } from '@tanstack/react-query';
 
-import { apiPost, EP_RESET_PASSWORD, recaptchaMiddleware } from '@/api';
+import {
+  apiGet,
+  EP_RESET_PASSWORD, recaptchaMiddleware,
+} from '@/api';
 import NeedHelp from '@/components/NeedHelp';
 import { type IFormData, PHASE_SUCCESS_RESET_PASSWORD_SENT } from '@/consts';
 
@@ -35,7 +37,6 @@ export const ForgotPassword = ({
   const { email } = formData;
 
   const {
-    data,
     isFetching: isSendingRequest,
     refetch: sendRequest,
   } = useQuery({
@@ -45,13 +46,15 @@ export const ForgotPassword = ({
 
       const token = await recaptchaMiddleware(action);
 
-      const { data } = await apiPost({
+      const { data } = await apiGet({
         url: EP_RESET_PASSWORD,
-        data: {
-          client: `CLIENT_WEB_SSO_${import.meta.env.VITE_ENV}`,
-          email,
-          recaptchaAction: action,
-          recaptchaToken: token,
+        config: {
+          params: {
+            client: `CLIENT_WEB_SSO_${import.meta.env.VITE_ENV}`,
+            email,
+            recaptchaAction: action,
+            recaptchaToken: token,
+          },
         },
       });
 
@@ -90,7 +93,6 @@ export const ForgotPassword = ({
         }}
       />
       <NeedHelp handlePhase={handlePhase} />
-      <Label content={data?.errMsg} className="text-error-base text-center" />
     </>
   );
 };

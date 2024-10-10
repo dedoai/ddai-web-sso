@@ -1,5 +1,6 @@
 import { type ISocialButtonProps } from '@/components/SocialButton';
 
+import { emit, EMIT_TYPE_SIGNIN } from './emitterHandler';
 import { theme } from './urlParams';
 
 export const SOCIAL_BUTTONS: Omit<ISocialButtonProps, 'isMinimalMode'>[] = [
@@ -43,7 +44,8 @@ export const SOCIAL_BUTTONS: Omit<ISocialButtonProps, 'isMinimalMode'>[] = [
       overloadLoginCb: true,
       args: {
         onSuccess: (res) => {
-          console.log('>> google login success', res);
+          const { access_token: accessToken, expires_in: expiresIn } = res ?? {};
+          if (accessToken && expiresIn) emit(EMIT_TYPE_SIGNIN, { access_token: accessToken, expires_in: expiresIn });
         },
       },
     }),

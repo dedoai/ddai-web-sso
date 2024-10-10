@@ -254,7 +254,7 @@ export const AuthModal = ({
       isOpen={isOpen}
       onCloseCb={hasCloseModal ? handleClose : undefined}
       disableBodyScroll
-      className="min-w-[423px]"
+      className="min-w-[423px] overflow-y-scroll"
       headerClassName={`pr-2 ${headerClassName}`}
       title={hasBackButton
         ? (
