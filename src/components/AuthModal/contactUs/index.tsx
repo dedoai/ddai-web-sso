@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import {
   Body2,
-  Button, H2, Input, Label,
+  Button, H2, Input,
 } from '@dedo_ai/gui-com-lib';
 import { useQuery } from '@tanstack/react-query';
 
@@ -119,7 +119,6 @@ const ContactUs = ({
           if (!isInvalid) submit();
         }}
       />
-      <Label content={data?.errMsg} className="text-error-base text-center" />
     </>
   );
 };
